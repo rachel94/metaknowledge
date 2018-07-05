@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to metaknowledge’s documentation! &mdash; metaknowledge  documentation</title>
+  <title>metaknowledge &mdash; metaknowledge  documentation</title>
   
 
   
@@ -27,7 +27,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -76,12 +77,11 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to metaknowledge’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+              <p class="caption"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 </ul>
-</div>
+
             
           
         </div>
@@ -125,7 +125,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Welcome to metaknowledge’s documentation!</li>
+      <li>metaknowledge</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -144,18 +144,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-metaknowledge-s-documentation">
-<h1>Welcome to metaknowledge’s documentation!<a class="headerlink" href="#welcome-to-metaknowledge-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="metaknowledge">
+<h1>metaknowledge<a class="headerlink" href="#metaknowledge" title="Permalink to this headline">¶</a></h1>
+<p><em>metaknowledge</em> is a <a class="reference external" href="https://www.python.org">Python3</a> package for doing computational research in bibliometrics, scientometrics, and network analysis. It can also be easily used to simplify the process of doing systematic reviews in any disciplinary context.</p>
+<p><em>metaknowledge</em> reads a directory of plain text files containing meta-data on publications and citations, and writes to a variety of data structures that are suitable for longitudinal research, computational text analysis (e.g. topic models and burst analysis), Reference Publication Year Spectroscopy (RPYS), and network analysis (including multi-modal, multi-level, and dynamic). It handles large datasets (e.g. several million records) efficiently.</p>
+<p>metaknowledge currently handles data from the Web of Science, PubMed, Scopus, Proquest Dissertations &amp; Theses, and administrative data from the National Science Foundation and the Canadian tri-council granting agencies: SSHRC, CIHR, and NSERC.</p>
+<p>Datasets created with metaknowledge can be analyzed using <a class="reference external" href="https://networkx.github.io">NetworkX</a> and the <a class="reference external" href="http://www.scipy.org/about.html">standard libraries</a> for data analysis in Python. It is also easy to write data to <code class="code docutils literal notranslate"><span class="pre">csv</span></code> or <code class="code docutils literal notranslate"><span class="pre">graphml</span></code> files for analysis and visualization in <a class="reference external" href="http://www.r-project.org">R</a>, <a class="reference external" href="http://www.stata.com">Stata</a>, <a class="reference external" href="http://visone.info">Visone</a>, <a class="reference external" href="http://gephi.github.io">Gephi</a>, or any other tools for data analysis.&lt;/p&gt;</p>
+<p><em>metaknowledge</em> also has a simple command line tool for extracting quantitative datasets and network files from Web of Science files. This makes the library more accessible to researchers who do not know Python, and makes it easier to quickly explore new datasets.</p>
+<div class="section" id="contact">
+<h2>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
+<p>Reid McIlroy-Young, <a class="reference external" href="mailto:reid&#37;&#52;&#48;reidmcy&#46;com">reid<span>&#64;</span>reidmcy<span>&#46;</span>com</a></p>
+<embed>
+  <br />
+</embed><p><em>University of Chicago, Chicago, IL, USA</em></p>
+<p>John McLevey, <a class="reference external" href="mailto:john&#46;mclevey&#37;&#52;&#48;uwaterloo&#46;ca">john<span>&#46;</span>mclevey<span>&#64;</span>uwaterloo<span>&#46;</span>ca</a>
+<em>University of Waterloo, Waterloo, ON, Canada</em></p>
+<p>Jillian Anderson, <a class="reference external" href="mailto:jillianderson8&#37;&#52;&#48;gmail&#46;com">jillianderson8<span>&#64;</span>gmail<span>&#46;</span>com</a>
+<em>University of Waterloo, Waterloo, ON, Canada</em></p>
+</div>
+<div class="section" id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
+<p>If you are using metaknowledge for research that will be published or publicly distributed, please acknowledge us with the following citation:</p>
+<p>Reid McIlroy-Young, John McLevey, and Jillian Anderson. 2015. metaknowledge: open source software for social networks, bibliometrics, and sociology of knowledge research. URL: <a class="reference external" href="http://www.networkslab.org/metaknowledge">http://www.networkslab.org/metaknowledge</a>.
+Download .bib file:</p>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#install-with-vagrant">Install with Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#student-install">Student Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#advanced-instructions">Advanced Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#install-without-vagrant">Install without Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#extending-mk">Extending MK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#questions">Questions?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#license">License</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
 <li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
+</div>
 </div>
 
 
@@ -163,6 +198,13 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
   
 
   <hr/>

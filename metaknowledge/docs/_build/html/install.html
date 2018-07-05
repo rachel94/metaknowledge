@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; metaknowledge  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="metaknowledge" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> metaknowledge
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-with-vagrant">Install with Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#student-install">Student Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-instructions">Advanced Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-without-vagrant">Install without Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extending-mk">Extending MK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#questions">Questions?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">metaknowledge</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/install.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p><em>metaknowledge</em> has two distributions. The simplest is found under the release branch of the <a class="reference external" href="https://github.com/networks-lab/metaknowledge/tree/release">git repo</a>, which can be installed the usual way with pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">metaknowledge</span>
+</pre></div>
+</div>
+<p>The second version is at the master branch on <a class="reference external" href="https://github.com/networks-lab/metaknowledge"><em>Github</em></a>. It comes with extra documents and resources for teaching.</p>
+<p>The <a class="reference external" href="https://github.com/networks-lab/metaknowledge/archive/master.zip"><em>download</em></a> from <em>Github</em> includes a customized <a class="reference external" href="https://www.vagrantup.com/"><em>Vagrant</em></a> file that installs <em>metaknowledge</em> and other useful <em>Python</em> libraries into a virtual machine. It is the easiest way of getting <em>metaknowledge</em> working if you are not familiar with <em>Python</em>.</p>
+<div class="section" id="install-with-vagrant">
+<h2>Install with Vagrant<a class="headerlink" href="#install-with-vagrant" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Vagrant</em> method is intended for students and anyone not familiar with <em>Python</em>. It creates a <a class="reference external" href="https://en.wikipedia.org/wiki/Virtual_machine">virtual machine</a> with <em>metaknowledge</em> installed, as well as the <em>Python</em> scientific stack <em>numpy</em>, <em>scipy</em>, and <em>matplotlib</em>, as well as a series of iPython notebooks for teaching <em>metaknowledge</em> and <em>Python</em>. Some notebooks are more complete than others.</p>
+<p>The instructions for those familiar with the command line use the advanced instructions. Otherwise, it is probably best to use the student install.</p>
+</div>
+<div class="section" id="student-install">
+<h2>Student Install<a class="headerlink" href="#student-install" title="Permalink to this headline">¶</a></h2>
+<p>First, you need to install <a class="reference external" href="https://www.vagrantup.com/downloads.html"><em>Vagrant</em></a> and <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads"><em>VirtualBox</em></a>. You need to do this before you can install <em>metaknowledge</em>.</p>
+<p>Once <em>Vagrant</em> and <em>VirtualBox</em> are installed, download <a class="reference external" href="https://github.com/networks-lab/metaknowledge/archive/master.zip"><em>metaknowledge</em></a>. Unzip the file. If you are unable to unzip the file, download <a class="reference external" href="http://www.7-zip.org/"><em>7-zip</em></a>.</p>
+<p>Open the directory <em>metaknowledge</em> and go to the vagrant subdirectory. Depending on your operating system, double click either: <code class="code docutils literal notranslate"><span class="pre">win_run</span></code>, <code class="code docutils literal notranslate"><span class="pre">mac_run</span></code>, or <code class="code docutils literal notranslate"><span class="pre">linux_run</span></code>.</p>
+<p>A window should pop up and say something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bringing</span> <span class="n">machine</span> <span class="s1">&#39;default&#39;</span> <span class="n">up</span> <span class="k">with</span> <span class="s1">&#39;virtualbox&#39;</span> <span class="n">provider</span><span class="o">...</span>
+<span class="o">==&gt;</span> <span class="n">default</span><span class="p">:</span> <span class="n">Box</span> <span class="s1">&#39;ubuntu/trusty64&#39;</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">found</span><span class="o">.</span> <span class="n">Attempting</span> <span class="n">to</span> <span class="n">find</span> <span class="ow">and</span> <span class="n">install</span><span class="o">...</span>
+<span class="n">default</span><span class="p">:</span> <span class="n">Box</span> <span class="n">Provider</span><span class="p">:</span> <span class="n">virtualbox</span>
+<span class="n">default</span><span class="p">:</span> <span class="n">Box</span> <span class="n">Version</span><span class="p">:</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>You will also see an estimate of how long the download and installation process will take (typically 20 minutes). All you have to do it wait for it to finish. When it is done, a browser window will appear at the showing the notebooks. If a browser window opens and it is showing <code class="code docutils literal notranslate"><span class="pre">No</span> <span class="pre">data</span> <span class="pre">received</span></code>, hit refresh a couple times.</p>
+<p>When you see a page with the following, you have installed everything successfully:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lesson</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">Getting</span><span class="o">-</span><span class="n">Started</span>
+<span class="n">Lesson</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">Reading</span><span class="o">-</span><span class="n">Files</span>
+<span class="n">Lesson</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">Objects</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>To open the page again, just double click on which ever of <code class="code docutils literal notranslate"><span class="pre">win_run</span></code>, <code class="code docutils literal notranslate"><span class="pre">mac_run</span></code>, or <code class="code docutils literal notranslate"><span class="pre">linux_run</span></code> you used. It should take less than a minute the second time.</p>
+</div>
+<div class="section" id="advanced-instructions">
+<h2>Advanced Instructions<a class="headerlink" href="#advanced-instructions" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Install <a class="reference external" href="https://www.vagrantup.com/downloads.html">Vagrant</a> and <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>.</li>
+<li>Clone the <cite>git repo &lt;https://github.com/networks-lab/metaknowledge.git&gt;</cite>.</li>
+<li>Make sure you are on the master branch.</li>
+<li>Go to the vagrant directory.</li>
+<li>Run <code class="code docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">up</span></code></li>
+<li>Once vagrant has finished go to <a class="reference external" href="http://localhost:1159/">http://localhost:1159/</a></li>
+</ol>
+<p>What you are doing by running <code class="code docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">up</span></code> is creating an Ubuntu VM and provisioning it with the script <code class="code docutils literal notranslate"><span class="pre">bootstrap</span></code>, which is also in the vagrant directory. If you run <code class="code docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">up</span></code> again it only starts the VM. To access the VM’s notebook once it is created:</p>
+<ol class="arabic simple">
+<li>Go to the vagrant directory.</li>
+<li>Run <code class="code docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">up</span></code></li>
+<li>Once vagrant has finished go to <a class="reference external" href="http://localhost:1159/">http://localhost:1159/</a></li>
+</ol>
+<p>You can also use <code class="code docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">ssh</span></code> to ssh into the VM or <code class="code docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">provision</span></code> to rerun bootstrap. If <code class="code docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">ssh</span></code> does not work on your machine, you should be able to ssh into it at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HostName</span><span class="p">:</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<span class="n">Port</span><span class="p">:</span> <span class="mi">2222</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">vagrant</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">vagrant</span>
+</pre></div>
+</div>
+<p>On Windows <a class="reference external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/"><em>PuTTY</em></a> has been tested and works well.&lt;/p&gt;</p>
+</div>
+<div class="section" id="install-without-vagrant">
+<h2>Install without Vagrant<a class="headerlink" href="#install-without-vagrant" title="Permalink to this headline">¶</a></h2>
+<p>Installing without <em>Vagrant</em> is done with <a class="reference external" href="https://pypi.python.org/pypi/setuptools">setuptools</a>. Go to the metaknowledge directory and run <code class="code docutils literal notranslate"><span class="pre">python3</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>. This is the same version that is installed via <code class="code docutils literal notranslate"><span class="pre">pip</span></code> plus some extra development command line tools.</p>
+</div>
+<div class="section" id="extending-mk">
+<h2>Extending MK<a class="headerlink" href="#extending-mk" title="Permalink to this headline">¶</a></h2>
+<p>Coming soon</p>
+</div>
+<div class="section" id="questions">
+<h2>Questions?<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<p>If you find bugs, or have questions, please write to:</p>
+<p>Reid McIlroy-Young <a class="reference external" href="mailto:reid&#37;&#52;&#48;reidmcy&#46;com">reid<span>&#64;</span>reidmcy<span>&#46;</span>com</a></p>
+<p>John McLevey <a class="reference external" href="mailto:john&#46;mclevey&#37;&#52;&#48;uwaterloo&#46;ca">john<span>&#46;</span>mclevey<span>&#64;</span>uwaterloo<span>&#46;</span>ca</a></p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p><em>metaknowledge</em> is free and open source software, distributed under the GPL License.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="metaknowledge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, NetLab.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
