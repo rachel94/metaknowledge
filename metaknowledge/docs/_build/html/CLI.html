@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Command Line Tool &mdash; metaknowledge  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Importing" href="examples/importing.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> metaknowledge
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/index.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Line Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#questions">Questions?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">metaknowledge</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Command Line Tool</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/CLI.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="command-line-tool">
+<h1>Command Line Tool<a class="headerlink" href="#command-line-tool" title="Permalink to this headline">¶</a></h1>
+<p>metaknowledge comes with a command-line application named <code class="code docutils literal notranslate"><span class="pre">metaknowledge</span></code>. This provides a simple interface to the python package and allows the generation of most of the networks along with ways to manage the records themselves.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>To start the tool run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ metaknowledge
+</pre></div>
+</div>
+<p>You will be asked for the location of the file or files to use. These can be given by paths to the files or paths to directories with the files. Note: if a directory is used all files with the proper header will be read.</p>
+<p>You will then be asked what to do with the records:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">collection</span> <span class="n">of</span> <span class="mi">537</span> <span class="n">WOS</span> <span class="n">records</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span>
+<span class="n">What</span> <span class="n">do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">do</span> <span class="k">with</span> <span class="n">it</span><span class="p">:</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">Make</span> <span class="n">a</span> <span class="n">graph</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">Write</span> <span class="n">the</span> <span class="n">collection</span> <span class="k">as</span> <span class="n">a</span> <span class="n">single</span> <span class="n">WOS</span> <span class="n">style</span> <span class="n">file</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">Write</span> <span class="n">the</span> <span class="n">collection</span> <span class="k">as</span> <span class="n">a</span> <span class="n">single</span> <span class="n">WOS</span> <span class="n">style</span> <span class="n">file</span> <span class="ow">and</span> <span class="n">make</span> <span class="n">a</span> <span class="n">graph</span>
+<span class="mi">4</span><span class="p">)</span> <span class="n">Write</span> <span class="n">the</span> <span class="n">collection</span> <span class="k">as</span> <span class="n">a</span> <span class="n">single</span> <span class="n">csv</span> <span class="n">file</span>
+<span class="mi">5</span><span class="p">)</span> <span class="n">Write</span> <span class="n">the</span> <span class="n">collection</span> <span class="k">as</span> <span class="n">a</span> <span class="n">single</span> <span class="n">csv</span> <span class="n">file</span> <span class="ow">and</span> <span class="n">make</span> <span class="n">a</span> <span class="n">graph</span>
+<span class="mi">6</span><span class="p">)</span> <span class="n">Write</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">citations</span> <span class="n">to</span> <span class="n">a</span> <span class="n">single</span> <span class="n">file</span>
+<span class="mi">7</span><span class="p">)</span> <span class="n">Go</span> <span class="n">over</span> <span class="n">non</span><span class="o">-</span><span class="n">journal</span> <span class="n">citations</span>
+<span class="n">i</span><span class="p">)</span> <span class="nb">open</span> <span class="n">python</span> <span class="n">console</span>
+<span class="n">q</span><span class="p">)</span> <span class="n">quit</span>
+<span class="n">What</span> <span class="ow">is</span> <span class="n">your</span> <span class="n">selection</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Select the option you want by typing the corresponding number or character and pressing enter. The menus after this step are controlled this way as well.</p>
+<p>The second last option <code class="code docutils literal notranslate"><span class="pre">i)</span></code> will start an interactive python session will all the objects you have created thus far accessible, their names will be given when it starts.</p>
+<p>The last option <code class="code docutils literal notranslate"><span class="pre">q)</span></code> will cause the program to exit. You can also quit at any time by pressing <code class="code docutils literal notranslate"><span class="pre">ctr-c</span></code>.</p>
+</div>
+<div class="section" id="questions">
+<h2>Questions?<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<p>If you find bugs, or have questions, please write to:</p>
+<div class="line-block">
+<div class="line">Reid McIlroy-Young <a class="reference external" href="mailto:reid&#37;&#52;&#48;reidmcy&#46;com">reid<span>&#64;</span>reidmcy<span>&#46;</span>com</a></div>
+<div class="line">John McLevey <a class="reference external" href="mailto:john&#46;mclevey&#37;&#52;&#48;uwaterloo&#46;ca">john<span>&#46;</span>mclevey<span>&#64;</span>uwaterloo<span>&#46;</span>ca</a></div>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p><em>metaknowledge</em> is free and open source software, distributed under the GPL License.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="examples/importing.html" class="btn btn-neutral" title="Importing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, NetLab.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

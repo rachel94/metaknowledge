@@ -36,14 +36,6 @@ If you are using metaknowledge for research that will be published or publicly d
 
 `Download .bib file: <Download .bib file:>`_
 
-Questions?
-^^^^^^^^^^
-If you find bugs, or have questions, please write to:
-
-Reid McIlroy-Young `reid@reidmcy.com <mailto:reid@reidmcy.com>`_
-
-John McLevey `john.mclevey@uwaterloo.ca <mailto:john.mclevey@uwaterloo.ca>`_
-
 License
 ^^^^^^^
 *metaknowledge* is free and open source software, distributed under the GPL License.
@@ -54,6 +46,9 @@ License
    :caption: Documentation:
 
    install
+   documentation/index
+   examples/index
+   CLI
 
 
 Indices and tables

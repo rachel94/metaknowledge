@@ -75,6 +75,21 @@ Extending MK
 ^^^^^^^^^^^^
 Coming soon
 
+Questions?
+^^^^^^^^^^
+If you find bugs, or have questions, please write to:
+
+| Reid McIlroy-Young `reid@reidmcy.com <mailto:reid@reidmcy.com>`_
+| John McLevey `john.mclevey@uwaterloo.ca <mailto:john.mclevey@uwaterloo.ca>`_
+
+License
+^^^^^^^
+*metaknowledge* is free and open source software, distributed under the GPL License.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Installation:
+
 .. _Github: https://github.com/networks-lab/metaknowledge
 .. |Github| replace:: *Github*
 .. _download: https://github.com/networks-lab/metaknowledge/archive/master.zip
