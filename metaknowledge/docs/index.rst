@@ -5,6 +5,8 @@
 
 metaknowledge
 =========================================
+*A Python3 package for doing computational research on knowledge*
+
 *metaknowledge* is a Python3_ package for doing computational research in bibliometrics, scientometrics, and network analysis. It can also be easily used to simplify the process of doing systematic reviews in any disciplinary context.
 
 *metaknowledge* reads a directory of plain text files containing meta-data on publications and citations, and writes to a variety of data structures that are suitable for longitudinal research, computational text analysis (e.g. topic models and burst analysis), Reference Publication Year Spectroscopy (RPYS), and network analysis (including multi-modal, multi-level, and dynamic). It handles large datasets (e.g. several million records) efficiently.
@@ -17,21 +19,34 @@ Datasets created with metaknowledge can be analyzed using NetworkX_ and the `sta
 
 Contact
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Reid McIlroy-Young, `reid@reidmcy.com <mailto:reid@reidmcy.com>`_
-*University of Chicago, Chicago, IL, USA*
+| **Reid McIlroy-Young**, `reid@reidmcy.com <mailto:reid@reidmcy.com>`_
+| *University of Chicago, Chicago, IL, USA*
 
-John McLevey, `john.mclevey@uwaterloo.ca <mailto:john.mclevey@uwaterloo.ca>`_
-*University of Waterloo, Waterloo, ON, Canada*
+| **John McLevey**, `john.mclevey@uwaterloo.ca <mailto:john.mclevey@uwaterloo.ca>`_
+| *University of Waterloo, Waterloo, ON, Canada*
 
-Jillian Anderson, `jillianderson8@gmail.com <mailto:jillianderson8@gmail.com>`_
-*University of Waterloo, Waterloo, ON, Canada*
+| **Jillian Anderson**, `jillianderson8@gmail.com <mailto:jillianderson8@gmail.com>`_
+| *University of Waterloo, Waterloo, ON, Canada*
 
 Citation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you are using metaknowledge for research that will be published or publicly distributed, please acknowledge us with the following citation:
 
-Reid McIlroy-Young, John McLevey, and Jillian Anderson. 2015. metaknowledge: open source software for social networks, bibliometrics, and sociology of knowledge research. URL: http://www.networkslab.org/metaknowledge.
-Download .bib file:
+  *Reid McIlroy-Young, John McLevey, and Jillian Anderson. 2015. metaknowledge: open source software for social networks, bibliometrics, and sociology of knowledge research. URL: http://www.networkslab.org/metaknowledge.*
+
+`Download .bib file: <Download .bib file:>`_
+
+Questions?
+^^^^^^^^^^
+If you find bugs, or have questions, please write to:
+
+Reid McIlroy-Young `reid@reidmcy.com <mailto:reid@reidmcy.com>`_
+
+John McLevey `john.mclevey@uwaterloo.ca <mailto:john.mclevey@uwaterloo.ca>`_
+
+License
+^^^^^^^
+*metaknowledge* is free and open source software, distributed under the GPL License.
 
 
 .. toctree::
