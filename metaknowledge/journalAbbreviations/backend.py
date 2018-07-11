@@ -19,9 +19,9 @@ def j9urlGenerator(nameDict = False):
     > "https://images.webofknowledge.com/images/help/WOS/{VAL}_abrvjt.html"
     > Where {VAL} is a capital letter or the string "0-9"
 
-    # Returns
+    **Returns**
 
-    `list[str]`
+   :code:`list[str]`
 
     > A list of all the url's strings
     """
@@ -95,15 +95,13 @@ def _getCurrentj9Dict():
 def updatej9DB(dbname = abrevDBname, saveRawHTML = False):
     """Updates the database of Journal Title Abbreviations. Requires an internet connection. The data base is saved relative to the source file not the working directory.
 
-    # Parameters
+    **Parameters**
 
-    _dbname_ : `optional [str]`
+    | *dbname:* :code:`optional [str]`
+    | The name of the database file, default is "j9Abbreviations.db"
 
-    > The name of the database file, default is "j9Abbreviations.db"
-
-    _saveRawHTML_ : `optional [bool]`
-
-    > Determines if the original HTML of the pages is stored, default `False`. If `True` they are saved in a directory inside j9Raws begining with todays date.
+    | *saveRawHTML:* :code:`optional [bool]`
+    | Determines if the original HTML of the pages is stored, default :code:`False`. If :code:`True` they are saved in a directory inside j9Raws begining with todays date.
     """
     if saveRawHTML:
         rawDir = '{}/j9Raws'.format(os.path.dirname(__file__))
@@ -130,19 +128,16 @@ def updatej9DB(dbname = abrevDBname, saveRawHTML = False):
 def getj9dict(dbname = abrevDBname, manualDB = manualDBname, returnDict ='both'):
     """Returns the dictionary of journal abbreviations mapping to a list of the associated journal names. By default the local database is used. The database is in the file _dbname_ in the same directory as this source file
 
-    # Parameters
+    **Parameters**
 
-    _dbname_ : `optional [str]`
+    | *dbname:* :code:`optional [str]`
+    | The name of the downloaded database file, the default is determined at run time. It is recommended that this remain untouched.
 
-    > The name of the downloaded database file, the default is determined at run time. It is recommended that this remain untouched.
+    | *manualDB:* :code:`optional [str]`
+    | The name of the manually created database file, the default is determined at run time. It is recommended that this remain untouched.
 
-    _manualDB_ : `optional [str]`
-
-    > The name of the manually created database file, the default is determined at run time. It is recommended that this remain untouched.
-
-    _returnDict_ : `optional [str]`
-
-    > default `'both'`, can be used to get both databases or only one  with `'WOS'` or `'manual'`.
+    | *returnDict:* :code:`optional [str]`
+    | default:code:`'both'`, can be used to get both databases or only one  with:code:`'WOS'` or:code:`'manual'`.
     """
     dbLoc = os.path.normpath(os.path.dirname(__file__))
 
@@ -172,17 +167,15 @@ def getj9dict(dbname = abrevDBname, manualDB = manualDBname, returnDict ='both')
     return retDict
 
 def addToDB(abbr = None, dbname = manualDBname):
-    """Adds _abbr_ to the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by `metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run **addToDB** without an _abbr_ argument.
+    """Adds _abbr_ to the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:`metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run **addToDB** without an _abbr_ argument.
 
-    # Parameters
+    **Parameters**
 
-    _abbr_ : `optional [str or dict[str : str]]`
+    | *abbr:* :code:`optional [str or dict[str : str]]`
+    | The journal abbreviation to be added to the database, it can either be a single string in which case that string will be added with its self as the full name, or a dict can be given with the abbreviations as keys and their names as strings, use pipes (`'|'`) to separate multiple names. Note, if the empty string is given as a name the abbreviation will be considered manually __excluded__, i.e. having excludeFromDB() run on it.
 
-    > The journal abbreviation to be added to the database, it can either be a single string in which case that string will be added with its self as the full name, or a dict can be given with the abbreviations as keys and their names as strings, use pipes (`'|'`) to separate multiple names. Note, if the empty string is given as a name the abbreviation will be considered manually __excluded__, i.e. having excludeFromDB() run on it.
-
-    _dbname_ : `optional [str]`
-
-    > The name of the database file, default is `metaknowledge.journalAbbreviations.manualDBname`.
+    | *dbname:* :code:`optional [str]`
+    | The name of the database file, default is:code:`metaknowledge.journalAbbreviations.manualDBname`.
     """
     dbLoc = os.path.normpath(os.path.dirname(__file__))
     with dbm.dumb.open(dbLoc + '/' + dbname) as db:
@@ -199,17 +192,15 @@ def addToDB(abbr = None, dbname = manualDBname):
             raise TypeError("abbr must be a str or dict.")
 
 def excludeFromDB(abbr = None, dbname = manualDBname):
-    """Marks _abbr_ to be excluded the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by `metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run [**addToDB**()](#journalAbbreviations.addToDB) without an _abbr_ argument.
+    """Marks _abbr_ to be excluded the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:`metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run [**addToDB**()](#journalAbbreviations.addToDB) without an _abbr_ argument.
 
-    # Parameters
+    **Parameters**
 
-    _abbr_ : `optional [str or tuple[str] or list[str]`
+    | *abbr:* ``optional`` [str or tuple[str] or list[str]`
+    | The journal abbreviation to be excluded from the database, it can either be a single string in which case that string will be exclude or a list/tuple of strings can be given with the abbreviations.
 
-    > The journal abbreviation to be excluded from the database, it can either be a single string in which case that string will be exclude or a list/tuple of strings can be given with the abbreviations.
-
-    _dbname_ : `optional [str]`
-
-    > The name of the database file, default is `metaknowledge.journalAbbreviations.manualDBname`.
+    | *dbname:* :code:`optional [str]`
+    | The name of the database file, default is:code:`metaknowledge.journalAbbreviations.manualDBname`.
     """
     dbLoc = os.path.normpath(os.path.dirname(__file__))
     with dbm.dumb.open(dbLoc + '/' + dbname) as db:

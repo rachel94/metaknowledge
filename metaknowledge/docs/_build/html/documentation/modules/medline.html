@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Proquest" href="proquest.html" />
+    <link rel="prev" title="Journal Abbreviations" href="journalAbbreviations.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -77,9 +79,25 @@
             
             
               <p class="caption"><span class="caption-text">Documentation:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="contour.html">Contour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="journalAbbreviations.html">Journal Abbreviations</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Medline</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-medline-module-provides-the-following-functions"><strong>The medline module provides the following functions:</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="proquest.html">Proquest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scopus.html">Scopus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WOS.html">Wos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions_methods/index.html">Functions &amp; Methods</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CLI.html">Command Line Tool</a></li>
 </ul>
@@ -127,6 +145,10 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../index.html">Documentation</a> &raquo;</li>
+        
+          <li><a href="index.html">Modules</a> &raquo;</li>
+        
       <li>Medline</li>
     
     
@@ -148,6 +170,40 @@
             
   <div class="section" id="medline">
 <h1>Medline<a class="headerlink" href="#medline" title="Permalink to this headline">¶</a></h1>
+<p>These are the functions used to process medline (pubmed) files at the backend. They are meant for use internal use by metaknowledge.</p>
+<div class="section" id="the-medline-module-provides-the-following-functions">
+<h2><strong>The medline module provides the following functions:</strong><a class="headerlink" href="#the-medline-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
+<p><strong>isMedlineFile</strong>(infile, checkedLines=2)</p>
+<p>Determines if _infile_ is the path to a Medline file. A file is considerd to be a Medline file if it has the correct encoding (<cite>latin-1</cite>) and within the first _checkedLines_ a line starts with <cite>“PMID- “</cite>.</p>
+<p># Parameters</p>
+<p>_infile_ : <cite>str</cite></p>
+<p>&gt; The path to the targets file</p>
+<p>_checkedLines_ : <cite>optional [int]</cite></p>
+<p>&gt; default 2, the number of lines to check for the header</p>
+<p># Returns</p>
+<p><cite>bool</cite></p>
+<p>&gt; <cite>True</cite> if the file is a Medline file</p>
+<hr class="docutils" />
+<p><strong>medlineParser</strong>(pubFile)</p>
+<p>Parses a medline file, _pubFile_, to extract the individual entries as [<cite>MedlineRecords</cite>](#metaknowledge.MedlineRecord).</p>
+<p>A medline file is a series of entries, each entry is a series of tags. A tag is a 2 to 4 character string each tag is padded with spaces on the left to make it 4 characters which is followed by a dash and a space (<cite>‘- ‘</cite>). Everything after the tag and on all lines after it not starting with a tag is considered associated with the tag. Each entry’s first tag is <cite>PMID</cite>, so a first line looks something like <cite>PMID- 26524502</cite>. Entries end with a single blank line.</p>
+<p># Parameters</p>
+<p>_pubFile_ : <cite>str</cite></p>
+<p>&gt; A path to a valid medline file, use [<cite>isMedlineFile</cite>](#metaknowledge.isMedlineFile) to verify</p>
+<p># Returns</p>
+<p><cite>set[MedlineRecord]</cite></p>
+<p>&gt; Records for each of the entries</p>
+<hr class="docutils" />
+<p><strong>medlineRecordParser</strong>(record)</p>
+<p>The parser [<cite>MedlineRecord</cite>](#metaknowledge.MedlineRecord) use. This takes an entry from [<cite>medlineParser()</cite>](#metaknowledge.medlineParser) and parses it a part of the creation of a <cite>MedlineRecord</cite>.</p>
+<p># Parameters</p>
+<p>_record_ : <cite>enumerate object</cite></p>
+<p>&gt; a file wrapped by <cite>enumerate()</cite></p>
+<p># Returns</p>
+<p><cite>collections.OrderedDict</cite></p>
+<p>&gt; An ordered dictionary of the key-vaue pairs in the entry</p>
+<hr class="docutils" />
+</div>
 </div>
 
 
@@ -155,6 +211,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="proquest.html" class="btn btn-neutral float-right" title="Proquest" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="journalAbbreviations.html" class="btn btn-neutral" title="Journal Abbreviations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

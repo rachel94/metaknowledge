@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Wos" href="WOS.html" />
+    <link rel="prev" title="Proquest" href="proquest.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -77,9 +79,25 @@
             
             
               <p class="caption"><span class="caption-text">Documentation:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="contour.html">Contour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="journalAbbreviations.html">Journal Abbreviations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="medline.html">Medline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="proquest.html">Proquest</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Scopus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-scopus-module-provides-the-following-functions"><strong>The scopus module provides the following functions:</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="WOS.html">Wos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions_methods/index.html">Functions &amp; Methods</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CLI.html">Command Line Tool</a></li>
 </ul>
@@ -127,6 +145,10 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../index.html">Documentation</a> &raquo;</li>
+        
+          <li><a href="index.html">Modules</a> &raquo;</li>
+        
       <li>Scopus</li>
     
     
@@ -148,6 +170,44 @@
             
   <div class="section" id="scopus">
 <h1>Scopus<a class="headerlink" href="#scopus" title="Permalink to this headline">¶</a></h1>
+<p>These are the functions used to process scopus csv files at the backend. They are meant for use internal use by metaknowledge.</p>
+<div class="section" id="the-scopus-module-provides-the-following-functions">
+<h2><strong>The scopus module provides the following functions:</strong><a class="headerlink" href="#the-scopus-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
+<p><strong>scopusRecordParser</strong>(record, header=None)</p>
+<p>The parser [<cite>ScopusRecords</cite>](#metaknowledge.ScopusRecord) use. This takes a line from [<cite>scopusParser()</cite>](#metaknowledge.scopusParser) and parses it as a part of the creation of a <cite>ScopusRecord</cite>.</p>
+<p><strong>Note</strong> this is for csv files downloaded from scopus _not_ the text records as those are less complete. Also, Scopus uses double quotes (<cite>“</cite>) to quote strings, such as abstracts, in the csv so double quotes in the string must be escaped. For reasons not fully understandable by mortals they choose to use two double quotes in a row (<cite>“”</cite>) to represent an escaped double quote. This parser does not unescape these quotes, but it does correctly handle their interacts with the outer double quotes.</p>
+<p># Parameters</p>
+<p>_record_ : <cite>str</cite></p>
+<p>&gt; string ending with a newline containing the record’s entry</p>
+<p># Returns</p>
+<p><cite>dict</cite></p>
+<p>&gt; A dictionary of the key-vaue pairs in the entry</p>
+<hr class="docutils" />
+<p><strong>isScopusFile</strong>(infile, checkedLines=2, maxHeaderDiff=3)</p>
+<p>Determines if _infile_ is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (<cite>utf-8</cite> with BOM (Byte Order Mark)) and within the first _checkedLines_ a line contains the complete header, the list of all header entries in order is found in [<cite>scopus.scopusHeader</cite>](#metaknowledge.scopus).</p>
+<p><strong>Note</strong> this is for csv files _not_ plain text files from scopus, plain text files are not complete.</p>
+<p># Parameters</p>
+<p>_infile_ : <cite>str</cite></p>
+<p>&gt; The path to the targets file</p>
+<p>_checkedLines_ : <cite>optional [int]</cite></p>
+<p>&gt; default 2, the number of lines to check for the header</p>
+<p>_maxHeaderDiff_ : <cite>optional [int]</cite></p>
+<p>&gt; default 3, maximum number of different entries in the potetial file from the current known header <cite>metaknowledge.scopus.scopusHeader</cite>, if exceeded an <cite>False</cite> will be returned</p>
+<p># Returns</p>
+<p><cite>bool</cite></p>
+<p>&gt; <cite>True</cite> if the file is a Scopus csv file</p>
+<hr class="docutils" />
+<p><strong>scopusParser</strong>(scopusFile)</p>
+<p>Parses a scopus file, _scopusFile_, to extract the individual lines as [<cite>ScopusRecords</cite>](#metaknowledge.ScopusRecord).</p>
+<p>A Scopus file is a csv (Comma-separated values) with a complete header, see [<cite>scopus.scopusHeader</cite>](#metaknowledge.scopus) for the entries, and each line after it containing a record’s entry. The string valued entries are quoted with double quotes which means double quotes inside them can cause issues, see [<cite>scopusRecordParser()</cite>](#metaknowledge.scopusRecordParser) for more information.</p>
+<p># Parameters</p>
+<p>_scopusFile_ : <cite>str</cite></p>
+<p>&gt; A path to a valid scopus file, use [<cite>isScopusFile()</cite>](#metaknowledge.isScopusFile) to verify</p>
+<p># Returns</p>
+<p><cite>set[ScopusRecord]</cite></p>
+<p>&gt; Records for each of the entries</p>
+<hr class="docutils" />
+</div>
 </div>
 
 
@@ -155,6 +215,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="WOS.html" class="btn btn-neutral float-right" title="Wos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="proquest.html" class="btn btn-neutral" title="Proquest" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

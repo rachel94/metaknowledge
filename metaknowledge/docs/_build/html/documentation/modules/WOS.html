@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>WOS &mdash; metaknowledge  documentation</title>
+  <title>Wos &mdash; metaknowledge  documentation</title>
   
 
   
@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Classes" href="../classes/index.html" />
+    <link rel="prev" title="Scopus" href="scopus.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -77,9 +79,25 @@
             
             
               <p class="caption"><span class="caption-text">Documentation:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="contour.html">Contour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="journalAbbreviations.html">Journal Abbreviations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="medline.html">Medline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="proquest.html">Proquest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scopus.html">Scopus</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Wos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-wos-module-provides-the-following-functions"><strong>The WOS module provides the following functions:</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions_methods/index.html">Functions &amp; Methods</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CLI.html">Command Line Tool</a></li>
 </ul>
@@ -127,7 +145,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>WOS</li>
+          <li><a href="../index.html">Documentation</a> &raquo;</li>
+        
+          <li><a href="index.html">Modules</a> &raquo;</li>
+        
+      <li>Wos</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -147,7 +169,51 @@
            <div itemprop="articleBody">
             
   <div class="section" id="wos">
-<h1>WOS<a class="headerlink" href="#wos" title="Permalink to this headline">¶</a></h1>
+<h1>Wos<a class="headerlink" href="#wos" title="Permalink to this headline">¶</a></h1>
+<p>These are the functions used to process medline (pubmed) files at the backend. They are meant for use internal use by metaknowledge.</p>
+<div class="section" id="the-wos-module-provides-the-following-functions">
+<h2><strong>The WOS module provides the following functions:</strong><a class="headerlink" href="#the-wos-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
+<p><strong>recordParser</strong>(paper)</p>
+<p>This is function that is used to create [<cite>Records</cite>](#metaknowledge.Record) from files.</p>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>recordParser**() reads the file _paper_ until it reaches ‘ER’. For each field tag it adds an entry to the returned dict with the tag as the key and a list of the entries as the value, the list has each line separately, so for the following two lines in a record:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>AF BREVIK, I</dt>
+<dd>ANICIN, B</dd>
+</dl>
+</div></blockquote>
+<p>The entry in the returned dict would be <cite>{‘AF’ : [“BREVIK, I”, “ANICIN, B”]}</cite></p>
+<p><cite>Record</cite> objects can be created with these dictionaries as the initializer.</p>
+<p># Parameters</p>
+<p>_paper_ : <cite>file stream</cite></p>
+<p>&gt; An open file, with the current line at the beginning of the WOS record.</p>
+<p># Returns</p>
+<p><cite>OrderedDict[str : List[str]]</cite></p>
+<p>&gt; A dictionary mapping WOS tags to lists, the lists are of strings, each string is a line of the record associated with the tag.</p>
+<hr class="docutils" />
+<p><strong>isWOSFile</strong>(infile, checkedLines=3)</p>
+<p>Determines if _infile_ is the path to a WOS file. A file is considerd to be a WOS file if it has the correct encoding (<cite>utf-8</cite> with a BOM) and within the first _checkedLines_ a line starts with <cite>“VR 1.0”</cite>.</p>
+<p># Parameters</p>
+<p>_infile_ : <cite>str</cite></p>
+<p>&gt; The path to the targets file</p>
+<p>_checkedLines_ : <cite>optional [int]</cite></p>
+<p>&gt; default 2, the number of lines to check for the header</p>
+<p># Returns</p>
+<p><cite>bool</cite></p>
+<p>&gt; <cite>True</cite> if the file is a WOS file</p>
+<hr class="docutils" />
+<p><strong>wosParser</strong>(isifile)</p>
+<p>This is function that is used to create [<cite>RecordCollections</cite>](#metaknowledge.RecordCollection) from files.</p>
+<p><a href="#id3"><span class="problematic" id="id4">**</span></a>wosParser**() reads the file given by the path isifile, checks that the header is correct then reads until it reaches EF. All WOS records it encounters are parsed with [<a href="#id5"><span class="problematic" id="id6">**</span></a>recordParser**()](#metaknowledge.recordParser) and converted into [<cite>Records</cite>](#metaknowledge.Record). A list of these <cite>Records</cite> is returned.</p>
+<p><cite>BadWOSFile</cite> is raised if an issue is found with the file.</p>
+<p># Parameters</p>
+<p>_isifile_ : <cite>str</cite></p>
+<p>&gt; The path to the target file</p>
+<p># Returns</p>
+<p><cite>List[Record]</cite></p>
+<p>&gt; All the <cite>Records</cite> found in _isifile_</p>
+<hr class="docutils" />
+</div>
 </div>
 
 
@@ -155,6 +221,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../classes/index.html" class="btn btn-neutral float-right" title="Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scopus.html" class="btn btn-neutral" title="Scopus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

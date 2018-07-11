@@ -7,7 +7,7 @@ Modules
    :caption: Modules:
 
    contour
-   journal_abbrevs
+   journalAbbreviations
    medline
    proquest
    scopus
