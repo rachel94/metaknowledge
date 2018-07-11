@@ -1,5 +1,6 @@
 import os
 import ast
+import itertools
 
 # this is the names of the modules
 # ideally this would be generated automatically
@@ -54,6 +55,14 @@ def writeModFiles():
 
         # find all the files with scripts:
         good_file = (file for file in os.listdir() if file[-3:] == '.py' and file != '__init__.py')
+        # good_tag_files = (file for file in os.listdir('tagProcessing') if file[-3:] == '.py' and file != '__init__.py')
+        #
+        # for file in good_tag_files:
+        #     file += os.path.join('tagProcessing, file')
+        #
+        # good_file = itertools.chain(good_tag_files, good_file)
+        # print(good_file)
+
 
         functions = []
 
@@ -81,7 +90,6 @@ def writeModFiles():
                             p_d = params_list[i]
 
                         p_d_list.append(p_d)
-                        print(p_d_list)
 
                         i += 1
 
@@ -89,7 +97,54 @@ def writeModFiles():
                     entry = {"docs": ast.get_docstring(node), "fn_name": node.name, "params": params_list, "defaults": defaults, "params_defs": p_d_list}
                     functions.append(entry)
 
+        if mod == "medline" or mod == "WOS":
+            os.chdir('tagProcessing')
+
+            with open('tagFunctions.py', 'r') as f:
+                module = ast.parse(f.read())
+
+            for node in module.body:  # each of the functions in that file
+                if isinstance(node, ast.FunctionDef):
+
+                    params = node.args.args
+                    params_list = [p.arg for p in params]
+                    defaults = node.args.defaults
+                    defaults = convertDefaults(defaults, params_list)
+
+                    # create a list of parameters and defaults together
+                    p_d_list = []
+                    i = 0
+
+                    while i < len(params_list):
+
+                        if defaults[i] != " ":
+                            p_d = params_list[i] + "=" + defaults[i]
+                        else:
+                            p_d = params_list[i]
+
+                        p_d_list.append(p_d)
+
+                        i += 1
+
+                    # create an entry for each function
+                    entry = {"docs": ast.get_docstring(node), "fn_name": node.name, "params": params_list,
+                             "defaults": defaults, "params_defs": p_d_list}
+                    functions.append(entry)
+
+
+            os.chdir('..')
+
+
+        # if 'tagProcessing' in os.listdir():
+        #     os.chdir('tagProcessing')
+        #
+        #
+        #
+        #     os.chdir('..')
+
         os.chdir(os.path.join('..', 'docs'))
+
+
 
         # now, create the rst files
         fname =  os.path.join("documentation", "modules", mod + ".rst")
@@ -101,36 +156,69 @@ def writeModFiles():
             f.write(header + "\n")
             if mod == "journalAbbreviations":
                 f.write('Journal Abbreviations' + "\n")
+            elif mod == "WOS":
+                f.write("WOS" + "\n")
             else:
                 f.write(mod.capitalize() + "\n")
             f.write(header + "\n\n")
             f.write(docstring + "\n\n")
-            f.write('**The {} module provides the following functions:**'.format(mod))
-            f.write('\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
-            f.write('\n\n')
+            title = '**The {} module provides the following functions:**'.format(mod)
+            f.write(title)
+            f.write("\n" + "^"*len(title) + "\n\n")
 
-            print(functions[0]["params_defs"])
-            print(functions[0]["defaults"])
+            # now add the functions!
 
-            for fn in functions:
-                f.write("**" + fn["fn_name"] + "**\ (")
+            # first a TOC for the functions
+            f_count = 0
+
+            while f_count < len(functions):
+                #link_name = mod + "_" + functions[f_count]["fn_name"]
+                # f.write("|" + link_name + "|_" + "\n\n")
+                # f.write(".. _" + link_name + ": #" + link_name + "\n")
+                # f.write(".. |" + link_name + "| replace:: ")
+                f.write("**" + functions[f_count]["fn_name"] + "**\ (")
 
                 # add the parameters to the function
                 p_str = ""
-                for p in fn["params_defs"]:
+                for p in functions[f_count]["params_defs"]:
                     p_str += p + ", "
                 p_str = p_str[:-2]
                 f.write(p_str + ")\n\n")
 
-                f.write(fn["docs"] + "\n\n********************\n\n")
+                f_count += 1
+
+            f.write("\n\n**********************\n\n")
+
+            # now the details of the functions
+            f_count = 0
+
+            while f_count < len(functions):
+                #link_name = mod + "_" + functions[f_count]["fn_name"]
+
+                # f.write(".. container::\n")
+                # f.write("    :name: " + link_name + "\n\n")
+                # f.write("    " + mod.lower() + ".\ **" + functions[f_count]["fn_name"] + "**\ (")
+                f.write(mod + ".\ **" + functions[f_count]["fn_name"] + "**\ (")
+
+                # add the parameters to the function
+                p_str = ""
+                for p in functions[f_count]["params_defs"]:
+                    p_str += p + ", "
+                p_str = p_str[:-2]
+                f.write(p_str + "):\n\n")
+
+                f.write("\n" + functions[f_count]["docs"])
+
+                if f_count < len(functions)-1:
+                    f.write("\n\n********************\n\n")
+
+                f_count += 1
 
         # go up two to be in the right place for next file
         os.chdir(os.path.join('..'))
 
 
 
-
-    
 
 def main():
     writeModFiles()

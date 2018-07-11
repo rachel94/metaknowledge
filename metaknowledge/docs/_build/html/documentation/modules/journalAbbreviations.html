@@ -91,7 +91,7 @@
 <li class="toctree-l3"><a class="reference internal" href="medline.html">Medline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="proquest.html">Proquest</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scopus.html">Scopus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="WOS.html">Wos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WOS.html">WOS</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
@@ -171,36 +171,46 @@
   <div class="section" id="journal-abbreviations">
 <h1>Journal Abbreviations<a class="headerlink" href="#journal-abbreviations" title="Permalink to this headline">¶</a></h1>
 <p>This module handles the abbreviations, known as J29 abbreviations and given by the J9 tag in WOS Records and for journal titles that WOS employs in citations.</p>
-<p>The citations provided by WOS used abbreviated journal titles instead of the full names. The full list of abbreviations can be found at a series pages divided by letter starting at [images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html](<a class="reference external" href="http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html">http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html</a>). The function [<a href="#id1"><span class="problematic" id="id2">**</span></a>updatej9DB**()](#journalAbbreviations.getj9dict) is used to scrape and parse the pages, it must be run without error before the other features can be used. _metaknowledge_. If the database is requested by <cite>getj9dict()</cite>, which is what [<cite>Citations</cite>](#metaknowledge.Citation) use, and the database is not found or is corrupted then [<cite>updatej9DB()</cite>](#metaknowledge.updatej9DB) will be run to download the database if this fails an <cite>mkException</cite> will be raised, the download and parsing usually takes less than a second on a good internet connection.</p>
-<p>The other functions of the module are for manually adding and removing abbreviations from the database. It is recommended that this be done with the command-line tool <cite>metaknowledge</cite> instead of with a script.</p>
+<p>The citations provided by WOS used abbreviated journal titles instead of the full names. The full list of abbreviations can be found at a series pages divided by letter starting at [images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html](<a class="reference external" href="http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html">http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html</a>). The function [<strong>updatej9DB</strong>()](#journalAbbreviations.getj9dict) is used to scrape and parse the pages, it must be run without error before the other features can be used. <em>metaknowledge</em>. If the database is requested by <code class="docutils literal notranslate"><span class="pre">getj9dict()</span></code>, which is what [<cite>Citations</cite>](#metaknowledge.Citation) use, and the database is not found or is corrupted then [<cite>updatej9DB()</cite>](#metaknowledge.updatej9DB) will be run to download the database if this fails an <code class="docutils literal notranslate"><span class="pre">mkException</span></code> will be raised, the download and parsing usually takes less than a second on a good internet connection.</p>
+<p>The other functions of the module are for manually adding and removing abbreviations from the database. It is recommended that this be done with the command-line tool <code class="docutils literal notranslate"><span class="pre">metaknowledge</span></code> instead of with a script.</p>
 <div class="section" id="the-journalabbreviations-module-provides-the-following-functions">
 <h2><strong>The journalAbbreviations module provides the following functions:</strong><a class="headerlink" href="#the-journalabbreviations-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
 <p><strong>j9urlGenerator</strong>(nameDict=False)</p>
-<p>How to get all the urls for the WOS Journal Title Abbreviations. Each is varies by only a few characters. These are the currently in use urls they may change.</p>
-<blockquote>
-<div><p>They are of the form:</p>
-<p>&gt; “<a class="reference external" href="https://images.webofknowledge.com/images/help/WOS">https://images.webofknowledge.com/images/help/WOS</a>/{VAL}_abrvjt.html”
-&gt; Where {VAL} is a capital letter or the string “0-9”</p>
-<p><strong>Returns</strong></p>
-</div></blockquote>
-<p><code class="code docutils literal notranslate"><span class="pre">list[str]</span></code></p>
-<blockquote>
-<div>&gt; A list of all the url’s strings</div></blockquote>
-<hr class="docutils" />
 <p><strong>_j9SaveCurrent</strong>(sDir=.)</p>
+<p><strong>_getDict</strong>(j9Page)</p>
+<p><strong>_getCurrentj9Dict</strong>()</p>
+<p><strong>updatej9DB</strong>(dbname=unknown value, saveRawHTML=False)</p>
+<p><strong>getj9dict</strong>(dbname=unknown value, manualDB=unknown value, returnDict=both)</p>
+<p><strong>addToDB</strong>(abbr=None, dbname=unknown value)</p>
+<p><strong>excludeFromDB</strong>(abbr=None, dbname=unknown value)</p>
+<hr class="docutils" />
+<p>journalAbbreviations.<strong>j9urlGenerator</strong>(nameDict=False):</p>
+<p>How to get all the urls for the WOS Journal Title Abbreviations. Each is varies by only a few characters. These are the currently in use urls they may change.</p>
+<p>They are of the form:</p>
+<div class="line-block">
+<div class="line">“<a class="reference external" href="https://images.webofknowledge.com/images/help/WOS">https://images.webofknowledge.com/images/help/WOS</a>/{VAL}_abrvjt.html”</div>
+<div class="line">Where {VAL} is a capital letter or the string “0-9”</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">A list of all the url’s strings</div>
+</div>
+<hr class="docutils" />
+<p>journalAbbreviations.<strong>_j9SaveCurrent</strong>(sDir=.):</p>
 <p>Downloads and saves all the webpages</p>
 <p>For Backend</p>
 <hr class="docutils" />
-<p><strong>_getDict</strong>(j9Page)</p>
+<p>journalAbbreviations.<strong>_getDict</strong>(j9Page):</p>
 <p>Parses a Journal Title Abbreviations page</p>
 <p>Note the pages are not well formatted html as the &lt;DT&gt; tags are not closes so html parses (Beautiful Soup) do not work. This is a simple parser that only works on the webpages and may fail if they are changed</p>
 <p>For Backend</p>
 <hr class="docutils" />
-<p><strong>_getCurrentj9Dict</strong>()</p>
+<p>journalAbbreviations.<strong>_getCurrentj9Dict</strong>():</p>
 <p>Downloads and parses all the webpages</p>
 <p>For Backend</p>
 <hr class="docutils" />
-<p><strong>updatej9DB</strong>(dbname=unknown value, saveRawHTML=False)</p>
+<p>journalAbbreviations.<strong>updatej9DB</strong>(dbname=unknown value, saveRawHTML=False):</p>
 <p>Updates the database of Journal Title Abbreviations. Requires an internet connection. The data base is saved relative to the source file not the working directory.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
@@ -212,8 +222,8 @@
 <div class="line">Determines if the original HTML of the pages is stored, default <code class="code docutils literal notranslate"><span class="pre">False</span></code>. If <code class="code docutils literal notranslate"><span class="pre">True</span></code> they are saved in a directory inside j9Raws begining with todays date.</div>
 </div>
 <hr class="docutils" />
-<p><strong>getj9dict</strong>(dbname=unknown value, manualDB=unknown value, returnDict=both)</p>
-<p>Returns the dictionary of journal abbreviations mapping to a list of the associated journal names. By default the local database is used. The database is in the file _dbname_ in the same directory as this source file</p>
+<p>journalAbbreviations.<strong>getj9dict</strong>(dbname=unknown value, manualDB=unknown value, returnDict=both):</p>
+<p>Returns the dictionary of journal abbreviations mapping to a list of the associated journal names. By default the local database is used. The database is in the file <em>dbname</em> in the same directory as this source file</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
 <div class="line"><em>dbname:</em> <code class="code docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[str]</span></code></div>
@@ -228,8 +238,8 @@
 <div class="line">default:code:<cite>’both’</cite>, can be used to get both databases or only one  with:code:<cite>’WOS’</cite> or:code:<cite>’manual’</cite>.</div>
 </div>
 <hr class="docutils" />
-<p><strong>addToDB</strong>(abbr=None, dbname=unknown value)</p>
-<p>Adds _abbr_ to the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:<cite>metaknowledge.journalAbbreviations.manualDBname</cite>. To create an empty database run <strong>addToDB</strong> without an _abbr_ argument.</p>
+<p>journalAbbreviations.<strong>addToDB</strong>(abbr=None, dbname=unknown value):</p>
+<p>Adds <em>abbr</em> to the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:<cite>metaknowledge.journalAbbreviations.manualDBname</cite>. To create an empty database run <strong>addToDB</strong> without an <em>abbr</em> argument.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
 <div class="line"><em>abbr:</em> <code class="code docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[str</span> <span class="pre">or</span> <span class="pre">dict[str</span> <span class="pre">:</span> <span class="pre">str]]</span></code></div>
@@ -240,8 +250,8 @@
 <div class="line">The name of the database file, default is:code:<cite>metaknowledge.journalAbbreviations.manualDBname</cite>.</div>
 </div>
 <hr class="docutils" />
-<p><strong>excludeFromDB</strong>(abbr=None, dbname=unknown value)</p>
-<p>Marks _abbr_ to be excluded the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:<cite>metaknowledge.journalAbbreviations.manualDBname</cite>. To create an empty database run [<a href="#id3"><span class="problematic" id="id4">**</span></a>addToDB**()](#journalAbbreviations.addToDB) without an _abbr_ argument.</p>
+<p>journalAbbreviations.<strong>excludeFromDB</strong>(abbr=None, dbname=unknown value):</p>
+<p>Marks <em>abbr</em> to be excluded the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:<cite>metaknowledge.journalAbbreviations.manualDBname</cite>. To create an empty database run [<strong>addToDB</strong>()](#journalAbbreviations.addToDB) without an <em>abbr</em> argument.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
 <div class="line"><em>abbr:</em> <code class="docutils literal notranslate"><span class="pre">optional</span></code> [str or tuple[str] or list[str]`</div>
@@ -251,7 +261,6 @@
 <div class="line"><em>dbname:</em> <code class="code docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[str]</span></code></div>
 <div class="line">The name of the database file, default is:code:<cite>metaknowledge.journalAbbreviations.manualDBname</cite>.</div>
 </div>
-<hr class="docutils" />
 </div>
 </div>
 

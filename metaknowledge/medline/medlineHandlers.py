@@ -5,23 +5,20 @@ from ..mkExceptions import BadPubmedFile
 from .recordMedline import MedlineRecord
 
 def isMedlineFile(infile, checkedLines = 2):
-    """Determines if _infile_ is the path to a Medline file. A file is considerd to be a Medline file if it has the correct encoding (`latin-1`) and within the first _checkedLines_ a line starts with `"PMID- "`.
+    """Determines if *infile* is the path to a Medline file. A file is considerd to be a Medline file if it has the correct encoding (``latin-1``) and within the first *checkedLines* a line starts with ``"PMID- "``.
 
-    # Parameters
+    **Parameters**
 
-    _infile_ : `str`
+    | *infile*\ : ``str``
+    | The path to the targets file
 
-    > The path to the targets file
+    | *checkedLines*\ : ``optional [int]``
+    | default 2, the number of lines to check for the header
 
-    _checkedLines_ : `optional [int]`
+    **Returns**
 
-    > default 2, the number of lines to check for the header
-
-    # Returns
-
-    `bool`
-
-    > `True` if the file is a Medline file
+    | ``bool``
+    | ``True`` if the file is a Medline file
     """
     try:
         with open(infile, 'r', encoding='latin-1') as openfile:
@@ -36,21 +33,19 @@ def isMedlineFile(infile, checkedLines = 2):
         return False
 
 def medlineParser(pubFile):
-    """Parses a medline file, _pubFile_, to extract the individual entries as [`MedlineRecords`](#metaknowledge.MedlineRecord).
+    """Parses a medline file, *pubFile*, to extract the individual entries as [`MedlineRecords`](#metaknowledge.MedlineRecord).
 
-    A medline file is a series of entries, each entry is a series of tags. A tag is a 2 to 4 character string each tag is padded with spaces on the left to make it 4 characters which is followed by a dash and a space (`'- '`). Everything after the tag and on all lines after it not starting with a tag is considered associated with the tag. Each entry's first tag is `PMID`, so a first line looks something like `PMID- 26524502`. Entries end with a single blank line.
+    A medline file is a series of entries, each entry is a series of tags. A tag is a 2 to 4 character string each tag is padded with spaces on the left to make it 4 characters which is followed by a dash and a space (``'- '``). Everything after the tag and on all lines after it not starting with a tag is considered associated with the tag. Each entry's first tag is ``PMID``, so a first line looks something like ``PMID- 26524502``. Entries end with a single blank line.
 
-    # Parameters
+    **Parameters**
 
-    _pubFile_ : `str`
+    | *pubFile*\ : ``str``
+    | A path to a valid medline file, use [`isMedlineFile`](#metaknowledge.isMedlineFile) to verify
 
-    > A path to a valid medline file, use [`isMedlineFile`](#metaknowledge.isMedlineFile) to verify
+    **Returns**
 
-    # Returns
-
-    `set[MedlineRecord]`
-
-    > Records for each of the entries
+    | ``set[MedlineRecord]``
+    | Records for each of the entries
     """
     #assumes the file is MEDLINE
     recSet = set()

@@ -4,23 +4,20 @@ from .recordWOS import WOSRecord
 from ..mkExceptions import cacheError, BadWOSFile, BadWOSRecord
 
 def isWOSFile(infile, checkedLines = 3):
-    """Determines if _infile_ is the path to a WOS file. A file is considerd to be a WOS file if it has the correct encoding (`utf-8` with a BOM) and within the first _checkedLines_ a line starts with `"VR 1.0"`.
+    """Determines if *infile*\ is the path to a WOS file. A file is considerd to be a WOS file if it has the correct encoding (``utf-8`` with a BOM) and within the first *checkedLines*\ a line starts with ``"VR 1.0"``.
 
-    # Parameters
+    **Parameters**
 
-    _infile_ : `str`
+    | *infile*\ : ``str``
+    | The path to the targets file
 
-    > The path to the targets file
+    | *checkedLines*\ : ``optional [int]``
+    | default 2, the number of lines to check for the header
 
-    _checkedLines_ : `optional [int]`
+    **Returns**
 
-    > default 2, the number of lines to check for the header
-
-    # Returns
-
-    `bool`
-
-    > `True` if the file is a WOS file
+    | ``bool``
+    | ``True`` if the file is a WOS file
     """
     try:
         with open(infile, 'r', encoding='utf-8-sig') as openfile:
@@ -36,21 +33,19 @@ def isWOSFile(infile, checkedLines = 3):
 def wosParser(isifile):
     """This is function that is used to create [`RecordCollections`](#metaknowledge.RecordCollection) from files.
 
-    **wosParser**() reads the file given by the path isifile, checks that the header is correct then reads until it reaches EF. All WOS records it encounters are parsed with [**recordParser**()](#metaknowledge.recordParser) and converted into [`Records`](#metaknowledge.Record). A list of these `Records` is returned.
+    **wosParser**\ () reads the file given by the path isifile, checks that the header is correct then reads until it reaches EF. All WOS records it encounters are parsed with [**recordParser**\ ()](#metaknowledge.recordParser) and converted into [`Records`](#metaknowledge.Record). A list of these ``Records`` is returned.
 
-    `BadWOSFile` is raised if an issue is found with the file.
+    ``BadWOSFile`` is raised if an issue is found with the file.
 
-    # Parameters
+    **Parameters**
 
-    _isifile_ : `str`
+    | *isifile*\ : ``str``
+    | The path to the target file
 
-    > The path to the target file
+    **Returns**
 
-    # Returns
-
-    `List[Record]`
-
-    > All the `Records` found in _isifile_
+    | ``List[Record]``
+    | All the ``Records`` found in *isifile*
     """
     plst = set()
     error = None

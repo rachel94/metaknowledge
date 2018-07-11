@@ -91,7 +91,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="proquest.html">Proquest</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scopus.html">Scopus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="WOS.html">Wos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WOS.html">WOS</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
@@ -174,35 +174,391 @@
 <div class="section" id="the-medline-module-provides-the-following-functions">
 <h2><strong>The medline module provides the following functions:</strong><a class="headerlink" href="#the-medline-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
 <p><strong>isMedlineFile</strong>(infile, checkedLines=2)</p>
-<p>Determines if _infile_ is the path to a Medline file. A file is considerd to be a Medline file if it has the correct encoding (<cite>latin-1</cite>) and within the first _checkedLines_ a line starts with <cite>“PMID- “</cite>.</p>
-<p># Parameters</p>
-<p>_infile_ : <cite>str</cite></p>
-<p>&gt; The path to the targets file</p>
-<p>_checkedLines_ : <cite>optional [int]</cite></p>
-<p>&gt; default 2, the number of lines to check for the header</p>
-<p># Returns</p>
-<p><cite>bool</cite></p>
-<p>&gt; <cite>True</cite> if the file is a Medline file</p>
-<hr class="docutils" />
 <p><strong>medlineParser</strong>(pubFile)</p>
-<p>Parses a medline file, _pubFile_, to extract the individual entries as [<cite>MedlineRecords</cite>](#metaknowledge.MedlineRecord).</p>
-<p>A medline file is a series of entries, each entry is a series of tags. A tag is a 2 to 4 character string each tag is padded with spaces on the left to make it 4 characters which is followed by a dash and a space (<cite>‘- ‘</cite>). Everything after the tag and on all lines after it not starting with a tag is considered associated with the tag. Each entry’s first tag is <cite>PMID</cite>, so a first line looks something like <cite>PMID- 26524502</cite>. Entries end with a single blank line.</p>
-<p># Parameters</p>
-<p>_pubFile_ : <cite>str</cite></p>
-<p>&gt; A path to a valid medline file, use [<cite>isMedlineFile</cite>](#metaknowledge.isMedlineFile) to verify</p>
-<p># Returns</p>
-<p><cite>set[MedlineRecord]</cite></p>
-<p>&gt; Records for each of the entries</p>
-<hr class="docutils" />
 <p><strong>medlineRecordParser</strong>(record)</p>
-<p>The parser [<cite>MedlineRecord</cite>](#metaknowledge.MedlineRecord) use. This takes an entry from [<cite>medlineParser()</cite>](#metaknowledge.medlineParser) and parses it a part of the creation of a <cite>MedlineRecord</cite>.</p>
-<p># Parameters</p>
-<p>_record_ : <cite>enumerate object</cite></p>
-<p>&gt; a file wrapped by <cite>enumerate()</cite></p>
-<p># Returns</p>
-<p><cite>collections.OrderedDict</cite></p>
-<p>&gt; An ordered dictionary of the key-vaue pairs in the entry</p>
+<p><strong>IR</strong>(val)</p>
+<p><strong>FIR</strong>(val)</p>
+<p><strong>PROF</strong>(val)</p>
+<p><strong>PUBM</strong>(val)</p>
+<p><strong>CN</strong>(val)</p>
+<p><strong>MHDA</strong>(val)</p>
+<p><strong>LID</strong>(val)</p>
+<p><strong>EDAT</strong>(val)</p>
+<p><strong>OCI</strong>(val)</p>
+<p><strong>SB</strong>(val)</p>
+<p><strong>DA</strong>(val)</p>
+<p><strong>PMCR</strong>(val)</p>
+<p><strong>PG</strong>(val)</p>
+<p><strong>GS</strong>(val)</p>
+<p><strong>VI</strong>(val)</p>
+<p><strong>UOF</strong>(val)</p>
+<p><strong>OWN</strong>(val)</p>
+<p><strong>ORI</strong>(val)</p>
+<p><strong>MID</strong>(val)</p>
+<p><strong>PMID</strong>(val)</p>
+<p><strong>PMC</strong>(val)</p>
+<p><strong>RIN</strong>(val)</p>
+<p><strong>RPF</strong>(val)</p>
+<p><strong>CIN</strong>(val)</p>
+<p><strong>FPS</strong>(val)</p>
+<p><strong>TT</strong>(val)</p>
+<p><strong>PHST</strong>(val)</p>
+<p><strong>EFR</strong>(val)</p>
+<p><strong>PST</strong>(val)</p>
+<p><strong>SPIN</strong>(val)</p>
+<p><strong>AU</strong>(val)</p>
+<p><strong>FED</strong>(val)</p>
+<p><strong>NM</strong>(val)</p>
+<p><strong>SO</strong>(val)</p>
+<p><strong>IP</strong>(val)</p>
+<p><strong>OABL</strong>(val)</p>
+<p><strong>CRDT</strong>(val)</p>
+<p><strong>DDIN</strong>(val)</p>
+<p><strong>MH</strong>(val)</p>
+<p><strong>DP</strong>(val)</p>
+<p><strong>GN</strong>(val)</p>
+<p><strong>CRF</strong>(val)</p>
+<p><strong>TI</strong>(val)</p>
+<p><strong>CRI</strong>(val)</p>
+<p><strong>OT</strong>(val)</p>
+<p><strong>ROF</strong>(val)</p>
+<p><strong>OTO</strong>(val)</p>
+<p><strong>OID</strong>(val)</p>
+<p><strong>PT</strong>(val)</p>
+<p><strong>RPI</strong>(val)</p>
+<p><strong>AB</strong>(val)</p>
+<p><strong>EN</strong>(val)</p>
+<p><strong>AD</strong>(val)</p>
+<p><strong>LA</strong>(val)</p>
+<p><strong>TA</strong>(val)</p>
+<p><strong>JT</strong>(val)</p>
+<p><strong>IRAD</strong>(val)</p>
+<p><strong>PS</strong>(val)</p>
+<p><strong>IS</strong>(val)</p>
+<p><strong>PL</strong>(val)</p>
+<p><strong>CTI</strong>(val)</p>
+<p><strong>FAU</strong>(val)</p>
+<p><strong>VTI</strong>(val)</p>
+<p><strong>DCOM</strong>(val)</p>
+<p><strong>BTI</strong>(val)</p>
+<p><strong>CI</strong>(val)</p>
+<p><strong>STAT</strong>(val)</p>
+<p><strong>DRIN</strong>(val)</p>
+<p><strong>RF</strong>(val)</p>
+<p><strong>UIN</strong>(val)</p>
+<p><strong>LR</strong>(val)</p>
+<p><strong>SFM</strong>(val)</p>
+<p><strong>EIN</strong>(val)</p>
+<p><strong>AID</strong>(val)</p>
+<p><strong>PRIN</strong>(val)</p>
+<p><strong>DEP</strong>(val)</p>
+<p><strong>AUID</strong>(val)</p>
+<p><strong>SI</strong>(val)</p>
+<p><strong>ISBN</strong>(val)</p>
+<p><strong>RN</strong>(val)</p>
+<p><strong>JID</strong>(val)</p>
+<p><strong>GR</strong>(val)</p>
 <hr class="docutils" />
+<p>medline.<strong>isMedlineFile</strong>(infile, checkedLines=2):</p>
+<p>Determines if <em>infile</em> is the path to a Medline file. A file is considerd to be a Medline file if it has the correct encoding (<code class="docutils literal notranslate"><span class="pre">latin-1</span></code>) and within the first <em>checkedLines</em> a line starts with <code class="docutils literal notranslate"><span class="pre">&quot;PMID-</span> <span class="pre">&quot;</span></code>.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>infile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The path to the targets file</div>
+</div>
+<div class="line-block">
+<div class="line"><em>checkedLines</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[int]</span></code></div>
+<div class="line">default 2, the number of lines to check for the header</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">bool</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a Medline file</div>
+</div>
+<hr class="docutils" />
+<p>medline.<strong>medlineParser</strong>(pubFile):</p>
+<p>Parses a medline file, <em>pubFile</em>, to extract the individual entries as [<cite>MedlineRecords</cite>](#metaknowledge.MedlineRecord).</p>
+<p>A medline file is a series of entries, each entry is a series of tags. A tag is a 2 to 4 character string each tag is padded with spaces on the left to make it 4 characters which is followed by a dash and a space (<code class="docutils literal notranslate"><span class="pre">'-</span> <span class="pre">'</span></code>). Everything after the tag and on all lines after it not starting with a tag is considered associated with the tag. Each entry’s first tag is <code class="docutils literal notranslate"><span class="pre">PMID</span></code>, so a first line looks something like <code class="docutils literal notranslate"><span class="pre">PMID-</span> <span class="pre">26524502</span></code>. Entries end with a single blank line.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>pubFile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">A path to a valid medline file, use [<cite>isMedlineFile</cite>](#metaknowledge.isMedlineFile) to verify</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">set[MedlineRecord]</span></code></div>
+<div class="line">Records for each of the entries</div>
+</div>
+<hr class="docutils" />
+<p>medline.<strong>medlineRecordParser</strong>(record):</p>
+<p>The parser [<cite>MedlineRecord</cite>](#metaknowledge.MedlineRecord) use. This takes an entry from [<cite>medlineParser()</cite>](#metaknowledge.medlineParser) and parses it a part of the creation of a <code class="docutils literal notranslate"><span class="pre">MedlineRecord</span></code>.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>record</em>: <code class="docutils literal notranslate"><span class="pre">enumerate</span> <span class="pre">object</span></code></div>
+<div class="line">a file wrapped by <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></div>
+<div class="line">An ordered dictionary of the key-vaue pairs in the entry</div>
+</div>
+<hr class="docutils" />
+<p>medline.<strong>IR</strong>(val):</p>
+<p>Investigator</p>
+<hr class="docutils" />
+<p>medline.<strong>FIR</strong>(val):</p>
+<p>InvestigatorFull</p>
+<hr class="docutils" />
+<p>medline.<strong>PROF</strong>(val):</p>
+<p>PartialRetractionOf</p>
+<hr class="docutils" />
+<p>medline.<strong>PUBM</strong>(val):</p>
+<p>PublishingModel</p>
+<hr class="docutils" />
+<p>medline.<strong>CN</strong>(val):</p>
+<p>CorporateAuthor</p>
+<hr class="docutils" />
+<p>medline.<strong>MHDA</strong>(val):</p>
+<p>MeSHDate</p>
+<hr class="docutils" />
+<p>medline.<strong>LID</strong>(val):</p>
+<p>LocationIdentifier</p>
+<hr class="docutils" />
+<p>medline.<strong>EDAT</strong>(val):</p>
+<p>EntrezDate</p>
+<hr class="docutils" />
+<p>medline.<strong>OCI</strong>(val):</p>
+<p>OtherCopyright</p>
+<hr class="docutils" />
+<p>medline.<strong>SB</strong>(val):</p>
+<p>Subset</p>
+<hr class="docutils" />
+<p>medline.<strong>DA</strong>(val):</p>
+<p>DateCreated</p>
+<hr class="docutils" />
+<p>medline.<strong>PMCR</strong>(val):</p>
+<p>PubMedCentralRelease</p>
+<hr class="docutils" />
+<p>medline.<strong>PG</strong>(val):</p>
+<p>Pagination
+all pagination seen so far seems to be only on one line</p>
+<hr class="docutils" />
+<p>medline.<strong>GS</strong>(val):</p>
+<p>GeneSymbol</p>
+<hr class="docutils" />
+<p>medline.<strong>VI</strong>(val):</p>
+<p>Volume
+The volumes as a string as volume is single line</p>
+<hr class="docutils" />
+<p>medline.<strong>UOF</strong>(val):</p>
+<p>UpdateOf</p>
+<hr class="docutils" />
+<p>medline.<strong>OWN</strong>(val):</p>
+<p>Owner</p>
+<hr class="docutils" />
+<p>medline.<strong>ORI</strong>(val):</p>
+<p>OriginalReportIn</p>
+<hr class="docutils" />
+<p>medline.<strong>MID</strong>(val):</p>
+<p>ManuscriptIdentifier</p>
+<hr class="docutils" />
+<p>medline.<strong>PMID</strong>(val):</p>
+<p>PubMedUniqueIdentifier</p>
+<hr class="docutils" />
+<p>medline.<strong>PMC</strong>(val):</p>
+<p>PubMedCentralIdentifier</p>
+<hr class="docutils" />
+<p>medline.<strong>RIN</strong>(val):</p>
+<p>RetractionIn</p>
+<hr class="docutils" />
+<p>medline.<strong>RPF</strong>(val):</p>
+<p>RepublishedFrom</p>
+<hr class="docutils" />
+<p>medline.<strong>CIN</strong>(val):</p>
+<p>CommentIn</p>
+<hr class="docutils" />
+<p>medline.<strong>FPS</strong>(val):</p>
+<p>FullPersonalNameSubject</p>
+<hr class="docutils" />
+<p>medline.<strong>TT</strong>(val):</p>
+<p>TransliteratedTitle</p>
+<hr class="docutils" />
+<p>medline.<strong>PHST</strong>(val):</p>
+<p>PublicationHistoryStatus</p>
+<hr class="docutils" />
+<p>medline.<strong>EFR</strong>(val):</p>
+<p>ErratumFor</p>
+<hr class="docutils" />
+<p>medline.<strong>PST</strong>(val):</p>
+<p>PublicationStatus</p>
+<hr class="docutils" />
+<p>medline.<strong>SPIN</strong>(val):</p>
+<p>SummaryForPatients</p>
+<hr class="docutils" />
+<p>medline.<strong>AU</strong>(val):</p>
+<p>Author</p>
+<hr class="docutils" />
+<p>medline.<strong>FED</strong>(val):</p>
+<p>Editor</p>
+<hr class="docutils" />
+<p>medline.<strong>NM</strong>(val):</p>
+<p>SubstanceName</p>
+<hr class="docutils" />
+<p>medline.<strong>SO</strong>(val):</p>
+<p>Source</p>
+<hr class="docutils" />
+<p>medline.<strong>IP</strong>(val):</p>
+<p>Issue</p>
+<hr class="docutils" />
+<p>medline.<strong>OABL</strong>(val):</p>
+<p>OtherAbstract</p>
+<hr class="docutils" />
+<p>medline.<strong>CRDT</strong>(val):</p>
+<p>CreateDate</p>
+<hr class="docutils" />
+<p>medline.<strong>DDIN</strong>(val):</p>
+<p>DatasetIn</p>
+<hr class="docutils" />
+<p>medline.<strong>MH</strong>(val):</p>
+<p>MeSHTerms</p>
+<hr class="docutils" />
+<p>medline.<strong>DP</strong>(val):</p>
+<p>DatePublication</p>
+<hr class="docutils" />
+<p>medline.<strong>GN</strong>(val):</p>
+<p>GeneralNote</p>
+<hr class="docutils" />
+<p>medline.<strong>CRF</strong>(val):</p>
+<p>CorrectedRepublishedFrom</p>
+<hr class="docutils" />
+<p>medline.<strong>TI</strong>(val):</p>
+<p>Title
+only one per record</p>
+<hr class="docutils" />
+<p>medline.<strong>CRI</strong>(val):</p>
+<p>CorrectedRepublishedIn</p>
+<hr class="docutils" />
+<p>medline.<strong>OT</strong>(val):</p>
+<p>OtherTerm
+Nothing needs to be done</p>
+<hr class="docutils" />
+<p>medline.<strong>ROF</strong>(val):</p>
+<p>RetractionOf</p>
+<hr class="docutils" />
+<p>medline.<strong>OTO</strong>(val):</p>
+<p>OtherTermOwner
+one line field</p>
+<hr class="docutils" />
+<p>medline.<strong>OID</strong>(val):</p>
+<p>OtherID</p>
+<hr class="docutils" />
+<p>medline.<strong>PT</strong>(val):</p>
+<p>PublicationType</p>
+<hr class="docutils" />
+<p>medline.<strong>RPI</strong>(val):</p>
+<p>RepublishedIn</p>
+<hr class="docutils" />
+<p>medline.<strong>AB</strong>(val):</p>
+<p>Abstract
+basically a one liner after parsing</p>
+<hr class="docutils" />
+<p>medline.<strong>EN</strong>(val):</p>
+<p>Edition</p>
+<hr class="docutils" />
+<p>medline.<strong>AD</strong>(val):</p>
+<p>Affiliation
+Undoing what the parser does then splitting at the semicolons and dropping newlines extra fitlering is required beacuse some AD’s end with a semicolon</p>
+<hr class="docutils" />
+<p>medline.<strong>LA</strong>(val):</p>
+<p>Language</p>
+<hr class="docutils" />
+<p>medline.<strong>TA</strong>(val):</p>
+<p>JournalTitleAbbreviation
+One line only</p>
+<hr class="docutils" />
+<p>medline.<strong>JT</strong>(val):</p>
+<p>JournalTitle
+One line only</p>
+<hr class="docutils" />
+<p>medline.<strong>IRAD</strong>(val):</p>
+<p>InvestigatorAffiliation</p>
+<hr class="docutils" />
+<p>medline.<strong>PS</strong>(val):</p>
+<p>PersonalNameSubject</p>
+<hr class="docutils" />
+<p>medline.<strong>IS</strong>(val):</p>
+<p>ISSN</p>
+<hr class="docutils" />
+<p>medline.<strong>PL</strong>(val):</p>
+<p>PlacePublication</p>
+<hr class="docutils" />
+<p>medline.<strong>CTI</strong>(val):</p>
+<p>CollectionTitle</p>
+<hr class="docutils" />
+<p>medline.<strong>FAU</strong>(val):</p>
+<p>FullAuthor</p>
+<hr class="docutils" />
+<p>medline.<strong>VTI</strong>(val):</p>
+<p>VolumeTitle</p>
+<hr class="docutils" />
+<p>medline.<strong>DCOM</strong>(val):</p>
+<p>DateCompleted</p>
+<hr class="docutils" />
+<p>medline.<strong>BTI</strong>(val):</p>
+<p>BookTitle</p>
+<hr class="docutils" />
+<p>medline.<strong>CI</strong>(val):</p>
+<p>CopyrightInformation</p>
+<hr class="docutils" />
+<p>medline.<strong>STAT</strong>(val):</p>
+<p>Status</p>
+<hr class="docutils" />
+<p>medline.<strong>DRIN</strong>(val):</p>
+<p>DatasetUseReportedIn</p>
+<hr class="docutils" />
+<p>medline.<strong>RF</strong>(val):</p>
+<p>NumberReferences</p>
+<hr class="docutils" />
+<p>medline.<strong>UIN</strong>(val):</p>
+<p>UpdateIn</p>
+<hr class="docutils" />
+<p>medline.<strong>LR</strong>(val):</p>
+<p>DateLastRevised</p>
+<hr class="docutils" />
+<p>medline.<strong>SFM</strong>(val):</p>
+<p>SpaceFlightMission</p>
+<hr class="docutils" />
+<p>medline.<strong>EIN</strong>(val):</p>
+<p>ErratumIn</p>
+<hr class="docutils" />
+<p>medline.<strong>AID</strong>(val):</p>
+<p>ArticleIdentifier
+The given values do not require any work</p>
+<hr class="docutils" />
+<p>medline.<strong>PRIN</strong>(val):</p>
+<p>PartialRetractionIn</p>
+<hr class="docutils" />
+<p>medline.<strong>DEP</strong>(val):</p>
+<p>DateElectronicPublication</p>
+<hr class="docutils" />
+<p>medline.<strong>AUID</strong>(val):</p>
+<p>AuthorIdentifier
+one line only just need to undo the parser’s effects</p>
+<hr class="docutils" />
+<p>medline.<strong>SI</strong>(val):</p>
+<p>SecondarySourceID</p>
+<hr class="docutils" />
+<p>medline.<strong>ISBN</strong>(val):</p>
+<p>ISBN</p>
+<hr class="docutils" />
+<p>medline.<strong>RN</strong>(val):</p>
+<p>RegistryNumber</p>
+<hr class="docutils" />
+<p>medline.<strong>JID</strong>(val):</p>
+<p>NLMID</p>
+<hr class="docutils" />
+<p>medline.<strong>GR</strong>(val):</p>
+<p>GrantNumber</p>
 </div>
 </div>
 

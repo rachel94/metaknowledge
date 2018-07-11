@@ -146,26 +146,24 @@ class WOSRecord(ExtendedRecord):
 def recordParser(paper):
     """This is function that is used to create [`Records`](#metaknowledge.Record) from files.
 
-    **recordParser**() reads the file _paper_ until it reaches 'ER'. For each field tag it adds an entry to the returned dict with the tag as the key and a list of the entries as the value, the list has each line separately, so for the following two lines in a record:
+    **recordParser**\ () reads the file *paper* until it reaches 'ER'. For each field tag it adds an entry to the returned dict with the tag as the key and a list of the entries as the value, the list has each line separately, so for the following two lines in a record: ::
 
         AF BREVIK, I
-           ANICIN, B
+        ANICIN, B
 
-    The entry in the returned dict would be `{'AF' : ["BREVIK, I", "ANICIN, B"]}`
+    The entry in the returned dict would be ``{'AF' : ["BREVIK, I", "ANICIN, B"]}``
 
-    `Record` objects can be created with these dictionaries as the initializer.
+    ``Record`` objects can be created with these dictionaries as the initializer.
 
-    # Parameters
+    **Parameters**
 
-    _paper_ : `file stream`
+    | *paper*\ : ``file stream``
+    | An open file, with the current line at the beginning of the WOS record.
 
-    > An open file, with the current line at the beginning of the WOS record.
+    **Returns**
 
-    # Returns
-
-    `OrderedDict[str : List[str]]`
-
-    > A dictionary mapping WOS tags to lists, the lists are of strings, each string is a line of the record associated with the tag.
+    | `OrderedDict[str : List[str]]``
+    | A dictionary mapping WOS tags to lists, the lists are of strings, each string is a line of the record associated with the tag.
     """
     tagList = []
     doneReading = False

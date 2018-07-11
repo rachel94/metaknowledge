@@ -20,17 +20,15 @@ knownTagsList = list(tagToFullDict.keys()) #list of all the known tags
 def tagToFull(tag):
     """A wrapper for [`tagToFullDict`](#tagProcessing.tagProcessing) it maps 2 character tags to their full names.
 
-    # Parameters
+    **Parameters**
 
-    _tag_: `str`
+    | *tag*\ : ``str``
+    | A two character string giving the tag
 
-    > A two character string giving the tag
+    **Returns**
 
-    # Returns
-
-    `str`
-
-    > The full name of _tag_
+    | ``str``
+    | The full name of *tag*\
     """
     try:
         return tagToFullDict[tag]
@@ -41,17 +39,15 @@ def tagToFull(tag):
 def normalizeToTag(val):
     """Converts tags or full names to 2 character tags, case insensitive
 
-    # Parameters
+    **Parameters**
 
-    _val_: `str`
+    | *val*\ : ``str``
+    | A two character string giving the tag or its full name
 
-    > A two character string giving the tag or its full name
+    **Returns**
 
-    # Returns
-
-    `str`
-
-    > The short name of _val_
+    | ``str``
+    | The short name of *val*
     """
     try:
         val = val.upper()
@@ -68,17 +64,15 @@ def normalizeToTag(val):
 def normalizeToName(val):
     """Converts tags or full names to full names, case sensitive
 
-    # Parameters
+    **Parameters**
 
-    _val_: `str`
+    | *val*\ : ``str``
+    | A two character string giving the tag or its full name
 
-    > A two character string giving the tag or its full name
+    **Returns**
 
-    # Returns
-
-    `str`
-
-    > The full name of _val_
+    | ``str``
+    | The full name of *val*\
     """
     if val not in tagsAndNameSet:
         raise KeyError("{} is not a tag or name string".format(val))
@@ -89,18 +83,16 @@ def normalizeToName(val):
             return val
 
 def isTagOrName(val):
-    """Checks if _val_ is a tag or full name of tag if so returns `True`
+    """Checks if *val*\ is a tag or full name of tag if so returns ``True``
 
-    # Parameters
+    **Parameters**
 
-    _val_: `str`
+    | *val*\ : ``str``
+    | A string possible forming a tag or name
 
-    > A string possible forming a tag or name
+    **Returns**
 
-    # Returns
-
-    `bool`
-
-    > `True` if _val_ is a tag or name, otherwise `False`
+    | ``bool``
+    | ``True`` if *val*\  is a tag or name, otherwise ``False``
     """
     return val in tagsAndNameSet

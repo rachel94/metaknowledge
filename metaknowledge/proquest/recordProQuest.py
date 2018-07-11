@@ -68,23 +68,20 @@ class ProQuestRecord(ExtendedRecord):
         raise RecordsNotCompatible("ProQuest's data format cannot be written back to file. You can still write out a csv with writeCSV().")
 
 def proQuestRecordParser(enRecordFile, recNum):
-    """The parser [`ProQuestRecords`](#metaknowledge.ProQuestRecord) use. This takes an entry from [`proQuestParser()`](#metaknowledge.proQuestParser) and parses it a part of the creation of a `ProQuestRecord`.
+    """The parser [`ProQuestRecords`](#metaknowledge.ProQuestRecord) use. This takes an entry from [`proQuestParser()`](#metaknowledge.proQuestParser) and parses it a part of the creation of a ``ProQuestRecord``.
 
-    # Parameters
+    **Parameters**
 
-    _enRecordFile_ : `enumerate object`
+    | *enRecordFile*\ : ``enumerate object``
+    | a file wrapped by ``enumerate()``
 
-    > a file wrapped by `enumerate()`
+    | *recNum*\ : ``int``
+    | The number given to the entry in the first section of the ProQuest file
 
-    _recNum_ : `int`
+    **Returns**
 
-    > The number given to the entry in the first section of the ProQuest file
-
-    # Returns
-
-    `collections.OrderedDict`
-
-    > An ordered dictionary of the key-vaue pairs in the entry
+    | ``collections.OrderedDict``
+    | An ordered dictionary of the key-vaue pairs in the entry
     """
     tagDict = collections.OrderedDict()
     currentEntry = 'Name'

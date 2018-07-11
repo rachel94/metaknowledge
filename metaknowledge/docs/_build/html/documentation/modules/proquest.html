@@ -91,7 +91,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="scopus.html">Scopus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="WOS.html">Wos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WOS.html">WOS</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
@@ -174,39 +174,61 @@
 <div class="section" id="the-proquest-module-provides-the-following-functions">
 <h2><strong>The proquest module provides the following functions:</strong><a class="headerlink" href="#the-proquest-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
 <p><strong>isProQuestFile</strong>(infile, checkedLines=2)</p>
-<p>Determines if _infile_ is the path to a ProQuest file. A file is considered to be a Proquest file if it has the correct encoding (<cite>utf-8</cite>) and within the first _checkedLines_ the following starts.</p>
-<blockquote>
-<div>Report Information from ProQuest</div></blockquote>
-<p># Parameters</p>
-<p>_infile_ : <cite>str</cite></p>
-<p>&gt; The path to the targets file</p>
-<p>_checkedLines_ : <cite>optional [int]</cite></p>
-<p>&gt; default 2, the number of lines to check for the header</p>
-<p># Returns</p>
-<p><cite>bool</cite></p>
-<p>&gt; <cite>True</cite> if the file is a valid ProQuest file</p>
-<hr class="docutils" />
 <p><strong>proQuestParser</strong>(proFile)</p>
-<p>Parses a ProQuest file, _proFile_, to extract the individual entries.</p>
-<p>A ProQuest file has three sections, first a list of the contained entries, second the full metadata and finally a bibtex formatted entry for the record. This parser only uses the first two as the bibtex contains no information the second section does not. Also, the first section is only used to verify the second section. The returned [<cite>ProQuestRecords</cite>](#metaknowledge.ProQuestRecord) contains the data from the second section, with the same key strings as ProQuest uses and the unlabeled sections are called in order, <cite>‘Name’</cite>, <cite>‘Author’</cite> and <cite>‘url’</cite>.</p>
-<p># Parameters</p>
-<p>_proFile_ : <cite>str</cite></p>
-<p>&gt; A path to a valid ProQuest file, use [<cite>isProQuestFile</cite>](#metaknowledge.isProQuestFile) to verify</p>
-<p># Returns</p>
-<p><cite>set[ProQuestRecord]</cite></p>
-<p>&gt; Records for each of the entries</p>
-<hr class="docutils" />
 <p><strong>proQuestRecordParser</strong>(enRecordFile, recNum)</p>
-<p>The parser [<cite>ProQuestRecords</cite>](#metaknowledge.ProQuestRecord) use. This takes an entry from [<cite>proQuestParser()</cite>](#metaknowledge.proQuestParser) and parses it a part of the creation of a <cite>ProQuestRecord</cite>.</p>
-<p># Parameters</p>
-<p>_enRecordFile_ : <cite>enumerate object</cite></p>
-<p>&gt; a file wrapped by <cite>enumerate()</cite></p>
-<p>_recNum_ : <cite>int</cite></p>
-<p>&gt; The number given to the entry in the first section of the ProQuest file</p>
-<p># Returns</p>
-<p><cite>collections.OrderedDict</cite></p>
-<p>&gt; An ordered dictionary of the key-vaue pairs in the entry</p>
 <hr class="docutils" />
+<p>proquest.<strong>isProQuestFile</strong>(infile, checkedLines=2):</p>
+<p>Determines if <em>infile</em> is the path to a ProQuest file. A file is considered to be a Proquest file if it has the correct encoding (<code class="docutils literal notranslate"><span class="pre">utf-8</span></code>) and within the first <em>checkedLines</em> the following starts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">____________________________________________________________</span>
+
+<span class="n">Report</span> <span class="n">Information</span> <span class="kn">from</span> <span class="nn">ProQuest</span>
+</pre></div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>infile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The path to the targets file</div>
+</div>
+<div class="line-block">
+<div class="line"><em>checkedLines</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[int]</span></code></div>
+<div class="line">default 2, the number of lines to check for the header</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">bool</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a valid ProQuest file</div>
+</div>
+<hr class="docutils" />
+<p>proquest.<strong>proQuestParser</strong>(proFile):</p>
+<p>Parses a ProQuest file, <em>proFile</em>, to extract the individual entries.</p>
+<p>A ProQuest file has three sections, first a list of the contained entries, second the full metadata and finally a bibtex formatted entry for the record. This parser only uses the first two as the bibtex contains no information the second section does not. Also, the first section is only used to verify the second section. The returned [<cite>ProQuestRecords</cite>](#metaknowledge.ProQuestRecord) contains the data from the second section, with the same key strings as ProQuest uses and the unlabeled sections are called in order, <code class="docutils literal notranslate"><span class="pre">'Name'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Author'</span></code> and <code class="docutils literal notranslate"><span class="pre">'url'</span></code>.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>proFile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">A path to a valid ProQuest file, use [<cite>isProQuestFile</cite>](#metaknowledge.isProQuestFile) to verify</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">set[ProQuestRecord]</span></code></div>
+<div class="line">Records for each of the entries</div>
+</div>
+<hr class="docutils" />
+<p>proquest.<strong>proQuestRecordParser</strong>(enRecordFile, recNum):</p>
+<p>The parser [<cite>ProQuestRecords</cite>](#metaknowledge.ProQuestRecord) use. This takes an entry from [<cite>proQuestParser()</cite>](#metaknowledge.proQuestParser) and parses it a part of the creation of a <code class="docutils literal notranslate"><span class="pre">ProQuestRecord</span></code>.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>enRecordFile</em>: <code class="docutils literal notranslate"><span class="pre">enumerate</span> <span class="pre">object</span></code></div>
+<div class="line">a file wrapped by <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></div>
+</div>
+<div class="line-block">
+<div class="line"><em>recNum</em>: <code class="docutils literal notranslate"><span class="pre">int</span></code></div>
+<div class="line">The number given to the entry in the first section of the ProQuest file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></div>
+<div class="line">An ordered dictionary of the key-vaue pairs in the entry</div>
+</div>
 </div>
 </div>
 

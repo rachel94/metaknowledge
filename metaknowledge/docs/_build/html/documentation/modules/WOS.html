@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Wos &mdash; metaknowledge  documentation</title>
+  <title>WOS &mdash; metaknowledge  documentation</title>
   
 
   
@@ -88,7 +88,7 @@
 <li class="toctree-l3"><a class="reference internal" href="medline.html">Medline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="proquest.html">Proquest</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scopus.html">Scopus</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Wos</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">WOS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#the-wos-module-provides-the-following-functions"><strong>The WOS module provides the following functions:</strong></a></li>
 </ul>
 </li>
@@ -149,7 +149,7 @@
         
           <li><a href="index.html">Modules</a> &raquo;</li>
         
-      <li>Wos</li>
+      <li>WOS</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -169,50 +169,1068 @@
            <div itemprop="articleBody">
             
   <div class="section" id="wos">
-<h1>Wos<a class="headerlink" href="#wos" title="Permalink to this headline">¶</a></h1>
+<h1>WOS<a class="headerlink" href="#wos" title="Permalink to this headline">¶</a></h1>
 <p>These are the functions used to process medline (pubmed) files at the backend. They are meant for use internal use by metaknowledge.</p>
 <div class="section" id="the-wos-module-provides-the-following-functions">
 <h2><strong>The WOS module provides the following functions:</strong><a class="headerlink" href="#the-wos-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
 <p><strong>recordParser</strong>(paper)</p>
-<p>This is function that is used to create [<cite>Records</cite>](#metaknowledge.Record) from files.</p>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>recordParser**() reads the file _paper_ until it reaches ‘ER’. For each field tag it adds an entry to the returned dict with the tag as the key and a list of the entries as the value, the list has each line separately, so for the following two lines in a record:</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>AF BREVIK, I</dt>
-<dd>ANICIN, B</dd>
-</dl>
-</div></blockquote>
-<p>The entry in the returned dict would be <cite>{‘AF’ : [“BREVIK, I”, “ANICIN, B”]}</cite></p>
-<p><cite>Record</cite> objects can be created with these dictionaries as the initializer.</p>
-<p># Parameters</p>
-<p>_paper_ : <cite>file stream</cite></p>
-<p>&gt; An open file, with the current line at the beginning of the WOS record.</p>
-<p># Returns</p>
-<p><cite>OrderedDict[str : List[str]]</cite></p>
-<p>&gt; A dictionary mapping WOS tags to lists, the lists are of strings, each string is a line of the record associated with the tag.</p>
-<hr class="docutils" />
 <p><strong>isWOSFile</strong>(infile, checkedLines=3)</p>
-<p>Determines if _infile_ is the path to a WOS file. A file is considerd to be a WOS file if it has the correct encoding (<cite>utf-8</cite> with a BOM) and within the first _checkedLines_ a line starts with <cite>“VR 1.0”</cite>.</p>
-<p># Parameters</p>
-<p>_infile_ : <cite>str</cite></p>
-<p>&gt; The path to the targets file</p>
-<p>_checkedLines_ : <cite>optional [int]</cite></p>
-<p>&gt; default 2, the number of lines to check for the header</p>
-<p># Returns</p>
-<p><cite>bool</cite></p>
-<p>&gt; <cite>True</cite> if the file is a WOS file</p>
-<hr class="docutils" />
 <p><strong>wosParser</strong>(isifile)</p>
-<p>This is function that is used to create [<cite>RecordCollections</cite>](#metaknowledge.RecordCollection) from files.</p>
-<p><a href="#id3"><span class="problematic" id="id4">**</span></a>wosParser**() reads the file given by the path isifile, checks that the header is correct then reads until it reaches EF. All WOS records it encounters are parsed with [<a href="#id5"><span class="problematic" id="id6">**</span></a>recordParser**()](#metaknowledge.recordParser) and converted into [<cite>Records</cite>](#metaknowledge.Record). A list of these <cite>Records</cite> is returned.</p>
-<p><cite>BadWOSFile</cite> is raised if an issue is found with the file.</p>
-<p># Parameters</p>
-<p>_isifile_ : <cite>str</cite></p>
-<p>&gt; The path to the target file</p>
-<p># Returns</p>
-<p><cite>List[Record]</cite></p>
-<p>&gt; All the <cite>Records</cite> found in _isifile_</p>
+<p><strong>pubType</strong>(val)</p>
+<p><strong>authorsFull</strong>(val)</p>
+<p><strong>group</strong>(val)</p>
+<p><strong>editedBy</strong>(val)</p>
+<p><strong>authorsShort</strong>(val)</p>
+<p><strong>bookAuthor</strong>(val)</p>
+<p><strong>bookAuthorFull</strong>(val)</p>
+<p><strong>groupName</strong>(val)</p>
+<p><strong>title</strong>(val)</p>
+<p><strong>editors</strong>(val)</p>
+<p><strong>journal</strong>(val)</p>
+<p><strong>seriesTitle</strong>(val)</p>
+<p><strong>seriesSubtitle</strong>(val)</p>
+<p><strong>language</strong>(val)</p>
+<p><strong>docType</strong>(val)</p>
+<p><strong>confTitle</strong>(val)</p>
+<p><strong>confDate</strong>(val)</p>
+<p><strong>confSponsors</strong>(val)</p>
+<p><strong>wosTimesCited</strong>(val)</p>
+<p><strong>authAddress</strong>(val)</p>
+<p><strong>confLocation</strong>(val)</p>
+<p><strong>j9</strong>(val)</p>
+<p><strong>funding</strong>(val)</p>
+<p><strong>subjectCategory</strong>(val)</p>
+<p><strong>citations</strong>(val)</p>
+<p><strong>publisherCity</strong>(val)</p>
+<p><strong>ISSN</strong>(val)</p>
+<p><strong>articleNumber</strong>(val)</p>
+<p><strong>issue</strong>(val)</p>
+<p><strong>email</strong>(val)</p>
+<p><strong>eISSN</strong>(val)</p>
+<p><strong>DOI</strong>(val)</p>
+<p><strong>wosString</strong>(val)</p>
+<p><strong>orcID</strong>(val)</p>
+<p><strong>meetingAbstract</strong>(val)</p>
+<p><strong>isoAbbreviation</strong>(val)</p>
+<p><strong>pageCount</strong>(val)</p>
+<p><strong>publisher</strong>(val)</p>
+<p><strong>ISBN</strong>(val)</p>
+<p><strong>month</strong>(val)</p>
+<p><strong>fundingText</strong>(val)</p>
+<p><strong>bookDOI</strong>(val)</p>
+<p><strong>volume</strong>(val)</p>
+<p><strong>ResearcherIDnumber</strong>(val)</p>
+<p><strong>citedRefsCount</strong>(val)</p>
+<p><strong>beginningPage</strong>(val)</p>
+<p><strong>abstract</strong>(val)</p>
+<p><strong>supplement</strong>(val)</p>
+<p><strong>confHost</strong>(val)</p>
+<p><strong>publisherAddress</strong>(val)</p>
+<p><strong>endingPage</strong>(val)</p>
+<p><strong>year</strong>(val)</p>
+<p><strong>authKeywords</strong>(val)</p>
+<p><strong>reprintAddress</strong>(val)</p>
+<p><strong>totalTimesCited</strong>(val)</p>
+<p><strong>partNumber</strong>(val)</p>
+<p><strong>specialIssue</strong>(val)</p>
+<p><strong>subjects</strong>(val)</p>
+<p><strong>keywords</strong>(val)</p>
+<p><strong>pubMedID</strong>(val)</p>
+<p><strong>documentDeliveryNumber</strong>(val)</p>
 <hr class="docutils" />
+<p>WOS.<strong>recordParser</strong>(paper):</p>
+<p>This is function that is used to create [<cite>Records</cite>](#metaknowledge.Record) from files.</p>
+<p><strong>recordParser</strong>() reads the file <em>paper</em> until it reaches ‘ER’. For each field tag it adds an entry to the returned dict with the tag as the key and a list of the entries as the value, the list has each line separately, so for the following two lines in a record:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AF</span> <span class="n">BREVIK</span><span class="p">,</span> <span class="n">I</span>
+<span class="n">ANICIN</span><span class="p">,</span> <span class="n">B</span>
+</pre></div>
+</div>
+<p>The entry in the returned dict would be <code class="docutils literal notranslate"><span class="pre">{'AF'</span> <span class="pre">:</span> <span class="pre">[&quot;BREVIK,</span> <span class="pre">I&quot;,</span> <span class="pre">&quot;ANICIN,</span> <span class="pre">B&quot;]}</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Record</span></code> objects can be created with these dictionaries as the initializer.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>paper</em>: <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">stream</span></code></div>
+<div class="line">An open file, with the current line at the beginning of the WOS record.</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><cite>OrderedDict[str : List[str]]`</cite></div>
+<div class="line">A dictionary mapping WOS tags to lists, the lists are of strings, each string is a line of the record associated with the tag.</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>isWOSFile</strong>(infile, checkedLines=3):</p>
+<p>Determines if <em>infile</em>is the path to a WOS file. A file is considerd to be a WOS file if it has the correct encoding (<code class="docutils literal notranslate"><span class="pre">utf-8</span></code> with a BOM) and within the first <em>checkedLines</em>a line starts with <code class="docutils literal notranslate"><span class="pre">&quot;VR</span> <span class="pre">1.0&quot;</span></code>.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>infile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The path to the targets file</div>
+</div>
+<div class="line-block">
+<div class="line"><em>checkedLines</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[int]</span></code></div>
+<div class="line">default 2, the number of lines to check for the header</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">bool</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a WOS file</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>wosParser</strong>(isifile):</p>
+<p>This is function that is used to create [<cite>RecordCollections</cite>](#metaknowledge.RecordCollection) from files.</p>
+<p><strong>wosParser</strong>() reads the file given by the path isifile, checks that the header is correct then reads until it reaches EF. All WOS records it encounters are parsed with [<strong>recordParser</strong>()](#metaknowledge.recordParser) and converted into [<cite>Records</cite>](#metaknowledge.Record). A list of these <code class="docutils literal notranslate"><span class="pre">Records</span></code> is returned.</p>
+<p><code class="docutils literal notranslate"><span class="pre">BadWOSFile</span></code> is raised if an issue is found with the file.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>isifile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The path to the target file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">List[Record]</span></code></div>
+<div class="line">All the <code class="docutils literal notranslate"><span class="pre">Records</span></code> found in <em>isifile</em></div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>pubType</strong>(val):</p>
+<p><strong>The PT Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the type of publication as a character: conference, book, journal, book in series, or patent</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">A string</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>authorsFull</strong>(val):</p>
+<p><strong>The AF Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of authors full names</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">A list of author’s names</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>group</strong>(val):</p>
+<p><strong>The GP Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the group associated with the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">A the name of the group</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>editedBy</strong>(val):</p>
+<p><strong>The BE Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of the editors of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">A list of editors</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>authorsShort</strong>(val):</p>
+<p><strong>The AU Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of authors shortened names</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">A list of shortened author’s names</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>bookAuthor</strong>(val):</p>
+<p><strong>The BA Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of the short names of the authors of a book Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">A list of shortened author’s names</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>bookAuthorFull</strong>(val):</p>
+<p><strong>The BF Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of the long names of the authors of a book Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">A list of author’s names</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>groupName</strong>(val):</p>
+<p><strong>The CA Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the name of the group associated with the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The group’s name</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>title</strong>(val):</p>
+<p><strong>The TI Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the title of the record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The title of the record</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>editors</strong>(val):</p>
+<p><strong>Needs Work</strong></p>
+<div class="line-block">
+<div class="line">currently not well understood, returns <em>val</em></div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>journal</strong>(val):</p>
+<p><strong>The SO Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the full name of the publication and normalizes it to uppercase</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The name of the journal</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>seriesTitle</strong>(val):</p>
+<p><strong>The SE Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the title of the series the Record is in</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The title of the series</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>seriesSubtitle</strong>(val):</p>
+<p><strong>The BS Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the title of the series the Record is in</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The subtitle of the series</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>language</strong>(val):</p>
+<p><strong>The LA Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the languages of the Record as a string with languages separated by ‘, ‘, usually there is only one language</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The language(s) of the record</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>docType</strong>(val):</p>
+<p><strong>The DT Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the type of document the Record contains</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The type of the Record</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>confTitle</strong>(val):</p>
+<p><strong>The CT Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the title of the conference associated with the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The title of the conference</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>confDate</strong>(val):</p>
+<p><strong>The CY Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the date string of the conference associated with the Record, the date is not normalized</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The data of the conference</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>confSponsors</strong>(val):</p>
+<p><strong>The SP Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of sponsors for the conference associated with the record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+</div>
+<p>&gt; A the list of of sponsors</p>
+<hr class="docutils" />
+<p>WOS.<strong>wosTimesCited</strong>(val):</p>
+<p><strong>The TC Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the number of times the Record has been cited by records in WOS</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code>
+| The number of time the Record has been cited</p>
+<hr class="docutils" />
+<p>WOS.<strong>authAddress</strong>(val):</p>
+<p><strong>The C1 Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the address of the authors as given by WOS. <strong>Warning</strong> the mapping of author to address is not very good and is given in multiple ways.</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+</div>
+<p>&gt; A list of addresses</p>
+<hr class="docutils" />
+<p>WOS.<strong>confLocation</strong>(val):</p>
+<p><strong>The CL Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the sting giving the conference’s location</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The conferences address</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>j9</strong>(val):</p>
+<p><strong>The J9 Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the J9 (29-Character Source Abbreviation) of the publication</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The 29-Character Source Abbreviation</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>funding</strong>(val):</p>
+<p><strong>The FU Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of the groups funding the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+</div>
+<p>&gt; A list of funding groups</p>
+<hr class="docutils" />
+<p>WOS.<strong>subjectCategory</strong>(val):</p>
+<p><strong>The SC Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of the subjects associated with the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+</div>
+<p>&gt; A list of the subjects associated with the Record</p>
+<hr class="docutils" />
+<p>WOS.<strong>citations</strong>(val):</p>
+<p><strong>The CR Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of all the citations in the record, the citations are the [metaknowledge.Citation](#Citation.Citation) class.</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p>`` list[metaknowledge.Citation]``</p>
+<p>&gt; A list of Citations</p>
+<hr class="docutils" />
+<p>WOS.<strong>publisherCity</strong>(val):</p>
+<p><strong>The PI Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the city the publisher is in</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The city of the publisher</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>ISSN</strong>(val):</p>
+<p><strong>The SN Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the ISSN of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The ISSN string</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>articleNumber</strong>(val):</p>
+<p><strong>The AR Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a string giving the article number, not all are integers</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The article number</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>issue</strong>(val):</p>
+<p><strong>The IS Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a string giving the issue or range of issues the Record was in, not all are integers</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The issue number/range</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>email</strong>(val):</p>
+<p><strong>The EM Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of emails given by the authors of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+</div>
+<p>&gt; A list of emails</p>
+<hr class="docutils" />
+<p>WOS.<strong>eISSN</strong>(val):</p>
+<p><strong>The EI Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the EISSN of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The EISSN string</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>DOI</strong>(val):</p>
+<p><strong>The DI Tag</strong></p>
+<p>return the DOI number of the record</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The DOI number string</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>wosString</strong>(val):</p>
+<p><strong>The UT Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the WOS number of the record as a string preceded by “WOS:”</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The WOS number</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>orcID</strong>(val):</p>
+<p><strong>The OI Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of orc IDs of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The orc ID</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>meetingAbstract</strong>(val):</p>
+<p><strong>The MA Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the ID of the meeting abstract prefixed by ‘EPA-‘</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The meeting abstract prefixed</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>isoAbbreviation</strong>(val):</p>
+<p><strong>The JI Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the iso abbreviation of the journal</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The iso abbreviation of the journal</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>pageCount</strong>(val):</p>
+<p><strong>The PG Tag</strong></p>
+<p>returns an integer giving the number of pages of the Record</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code>
+| The page count</p>
+<hr class="docutils" />
+<p>WOS.<strong>publisher</strong>(val):</p>
+<p><strong>The PU Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the publisher of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The publisher</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>ISBN</strong>(val):</p>
+<p><strong>The BN Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of ISBNs associated with the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list</span></code></div>
+<div class="line">The ISBNs</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>month</strong>(val):</p>
+<p><strong>The PD Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the month the record was published in as an int with January as 1, February 2, …</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code></p>
+<p>&gt; A integer giving the month</p>
+<hr class="docutils" />
+<p>WOS.<strong>fundingText</strong>(val):</p>
+<p><strong>The FX Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a string of the funding thanks</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The funding thank-you</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>bookDOI</strong>(val):</p>
+<p><strong>The D2 Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the book DOI of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The DOI number</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>volume</strong>(val):</p>
+<p><strong>The VL Tag</strong></p>
+<p>return the volume the record is in as a string, not all are integers</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The volume number</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>ResearcherIDnumber</strong>(val):</p>
+<p><strong>The RI Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of the research IDs of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The list of the research IDs</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>citedRefsCount</strong>(val):</p>
+<p><strong>The NR Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the number citations, length of CR list</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code>
+| The number of CRs</p>
+<hr class="docutils" />
+<p>WOS.<strong>beginningPage</strong>(val):</p>
+<p><strong>The BP Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the first page the record occurs on, not all are integers</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The first page number</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>abstract</strong>(val):</p>
+<p><strong>The AB Tag</strong></p>
+<p>return abstract of the record, with newlines hopefully in the correct places</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The abstract</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>supplement</strong>(val):</p>
+<p><strong>The SU Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the supplement number</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The supplement number</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>confHost</strong>(val):</p>
+<p><strong>The HO Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the host of the conference</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The host</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>publisherAddress</strong>(val):</p>
+<p><strong>The PA Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the publishers address</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The publisher address</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>endingPage</strong>(val):</p>
+<p><strong>The EP Tag</strong></p>
+<p>return the last page the record occurs on as a string, not aall are intergers</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The final page number</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>year</strong>(val):</p>
+<p><strong>The PY Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the year the record was published in as an int</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code>
+| The year</p>
+<hr class="docutils" />
+<p>WOS.<strong>authKeywords</strong>(val):</p>
+<p><strong>The DE Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the keywords assigned by the author of the Record. The WOS description is:</div>
+</div>
+<blockquote>
+<div>Author keywords are included in records of articles from 1991 forward. They are also include in conference proceedings records.</div></blockquote>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The list of keywords</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>reprintAddress</strong>(val):</p>
+<p><strong>The RP Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the reprint address string</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The reprint address</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>totalTimesCited</strong>(val):</p>
+<p><strong>The Z9 Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the total number of citations of the record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code>
+| The total number of citations</p>
+<hr class="docutils" />
+<p>WOS.<strong>partNumber</strong>(val):</p>
+<p><strong>The PN Tag</strong></p>
+<p>return an integer giving the part of the issue the Record is in</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code>
+| The part of the issue of the Record</p>
+<hr class="docutils" />
+<p>WOS.<strong>specialIssue</strong>(val):</p>
+<p><strong>The SI Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the special issue value</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The special issue value</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>subjects</strong>(val):</p>
+<p><strong>The WC Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts a list of subjects as assigned by WOS</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The subjects list</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>keywords</strong>(val):</p>
+<p><strong>The ID Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the WOS keywords of the Record. The WOS description is:</div>
+</div>
+<blockquote>
+<div>KeyWords Plus are index terms created by Thomson Reuters from significant, frequently occurring words in the titles of an article’s cited references.</div></blockquote>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The keyWords list</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>pubMedID</strong>(val):</p>
+<p><strong>The PM Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the pubmed ID of the record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The pubmed ID</div>
+</div>
+<hr class="docutils" />
+<p>WOS.<strong>documentDeliveryNumber</strong>(val):</p>
+<p><strong>The GA Tag</strong></p>
+<div class="line-block">
+<div class="line">extracts the document delivery number of the Record</div>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>val</em>: <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
+<div class="line">The raw data from a WOS file</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The document delivery number</div>
+</div>
 </div>
 </div>
 

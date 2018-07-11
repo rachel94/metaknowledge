@@ -7,29 +7,24 @@ from .recordScopus import ScopusRecord, scopusHeader
 from ..mkExceptions import BadScopusFile
 
 def isScopusFile(infile, checkedLines = 2, maxHeaderDiff = 3):
-    """Determines if _infile_ is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (`utf-8` with BOM (Byte Order Mark)) and within the first _checkedLines_ a line contains the complete header, the list of all header entries in order is found in [`scopus.scopusHeader`](#metaknowledge.scopus).
+    """Determines if *infile* is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (`utf-8` with BOM (Byte Order Mark)) and within the first *checkedLines* a line contains the complete header, the list of all header entries in order is found in [`scopus.scopusHeader`](#metaknowledge.scopus).
 
-    **Note** this is for csv files _not_ plain text files from scopus, plain text files are not complete.
+    **Note** this is for csv files *not* plain text files from scopus, plain text files are not complete.
 
-    # Parameters
+    **Parameters**
 
-    _infile_ : `str`
+    | *infile*\ : ``str``
+    | The path to the targets file
 
-    > The path to the targets file
+    | *checkedLines*\ : ``optional [int]``
+    | default 2, the number of lines to check for the header
 
-    _checkedLines_ : `optional [int]`
+    | *maxHeaderDiff*\ : ``optional [int]``
+    | default 3, maximum number of different entries in the potetial file from the current known header ``metaknowledge.scopus.scopusHeader``, if exceeded an ``False`` will be returned
 
-    > default 2, the number of lines to check for the header
-
-    _maxHeaderDiff_ : `optional [int]`
-
-    > default 3, maximum number of different entries in the potetial file from the current known header `metaknowledge.scopus.scopusHeader`, if exceeded an `False` will be returned
-
-    # Returns
-
-    `bool`
-
-    > `True` if the file is a Scopus csv file
+    **Returns**
+    | ``bool``
+    | ``True`` if the file is a Scopus csv file
     """
     try:
         with open(infile, 'r', encoding='utf-8') as openfile:
@@ -44,21 +39,19 @@ def isScopusFile(infile, checkedLines = 2, maxHeaderDiff = 3):
         return False
 
 def scopusParser(scopusFile):
-    """Parses a scopus file, _scopusFile_, to extract the individual lines as [`ScopusRecords`](#metaknowledge.ScopusRecord).
+    """Parses a scopus file, *scopusFile*, to extract the individual lines as [`ScopusRecords`](#metaknowledge.ScopusRecord).
 
     A Scopus file is a csv (Comma-separated values) with a complete header, see [`scopus.scopusHeader`](#metaknowledge.scopus) for the entries, and each line after it containing a record's entry. The string valued entries are quoted with double quotes which means double quotes inside them can cause issues, see [`scopusRecordParser()`](#metaknowledge.scopusRecordParser) for more information.
 
-    # Parameters
+    **Parameters**
 
-    _scopusFile_ : `str`
+    | *scopusFile*\ : ``str``
+    | A path to a valid scopus file, use [`isScopusFile()`](#metaknowledge.isScopusFile) to verify
 
-    > A path to a valid scopus file, use [`isScopusFile()`](#metaknowledge.isScopusFile) to verify
+    **Returns**
 
-    # Returns
-
-    `set[ScopusRecord]`
-
-    > Records for each of the entries
+    | ``set[ScopusRecord]``
+    | Records for each of the entries
     """
     #assumes the file is Scopus
     recSet = set()

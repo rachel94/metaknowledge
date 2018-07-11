@@ -171,17 +171,15 @@ def scopusRecordParser(record, header = None):
 
     **Note** this is for csv files downloaded from scopus _not_ the text records as those are less complete. Also, Scopus uses double quotes (`"`) to quote strings, such as abstracts, in the csv so double quotes in the string must be escaped. For reasons not fully understandable by mortals they choose to use two double quotes in a row (`""`) to represent an escaped double quote. This parser does not unescape these quotes, but it does correctly handle their interacts with the outer double quotes.
 
-    # Parameters
+    **Parameters**
 
-    _record_ : `str`
+    | *record*\ : ``str``
+    | string ending with a newline containing the record's entry
 
-    > string ending with a newline containing the record's entry
+    **Returns**
 
-    # Returns
-
-    `dict`
-
-    > A dictionary of the key-vaue pairs in the entry
+    | ``dict``
+    | A dictionary of the key-vaue pairs in the entry
     """
     if header is None:
         header = scopusHeader

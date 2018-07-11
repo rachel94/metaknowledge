@@ -88,19 +88,17 @@ class MedlineRecord(ExtendedRecord):
                                 f.write(authVal)
 
 def medlineRecordParser(record):
-    """The parser [`MedlineRecord`](#metaknowledge.MedlineRecord) use. This takes an entry from [`medlineParser()`](#metaknowledge.medlineParser) and parses it a part of the creation of a `MedlineRecord`.
+    """The parser [`MedlineRecord`](#metaknowledge.MedlineRecord) use. This takes an entry from [`medlineParser()`](#metaknowledge.medlineParser) and parses it a part of the creation of a ``MedlineRecord``.
 
-    # Parameters
+    **Parameters**
 
-    _record_ : `enumerate object`
+    | *record*\ : ``enumerate object``
+    | a file wrapped by ``enumerate()``
 
-    > a file wrapped by `enumerate()`
+    **Returns**
 
-    # Returns
-
-    `collections.OrderedDict`
-
-    > An ordered dictionary of the key-vaue pairs in the entry
+    | ``collections.OrderedDict``
+    | An ordered dictionary of the key-vaue pairs in the entry
     """
     tagDict = collections.OrderedDict()
     tag = 'PMID'

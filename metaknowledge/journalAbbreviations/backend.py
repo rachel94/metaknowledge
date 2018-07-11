@@ -16,14 +16,13 @@ def j9urlGenerator(nameDict = False):
 
     They are of the form:
 
-    > "https://images.webofknowledge.com/images/help/WOS/{VAL}_abrvjt.html"
-    > Where {VAL} is a capital letter or the string "0-9"
+    | "https://images.webofknowledge.com/images/help/WOS/{VAL}_abrvjt.html"
+    | Where {VAL} is a capital letter or the string "0-9"
 
     **Returns**
 
-   :code:`list[str]`
-
-    > A list of all the url's strings
+    | ``list[str]``
+    | A list of all the url's strings
     """
     start = "https://images.webofknowledge.com/images/help/WOS/"
     end = "_abrvjt.html"
@@ -126,7 +125,7 @@ def updatej9DB(dbname = abrevDBname, saveRawHTML = False):
         raise JournalDataBaseError("Something happened with the database of WOS journal names. To fix this you should delete the 1 to 3 files whose names start with {}. If this doesn't work (sorry), deleteing everything in '{}' and reinstalling metaknowledge should.\nThe error was '{}'".format(dbLoc, os.path.dirname(__file__), e))
 
 def getj9dict(dbname = abrevDBname, manualDB = manualDBname, returnDict ='both'):
-    """Returns the dictionary of journal abbreviations mapping to a list of the associated journal names. By default the local database is used. The database is in the file _dbname_ in the same directory as this source file
+    """Returns the dictionary of journal abbreviations mapping to a list of the associated journal names. By default the local database is used. The database is in the file *dbname* in the same directory as this source file
 
     **Parameters**
 
@@ -167,7 +166,7 @@ def getj9dict(dbname = abrevDBname, manualDB = manualDBname, returnDict ='both')
     return retDict
 
 def addToDB(abbr = None, dbname = manualDBname):
-    """Adds _abbr_ to the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:`metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run **addToDB** without an _abbr_ argument.
+    """Adds *abbr* to the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:`metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run **addToDB** without an *abbr* argument.
 
     **Parameters**
 
@@ -192,7 +191,7 @@ def addToDB(abbr = None, dbname = manualDBname):
             raise TypeError("abbr must be a str or dict.")
 
 def excludeFromDB(abbr = None, dbname = manualDBname):
-    """Marks _abbr_ to be excluded the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:`metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run [**addToDB**()](#journalAbbreviations.addToDB) without an _abbr_ argument.
+    """Marks *abbr* to be excluded the database of journals. The database is kept separate from the one scraped from WOS, this supersedes it. The database by default is stored with the WOS one and the name is given by:code:`metaknowledge.journalAbbreviations.manualDBname`. To create an empty database run [**addToDB**\ ()](#journalAbbreviations.addToDB) without an *abbr* argument.
 
     **Parameters**
 

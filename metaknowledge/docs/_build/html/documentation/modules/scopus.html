@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Wos" href="WOS.html" />
+    <link rel="next" title="WOS" href="WOS.html" />
     <link rel="prev" title="Proquest" href="proquest.html" /> 
 
   
@@ -91,7 +91,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#the-scopus-module-provides-the-following-functions"><strong>The scopus module provides the following functions:</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="WOS.html">Wos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WOS.html">WOS</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
@@ -174,39 +174,56 @@
 <div class="section" id="the-scopus-module-provides-the-following-functions">
 <h2><strong>The scopus module provides the following functions:</strong><a class="headerlink" href="#the-scopus-module-provides-the-following-functions" title="Permalink to this headline">¶</a></h2>
 <p><strong>scopusRecordParser</strong>(record, header=None)</p>
+<p><strong>isScopusFile</strong>(infile, checkedLines=2, maxHeaderDiff=3)</p>
+<p><strong>scopusParser</strong>(scopusFile)</p>
+<hr class="docutils" />
+<p>scopus.<strong>scopusRecordParser</strong>(record, header=None):</p>
 <p>The parser [<cite>ScopusRecords</cite>](#metaknowledge.ScopusRecord) use. This takes a line from [<cite>scopusParser()</cite>](#metaknowledge.scopusParser) and parses it as a part of the creation of a <cite>ScopusRecord</cite>.</p>
 <p><strong>Note</strong> this is for csv files downloaded from scopus _not_ the text records as those are less complete. Also, Scopus uses double quotes (<cite>“</cite>) to quote strings, such as abstracts, in the csv so double quotes in the string must be escaped. For reasons not fully understandable by mortals they choose to use two double quotes in a row (<cite>“”</cite>) to represent an escaped double quote. This parser does not unescape these quotes, but it does correctly handle their interacts with the outer double quotes.</p>
-<p># Parameters</p>
-<p>_record_ : <cite>str</cite></p>
-<p>&gt; string ending with a newline containing the record’s entry</p>
-<p># Returns</p>
-<p><cite>dict</cite></p>
-<p>&gt; A dictionary of the key-vaue pairs in the entry</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>record</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">string ending with a newline containing the record’s entry</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">dict</span></code></div>
+<div class="line">A dictionary of the key-vaue pairs in the entry</div>
+</div>
 <hr class="docutils" />
-<p><strong>isScopusFile</strong>(infile, checkedLines=2, maxHeaderDiff=3)</p>
-<p>Determines if _infile_ is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (<cite>utf-8</cite> with BOM (Byte Order Mark)) and within the first _checkedLines_ a line contains the complete header, the list of all header entries in order is found in [<cite>scopus.scopusHeader</cite>](#metaknowledge.scopus).</p>
-<p><strong>Note</strong> this is for csv files _not_ plain text files from scopus, plain text files are not complete.</p>
-<p># Parameters</p>
-<p>_infile_ : <cite>str</cite></p>
-<p>&gt; The path to the targets file</p>
-<p>_checkedLines_ : <cite>optional [int]</cite></p>
-<p>&gt; default 2, the number of lines to check for the header</p>
-<p>_maxHeaderDiff_ : <cite>optional [int]</cite></p>
-<p>&gt; default 3, maximum number of different entries in the potetial file from the current known header <cite>metaknowledge.scopus.scopusHeader</cite>, if exceeded an <cite>False</cite> will be returned</p>
-<p># Returns</p>
-<p><cite>bool</cite></p>
-<p>&gt; <cite>True</cite> if the file is a Scopus csv file</p>
+<p>scopus.<strong>isScopusFile</strong>(infile, checkedLines=2, maxHeaderDiff=3):</p>
+<p>Determines if <em>infile</em> is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (<cite>utf-8</cite> with BOM (Byte Order Mark)) and within the first <em>checkedLines</em> a line contains the complete header, the list of all header entries in order is found in [<cite>scopus.scopusHeader</cite>](#metaknowledge.scopus).</p>
+<p><strong>Note</strong> this is for csv files <em>not</em> plain text files from scopus, plain text files are not complete.</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>infile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The path to the targets file</div>
+</div>
+<div class="line-block">
+<div class="line"><em>checkedLines</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[int]</span></code></div>
+<div class="line">default 2, the number of lines to check for the header</div>
+</div>
+<div class="line-block">
+<div class="line"><em>maxHeaderDiff</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[int]</span></code></div>
+<div class="line">default 3, maximum number of different entries in the potetial file from the current known header <code class="docutils literal notranslate"><span class="pre">metaknowledge.scopus.scopusHeader</span></code>, if exceeded an <code class="docutils literal notranslate"><span class="pre">False</span></code> will be returned</div>
+</div>
+<p><strong>Returns</strong>
+| <code class="docutils literal notranslate"><span class="pre">bool</span></code>
+| <code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a Scopus csv file</p>
 <hr class="docutils" />
-<p><strong>scopusParser</strong>(scopusFile)</p>
-<p>Parses a scopus file, _scopusFile_, to extract the individual lines as [<cite>ScopusRecords</cite>](#metaknowledge.ScopusRecord).</p>
+<p>scopus.<strong>scopusParser</strong>(scopusFile):</p>
+<p>Parses a scopus file, <em>scopusFile</em>, to extract the individual lines as [<cite>ScopusRecords</cite>](#metaknowledge.ScopusRecord).</p>
 <p>A Scopus file is a csv (Comma-separated values) with a complete header, see [<cite>scopus.scopusHeader</cite>](#metaknowledge.scopus) for the entries, and each line after it containing a record’s entry. The string valued entries are quoted with double quotes which means double quotes inside them can cause issues, see [<cite>scopusRecordParser()</cite>](#metaknowledge.scopusRecordParser) for more information.</p>
-<p># Parameters</p>
-<p>_scopusFile_ : <cite>str</cite></p>
-<p>&gt; A path to a valid scopus file, use [<cite>isScopusFile()</cite>](#metaknowledge.isScopusFile) to verify</p>
-<p># Returns</p>
-<p><cite>set[ScopusRecord]</cite></p>
-<p>&gt; Records for each of the entries</p>
-<hr class="docutils" />
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>scopusFile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">A path to a valid scopus file, use [<cite>isScopusFile()</cite>](#metaknowledge.isScopusFile) to verify</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">set[ScopusRecord]</span></code></div>
+<div class="line">Records for each of the entries</div>
+</div>
 </div>
 </div>
 
@@ -218,7 +235,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="WOS.html" class="btn btn-neutral float-right" title="Wos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="WOS.html" class="btn btn-neutral float-right" title="WOS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="proquest.html" class="btn btn-neutral" title="Proquest" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -3,27 +3,24 @@ from ..mkExceptions import BadProQuestFile
 from .recordProQuest import ProQuestRecord
 
 def isProQuestFile(infile, checkedLines = 2):
-    """Determines if _infile_ is the path to a ProQuest file. A file is considered to be a Proquest file if it has the correct encoding (`utf-8`) and within the first _checkedLines_ the following starts.
+    """Determines if *infile* is the path to a ProQuest file. A file is considered to be a Proquest file if it has the correct encoding (``utf-8``) and within the first *checkedLines* the following starts. ::
 
         ____________________________________________________________
 
         Report Information from ProQuest
 
-    # Parameters
+    **Parameters**
 
-    _infile_ : `str`
+    | *infile*\ : ``str``
+    | The path to the targets file
 
-    > The path to the targets file
+    | *checkedLines*\ : ``optional [int]``
+    | default 2, the number of lines to check for the header
 
-    _checkedLines_ : `optional [int]`
+    **Returns**
 
-    > default 2, the number of lines to check for the header
-
-    # Returns
-
-    `bool`
-
-    > `True` if the file is a valid ProQuest file
+    | ``bool``
+    | ``True`` if the file is a valid ProQuest file
     """
     try:
         with open(infile, 'r', encoding='utf-8') as openfile:
@@ -40,21 +37,19 @@ def isProQuestFile(infile, checkedLines = 2):
         return False
 
 def proQuestParser(proFile):
-    """Parses a ProQuest file, _proFile_, to extract the individual entries.
+    """Parses a ProQuest file, *proFile*, to extract the individual entries.
 
-    A ProQuest file has three sections, first a list of the contained entries, second the full metadata and finally a bibtex formatted entry for the record. This parser only uses the first two as the bibtex contains no information the second section does not. Also, the first section is only used to verify the second section. The returned [`ProQuestRecords`](#metaknowledge.ProQuestRecord) contains the data from the second section, with the same key strings as ProQuest uses and the unlabeled sections are called in order, `'Name'`, `'Author'` and `'url'`.
+    A ProQuest file has three sections, first a list of the contained entries, second the full metadata and finally a bibtex formatted entry for the record. This parser only uses the first two as the bibtex contains no information the second section does not. Also, the first section is only used to verify the second section. The returned [`ProQuestRecords`](#metaknowledge.ProQuestRecord) contains the data from the second section, with the same key strings as ProQuest uses and the unlabeled sections are called in order, ``'Name'``, ``'Author'`` and ``'url'``.
 
-    # Parameters
+    **Parameters**
 
-    _proFile_ : `str`
+    | *proFile*\ : ``str``
+    | A path to a valid ProQuest file, use [`isProQuestFile`](#metaknowledge.isProQuestFile) to verify
 
-    > A path to a valid ProQuest file, use [`isProQuestFile`](#metaknowledge.isProQuestFile) to verify
-
-    # Returns
-
-    `set[ProQuestRecord]`
-
-    > Records for each of the entries
+    **Returns**
+    
+    | ``set[ProQuestRecord]``
+    | Records for each of the entries
     """
     #assumes the file is ProQuest
     nameDict = {}
