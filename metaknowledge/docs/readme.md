@@ -48,9 +48,38 @@ But if you are the one putting the docs on rtd, essentially you do the following
 
 ## Understanding the docsGen.py script I wrote
 
+We wanted the docs to be automatically generated from the docstrings in each module (I think?). Reid had already written a script <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/bin/metaknowledgeDocsGen.py">`metaknowledge/metaknowledge/bin/metaknowledgeDocsGen.py`</a> that converts all the docstrings to markdown that could then be used to create the original custom mk docs. I ended up starting to write my own script to convert the docstrings to rst to be used with rtd. This is < a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/docsGen.py">`metaknowledge/metaknowledge/docs/docsGen.py`</a>. So far, this works for (most of) the 6 modules: WOS, contour, medline, scopus, proquest, journalAbbreviations.
+
+Here is how I envision the rtd docs being organized:
+<li> Intro (index file)
+<li> Installation
+<li> Documentation
+<li><li> Modules
+<li><li><li> Contour
+<li><li><li> Journal Abbreviations
+<li><li><li> Medline
+<li><li><li> Proquest
+<li><li><li> Scopus
+<li><li><li> WOS
+<li><li> Classes
+<li><li> Functions &amp; Methods
+<li> Examples (from juptyter notebooks – see below)
+<li> Command Line Tool (think we're removing this – see below)
+
+Currently, the documentation is one long page, that contains modules, classes, functions, but I see it being broken up like this (where each list element above represents a separate rst page, that's converted to a separate html page). So, the docsGen.py needs to create all these pages. So far, it creates the 6 module pages. Let's talk about those first...
+
+Basically writeModFiles in docsGen.py uses the ast module to identify what parts of the files in those modules are docstrings, functions, parameters, and defaults. It reads the __init__.py file to find the overall docstrings (like an intro to the module). Then it opens any file that's not __init__.py and uses ast to find the functions (but not the classes). These get added to the new rst file first as part of a table of contents. I chose to do this to follow the way the existing docs are, bc I thought it's useful for the pages that will have more functions. However, I'm running into trouble making links to different parts of the page with IDs in rst (see below), so right now the table of contents is just visual and not functional and therefore fairly counter productive.
+
+
 ## Converting the docstrings to work with rst
 
 ## What's left to do
-In addition to what still needs to be done with docsGen.py, there are jupyter notebooks containing examples.
+
+### Changes to docsGen.py and gneral documentation
+
+### Other changes
+In addition to what still needs to be done with docsGen.py, there are jupyter notebooks containing examples. Ideally, these will be converted by a script to rst or md to be read by rtd, so that they will also be generated automatically if any changes are made to the notebooks. It would likely be easier to convert them to md, but I'm not sure if you can use both md and rst in the same rtd project; I think you might be able to though.
 
 I've been told that the CLI page is no longer necessary, confirm this and then delete CLI.rst. You'll need to delete any links to this page in the other page's toctrees too.
+
+Then, you'll want to get a rtd account for netlab (or however John wants to do this), and set up the project there (see above for how to do this).
