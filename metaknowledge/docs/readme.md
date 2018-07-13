@@ -60,7 +60,7 @@ Here is how I envision the rtd docs being organized:
     * Functions &amp; Methods
     * Exceptions
 
-    * Classes
+    * Classes (these should all be indented at the same spot, idk why that isn't working, basically all the following are classes until we get to modules)
         * WOSRecord class
     		* citation class
     		* Grant Collection class
@@ -125,6 +125,14 @@ This involves making other functions in `docsGen.py`. I imagine it will behave p
 
 Where I would start for this:
 Locate where all the classes are (I listed them above), and then just start with a simple script that finds all of these and creates empty rst files with those names in the proper location (docs/documentation/classes). Then, add to the script, following what `writeModFiles` does, modifying where necessary, so that it populates the files properly.
+
+Remember that you will have to modify the docstrings for all of these files too, so that they conform to rst.
+
+### Automatically generating the toctrees
+Idk if this is something we'd need, but since I didn't imagine the documentation changing *that much*, I've manually inputted the pages into the toctrees of each index.rst file. So if you were to have a new module all of a sudden, it should be created by `writeModFiles` (if you add it to the mods list there), and while that would create a new rst file in `documentation/modules`, you would need to add this manually to `documentation/index.rst`. Unless you want to make that happen automatically, which you could if you like.
+
+### Other versions
+I haven't done anything for diff versions of mk (or thought much about how to handle this). This might be something to consider? Especially if people are still using older versions, or if newer versions are going to be released. I think rtd is supposed to handle this quite gracefully (thought I haven't looked into how) but it still might involve some reworking of the docstrings in the previous versions?
 
 ### Other changes
 In addition to what still needs to be done with `docsGen.py`, there are jupyter notebooks containing examples. Ideally, these will be converted by a script to rst or md to be read by rtd, so that they will also be generated automatically if any changes are made to the notebooks. It would likely be easier to convert them to md, but I'm not sure if you can use both md and rst in the same rtd project; I think you might be able to though. Talk to John about these notebooks.
