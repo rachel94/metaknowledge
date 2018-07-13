@@ -6,7 +6,7 @@ import itertools
 # ideally this would be generated automatically
 mods = ['WOS', 'contour', 'medline', 'proquest', 'scopus', 'journalAbbreviations']
 
-# here we convert the defaults into a usable format
+# convertDefaults: used to convert the defaults into a usable format
 def convertDefaults(default_list, params_list):
 
     new_defaults = []
@@ -24,6 +24,7 @@ def convertDefaults(default_list, params_list):
             except:
                 new_defaults.append("unknown value")
 
+    # the first parameters are those without defaults, so if not all parameters have defaults, then len(new_defaults) < len(params_list). To make it easier to format things later, this adds blanks for those parameters that do not have corresponding defaults, so that the indices for parameters that do have defaults are the same as their corresponding default
     len_def = len(new_defaults)
     len_params = len(params_list)
 
