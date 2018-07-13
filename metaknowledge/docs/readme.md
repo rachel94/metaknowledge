@@ -1,4 +1,4 @@
-Hi! If you're reading this it means you've been tasked with completing what I started to convert the metaknowledge docs to read the docs. (Or, you are me in a few weeks returning to work on this.) This should help you understand what I've done, what's left to be done, and how to do it.
+Hi! If you're reading this it means you've been tasked with completing what I started to convert the metaknowledge docs to read the docs. (Or, you are me in the future returning to work on this.) This should help you understand what I've done, what's left to be done, and how to do it.
 
 If you have any questions, message me on mattermost or email me at rewood34@mgmail.com (will be more responsive here).
 
@@ -8,19 +8,19 @@ The existing docs for metaknowledge are <a href="http://networkslab.org/metaknow
 I've been working from <a href="https://github.com/rachel94/metaknowledge">this cloned repo of metaknowledge</a>. If you need access to this, let me know. The scripts used to create the docs are in <a href="https://github.com/rachel94/metaknowledge/tree/master/metaknowledge/docs">metaknowledge/metaknowledge/docs</a>.
 
 I started by doing <a href="https://docs.readthedocs.io/en/latest/getting_started.html">this tutorial</a> from Read the Docs. I opted to use reStructuredText simply because the tutorial for it seemed easier. If you'd rather use Markdown and think it won't be too difficult to change (or to use both together) feel free to do so. Following the tutorial and using `sphinx quickstart`, the following were created:
-<li> \_build (this is where the generated html pages will go)
-<li> \_static (So far this is empty. I assume this is where you'd put css or js if you needed it, though read the docs has built in styling that has mostly been sufficient. You might find a use for some additional styles though, so I think they'd go here)
-<li> \_templates (this is also empty, I'm not sure what you'd put here)
-<li> conf.py (this is an important file, I believe I changed all the necessary values within it)
-<li> make.bat (this is needed to generate your html files)
-<li> Makefile (this is needed to generate your html files)
+* `\_build` (this is where the generated html pages will go)
+* `\_static` (So far this is empty. I assume this is where you'd put css or js if you needed it, though read the docs has built in styling that has mostly been sufficient. You might find a use for some additional styles though, so I think they'd go here)
+* `\_templates` (this is also empty, I'm not sure what you'd put here)
+* `conf.py` (this is an important file, I believe I changed all the necessary values within it. you'll learn about it in the above tutorial if you do that)
+* `make.bat` (this is needed to generate your html files)
+* `Makefile` (this is needed to generate your html files)
 
 I then added the following:
-<li> readme.md (this file)
-<li> index.rst (this is the main page of your docs on read the docs. the toctree is super important within it, and is explained in the above tutorial. Otherwise, you can put whatever content you want; so I put the intro text for metaknowledge on the old documentation)
-<li> all the other files ending in .rst (these are the other pages at the top level of our read the docs file structure)
-<li> all other subdirectories (these contain more pages that are on our read the docs, but that are nested)
-<li> regex.md (contains a list of some useful regular expressions I've been using to find and replace parts of the docstrings. You will likely end up creating more of these, but they speed things up a lot)
+* `readme.md` (this file)
+* `index.rst` (this is the main page of your docs on read the docs. the toctree is super important within it, and is explained in the above tutorial. Otherwise, you can put whatever content you want; so I put the intro text for metaknowledge on the old documentation)
+* all the other files ending in .rst (these are the other pages at the top level of our read the docs file structure)
+* all other subdirectories (these contain more pages that are on our read the docs, but that are nested)
+* `regex.md` (contains a list of some useful regular expressions I've been using to find and replace parts of the docstrings. You will likely end up creating more of these, but they speed things up a lot)
 
 ## Generating pages for read the docs
 If you continue to use rst like I've been, you can learn the syntax <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">here</a>. Some things are kind of annoying in rst, such as making a hyperlink italicized, because it doesn't allow for nested styles (which was super annoying). However, there are weird workarounds to this, where you sort of put in a variable, and then replace the variable later. Take a look at install.rst for some examples of this.
@@ -60,14 +60,6 @@ Here is how I envision the rtd docs being organized:
     * Functions &amp; Methods
     * Exceptions
 
-    * Modules
-        * Contour
-        * Journal Abbreviations
-        * Medline
-        * Proquest
-        * Scopus
-        * WOS
-
     * Classes
         * WOSRecord class
     		* citation class
@@ -83,6 +75,14 @@ Here is how I envision the rtd docs being organized:
     		* proquest record class
     		* record collection class
         * scopus record class
+
+    * Modules
+        * Contour
+        * Journal Abbreviations
+        * Medline
+        * Proquest
+        * Scopus
+        * WOS
 
 * Examples (from jupyter notebooks – see below)
 * Command Line Tool (think we're removing this – see below)
@@ -117,15 +117,20 @@ I don't quite have all the functions in all the 6 module pages, so they aren't q
 `journalAbbreviations` has all the functions that are in the existing docs, but it also has some others. Idk if those are supposed to be there or not? In the original, there is only `addToDB` and `getj9Dict`. Ask John if the others need to be there. If they do, leave it. If they don't, modify the code to restrict it to only those functions with that name when `mod == 'journalAbbreviations'`.
 `WOS` is missing the following: `getMonth`. Ask John if this is still needed? Try to find it in the WOS files somewhere, I'm not sure why it's not been included, unless maybe it doesn't exist anymore?
 
-### Making the overview and examples pages
-This just involves manually creating a new rst page(s), adding them to the necessary toctrees, copying and pasting from the existing documentation, and converting it to rst (use the regex).
+### Links
+There are links that do not work in documentation/overview. There are missing links between basically any mention of a mk function/method throughout the docs, bc I haven't yet figured out how to link between read the docs pages, or how to do internal links in rst.
 
-### Generating the docs for fucntions, classes, Methods
+### Generating the docs for functions, classes, Methods
 This involves making another function in `docsGen.py`. I imagine it will behave pretty similarly to `writeModFiles`, but will be grabbing different functions. ie. for classes, you need to make sure it opens all the `.py` files that contain classes, and then grab all the methods of those classes. This will likely take some digging around in mk to find where all the classe are, though I've provided a list of which ones you need based on the existing docs.
+
+Where I would start for this:
+Locate where all the classes are (I listed them above), and then just start with a simple script that finds all of these and creates empty rst files with those names in the proper location (docs/documentation/classes). Then, add to the script, following what `writeModFiles` does, so that it populates the files properly.
 
 ### Other changes
 In addition to what still needs to be done with `docsGen.py`, there are jupyter notebooks containing examples. Ideally, these will be converted by a script to rst or md to be read by rtd, so that they will also be generated automatically if any changes are made to the notebooks. It would likely be easier to convert them to md, but I'm not sure if you can use both md and rst in the same rtd project; I think you might be able to though.
 
 I've been told that the CLI page is no longer necessary, confirm this and then delete CLI.rst. You'll need to delete any links to this page in the other page's toctrees too.
+
+If you're getting rid of this, remove it from documentation/example. If you're keeping it, fix the link there.
 
 Then, you'll want to get a rtd account for netlab (or however John wants to do this), and set up the project there (see above for how to do this).

@@ -6,6 +6,9 @@ Documentation
    :maxdepth: 2
    :caption: Documentation:
 
-   modules/index
-   classes/index
+   example
+   overview
    functions_methods/index
+   exceptions/index
+   classes/index 
+   modules/index

@@ -1,9 +1,7 @@
 #############
-Classes
+Exceptions
 #############
 
 .. toctree::
    :maxdepth: 2
-   :caption: Classes:
-
-   
+   :caption: Exceptions:

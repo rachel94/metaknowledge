@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Documentation &mdash; metaknowledge  documentation</title>
+  <title>Overview &mdash; metaknowledge  documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Example" href="example.html" />
-    <link rel="prev" title="Installation" href="../install.html" /> 
+    <link rel="next" title="Modules" href="modules/index.html" />
+    <link rel="prev" title="Example" href="example.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -81,13 +81,14 @@
               <p class="caption"><span class="caption-text">Documentation:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="example.html">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions_methods/index.html">Functions &amp; Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptions/index.html">Exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes/index.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="modules/index.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions_methods/index.html">Functions &amp; Methods</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Context</a></li>
@@ -137,13 +138,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Documentation</li>
+          <li><a href="index.html">Documentation</a> &raquo;</li>
+        
+      <li>Overview</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/documentation/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/documentation/overview.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,36 +159,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>This package can read the files downloaded from the Thomson Reuters’ <a class="reference external" href="https://webofknowledge.com">Web of Science</a> (<em>WOS</em>), Elsevier’s <a class="reference external" href="https://www.scopus.com/">Scopus</a>, <a class="reference external" href="http://www.proquest.com/">ProQuest</a> and Medline files from <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed">PubMed</a>. These files contain entries on the metadata of scientific records, such as authors, title, and citations. <em>metaknowledge</em> can also read grants from various organizations including <em>NSF</em> and <em>NSERC</em> which are handled similarly to records.</p>
+<p>The &lt;a href=”#RecordCollection”&gt;metaknowledge.RecordCollection&lt;/a&gt; class can take a path to one or more of these files load and parse them. The object is the main way for work to be done on multiple records. For each individual record it creates an instance of the &lt;a href=”#Record”&gt;metaknowledge.Record&lt;/a&gt; class that contains the results of the parsing of the record.</p>
+<p>The files read by <em>metaknowledge</em> are a databases containing a series of tags (implicitly or explicitly), e.g. <code class="docutils literal notranslate"><span class="pre">'TI'</span></code> is the title for WOS. Each tag has one or more values and metaknowledge can read them and extract useful information. As the tags differ between providers a small set of values can be accessed by special tags, the tags are listed in <code class="docutils literal notranslate"><span class="pre">commonRecordFields</span></code>. These special tags can act on the whole <code class="docutils literal notranslate"><span class="pre">Record</span></code> and as such may contain information provided by any number of other tags.</p>
+<p>Citations are handled by a special &lt;a href=”#Citation”&gt;Citation&lt;/a&gt; class. This class can parse the citations given by &lt;em&gt;WOS&lt;/em&gt; and journals cited by <em>Scopus</em> and allows for better comparisons when they are used in graphs.</p>
+<p>Note for those reading the docstrings metaknowledge’s docs are written in markdown and are processed to produce the documentation found at &lt;a href=”/metaknowledge/documentation/”&gt;networkslab.org/metaknowledge/documentation&lt;/a&gt;, but you should have no problem reading them from the help function.</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Documentation:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="functions_methods/index.html">Functions &amp; Methods</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions/index.html">Exceptions</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="classes/index.html">Classes</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/contour.html">Contour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/journalAbbreviations.html">Journal Abbreviations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/medline.html">Medline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/proquest.html">Proquest</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/scopus.html">Scopus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/WOS.html">WOS</a></li>
-</ul>
-</li>
-</ul>
 </div>
 </div>
 
@@ -197,10 +178,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="example.html" class="btn btn-neutral float-right" title="Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="modules/index.html" class="btn btn-neutral float-right" title="Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../install.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="example.html" class="btn btn-neutral" title="Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

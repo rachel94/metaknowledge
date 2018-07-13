@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Documentation &mdash; metaknowledge  documentation</title>
+  <title>Example &mdash; metaknowledge  documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Example" href="example.html" />
-    <link rel="prev" title="Installation" href="../install.html" /> 
+    <link rel="next" title="Overview" href="overview.html" />
+    <link rel="prev" title="Documentation" href="index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -81,13 +81,14 @@
               <p class="caption"><span class="caption-text">Documentation:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="example.html">Example</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions_methods/index.html">Functions &amp; Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptions/index.html">Exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes/index.html">Classes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modules/index.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions_methods/index.html">Functions &amp; Methods</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Context</a></li>
@@ -137,13 +138,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Documentation</li>
+          <li><a href="index.html">Documentation</a> &raquo;</li>
+        
+      <li>Example</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/documentation/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/documentation/example.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,36 +159,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h1>
+<p><em>metaknoweldge</em> is a Python3 package that simplifies bibliometric and computational analysis of Web of Science data.</p>
+<dl class="docutils">
+<dt>To load the data from files and make a network: ::</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">metaknowledge</span> <span class="k">as</span> <span class="nn">mk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">RC</span> <span class="o">=</span> <span class="n">mk</span><span class="o">.</span><span class="n">RecordCollection</span><span class="p">(</span><span class="s2">&quot;records/&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">RC</span><span class="p">)</span>
+<span class="go">Collection of 33 records</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">RC</span><span class="o">.</span><span class="n">coCiteNetwork</span><span class="p">(</span><span class="n">nodeType</span> <span class="o">=</span> <span class="s1">&#39;journal&#39;</span><span class="p">)</span>
+<span class="go">Done making a co-citation network of files-from-records                 1.1s</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
+<span class="go">223</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mk</span><span class="o">.</span><span class="n">writeGraph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;Cocitation-Network-of-Journals&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>There is also a simple command line program called <code class="docutils literal notranslate"><span class="pre">metaknowledge</span></code> that comes with the package. It allows for creating networks without any need to know Python. More information about it can be found <a class="reference external" href="../CLI.html">here</a>.</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Documentation:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="functions_methods/index.html">Functions &amp; Methods</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions/index.html">Exceptions</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="classes/index.html">Classes</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/contour.html">Contour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/journalAbbreviations.html">Journal Abbreviations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/medline.html">Medline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/proquest.html">Proquest</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/scopus.html">Scopus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/WOS.html">WOS</a></li>
-</ul>
-</li>
-</ul>
 </div>
 </div>
 
@@ -197,10 +190,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="example.html" class="btn btn-neutral float-right" title="Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../install.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
