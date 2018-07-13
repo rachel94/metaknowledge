@@ -98,50 +98,45 @@ def writeModFiles():
                     entry = {"docs": ast.get_docstring(node), "fn_name": node.name, "params": params_list, "defaults": defaults, "params_defs": p_d_list}
                     functions.append(entry)
 
-        if mod == "medline" or mod == "WOS":
+        # some modules also have a subdirectory called tagProcessing that has more functions we need.
+        if mod == "medline" or mod == "WOS" or mod == "proquest":
             os.chdir('tagProcessing')
 
             with open('tagFunctions.py', 'r') as f:
                 module = ast.parse(f.read())
 
             for node in module.body:  # each of the functions in that file
+
                 if isinstance(node, ast.FunctionDef):
+                    if (mod == "proquest" and node.name == 'proQuestTagToFunc') or mod != "proquest":
 
-                    params = node.args.args
-                    params_list = [p.arg for p in params]
-                    defaults = node.args.defaults
-                    defaults = convertDefaults(defaults, params_list)
+                        params = node.args.args
+                        params_list = [p.arg for p in params]
+                        defaults = node.args.defaults
+                        defaults = convertDefaults(defaults, params_list)
 
-                    # create a list of parameters and defaults together
-                    p_d_list = []
-                    i = 0
+                        # create a list of parameters and defaults together
+                        p_d_list = []
+                        i = 0
 
-                    while i < len(params_list):
+                        while i < len(params_list):
 
-                        if defaults[i] != " ":
-                            p_d = params_list[i] + "=" + defaults[i]
-                        else:
-                            p_d = params_list[i]
+                            if defaults[i] != " ":
+                                p_d = params_list[i] + "=" + defaults[i]
+                            else:
+                                p_d = params_list[i]
 
-                        p_d_list.append(p_d)
+                            p_d_list.append(p_d)
 
-                        i += 1
+                            i += 1
 
-                    # create an entry for each function
-                    entry = {"docs": ast.get_docstring(node), "fn_name": node.name, "params": params_list,
-                             "defaults": defaults, "params_defs": p_d_list}
-                    functions.append(entry)
+                        # create an entry for each function
+                        entry = {"docs": ast.get_docstring(node), "fn_name": node.name, "params": params_list,
+                                 "defaults": defaults, "params_defs": p_d_list}
+                        functions.append(entry)
 
 
             os.chdir('..')
-
-
-        # if 'tagProcessing' in os.listdir():
-        #     os.chdir('tagProcessing')
-        #
-        #
-        #
-        #     os.chdir('..')
 
         os.chdir(os.path.join('..', 'docs'))
 
@@ -220,7 +215,7 @@ def writeModFiles():
 
 
 
-
+# this is all so that we can run it from the command line and it'll run all the functions
 def main():
     writeModFiles()
 

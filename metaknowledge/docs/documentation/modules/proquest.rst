@@ -13,6 +13,8 @@ These are the functions used to process medline (pubmed) files at the backend. T
 
 **proQuestRecordParser**\ (enRecordFile, recNum)
 
+**proQuestTagToFunc**\ (tag)
+
 
 
 **********************
@@ -77,3 +79,20 @@ The parser [`ProQuestRecords`](#metaknowledge.ProQuestRecord) use. This takes an
 
 | ``collections.OrderedDict``
 | An ordered dictionary of the key-vaue pairs in the entry
+
+********************
+
+proquest.\ **proQuestTagToFunc**\ (tag):
+
+
+Takes a tag string, *tag*, and returns the processing function for its data. If their is not a predefined function returns the identity function (``lambda x : x``).
+
+**Parameters**
+
+| *tag*\ : ``str``
+| The requested tag
+
+**Returns**
+
+| ``function``
+| A function to process the tag's data

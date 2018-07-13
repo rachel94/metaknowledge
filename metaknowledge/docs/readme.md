@@ -89,19 +89,42 @@ Here is how I envision the rtd docs being organized:
 
 Currently, the documentation is one long page, that contains modules, classes, functions, but I see it being broken up like this (where each list element above represents a separate rst page, that's converted to a separate html page). So, the docsGen.py needs to create all these pages. So far, it creates the 6 module pages. Let's talk about those first...
 
-Basically writeModFiles in docsGen.py uses the ast module to identify what parts of the files in those modules are docstrings, functions, parameters, and defaults. It reads the __init__.py file to find the overall docstrings (like an intro to the module). Then it opens any file that's not __init__.py and uses ast to find the functions (but not the classes). These get added to the new rst file first as part of a table of contents. I chose to do this to follow the way the existing docs are, bc I thought it's useful for the pages that will have more functions. However, I'm running into trouble making links to different parts of the page with IDs in rst (see below), so right now the table of contents is just visual and not functional and therefore fairly counter productive. Anyway, then below that, the function and its parameters and defaults are listed, then the docstrings for that individual function, formatted to match the way the existing docs did it.
+Basically `writeModFiles` in `docsGen.py` uses the ast module to identify what parts of the files in those modules are docstrings, functions, parameters, and defaults. It reads the `__init__.py` file to find the overall docstrings (like an intro to the module). Then it opens any file that's not `__init__.py` and uses ast to find the functions (but not the classes). These get added to the new rst file first as part of a table of contents. I chose to do this to follow the way the existing docs are, bc I thought it's useful for the pages that will have more functions. However, I'm running into trouble making links to different parts of the page with IDs in rst (see below), so right now the table of contents is just visual and not functional and therefore fairly counter productive. Anyway, then below that, the function and its parameters and defaults are listed, then the docstrings for that individual function, formatted to match the way the existing docs did it.
 
-In order to make the docstrings convert properly to rst, I needed to make changes to the docstrings in each of the .py files. I did most of this using regular expressions, which you can find in <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/regex.md">regex.md</a>
+The rst files are created in the proper folder for rtd to use them.
 
+Feel free to use pieces of Reid's code as well! While I ended up rewriting a lot, his could still be used with some modifications!
 
-## Converting the docstrings to work with rst
+### Converting the docstrings to work with rst
+
+In order to make the docstrings convert properly to rst, I needed to make changes to the docstrings in each of the .py files. I did most of this using regular expressions, which you can find in <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/regex.md">regex.md</a>. Once you get going with this it doesn't take too long. The modules are almost done, except for the following:
+
+### Running the scripts!
+In the docs directory...
+`python3 docsGen.py` to run the script and create the rst files. do this anytime you update your docstrings or change functions
+`make html` this converts the rst to html files for rtd
+Then push to git to make this accessible on rtd
 
 ## What's left to do
 
-### Changes to docsGen.py and gneral documentation
+### Linking within each documentation page (adding IDs)
+I've been having trouble generating IDs for the functions. I want to do this so that the table of contents at the top of each module page can be clickable and link to another part in the page. This is very doable in html, so I think it should be maangeable with rst, but I haven't been able to get it to work. Ideally, we'll be able to find a way to do this so that the
+
+### Making sure all the proper functions are in each module's page
+I don't quite have all the functions in all the 6 module pages, so they aren't quite done yet.
+`countour`, `scopus`, and `medline` are done. They are in a different order than those in the existing docs, but I don't think this matters.
+`proquest` is done too but idk if it needs the other functions from `proquest/tagProcessing/tagFunctions.py`?
+`journalAbbreviations` has all the functions that are in the existing docs, but it also has some others. Idk if those are supposed to be there or not? In the original, there is only `addToDB` and `getj9Dict`. Ask John if the others need to be there. If they do, leave it. If they don't, modify the code to restrict it to only those functions with that name when `mod == 'journalAbbreviations'`.
+`WOS` is missing the following: `getMonth`. Ask John if this is still needed? Try to find it in the WOS files somewhere, I'm not sure why it's not been included, unless maybe it doesn't exist anymore?
+
+### Making the overview and examples pages
+This just involves manually creating a new rst page(s), adding them to the necessary toctrees, copying and pasting from the existing documentation, and converting it to rst (use the regex).
+
+### Generating the docs for fucntions, classes, Methods
+This involves making another function in `docsGen.py`. I imagine it will behave pretty similarly to `writeModFiles`, but will be grabbing different functions. ie. for classes, you need to make sure it opens all the `.py` files that contain classes, and then grab all the methods of those classes. This will likely take some digging around in mk to find where all the classe are, though I've provided a list of which ones you need based on the existing docs.
 
 ### Other changes
-In addition to what still needs to be done with docsGen.py, there are jupyter notebooks containing examples. Ideally, these will be converted by a script to rst or md to be read by rtd, so that they will also be generated automatically if any changes are made to the notebooks. It would likely be easier to convert them to md, but I'm not sure if you can use both md and rst in the same rtd project; I think you might be able to though.
+In addition to what still needs to be done with `docsGen.py`, there are jupyter notebooks containing examples. Ideally, these will be converted by a script to rst or md to be read by rtd, so that they will also be generated automatically if any changes are made to the notebooks. It would likely be easier to convert them to md, but I'm not sure if you can use both md and rst in the same rtd project; I think you might be able to though.
 
 I've been told that the CLI page is no longer necessary, confirm this and then delete CLI.rst. You'll need to delete any links to this page in the other page's toctrees too.
 

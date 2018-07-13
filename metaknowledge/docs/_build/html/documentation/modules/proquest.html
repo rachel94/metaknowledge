@@ -176,6 +176,7 @@
 <p><strong>isProQuestFile</strong>(infile, checkedLines=2)</p>
 <p><strong>proQuestParser</strong>(proFile)</p>
 <p><strong>proQuestRecordParser</strong>(enRecordFile, recNum)</p>
+<p><strong>proQuestTagToFunc</strong>(tag)</p>
 <hr class="docutils" />
 <p>proquest.<strong>isProQuestFile</strong>(infile, checkedLines=2):</p>
 <p>Determines if <em>infile</em> is the path to a ProQuest file. A file is considered to be a Proquest file if it has the correct encoding (<code class="docutils literal notranslate"><span class="pre">utf-8</span></code>) and within the first <em>checkedLines</em> the following starts.</p>
@@ -228,6 +229,19 @@
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></div>
 <div class="line">An ordered dictionary of the key-vaue pairs in the entry</div>
+</div>
+<hr class="docutils" />
+<p>proquest.<strong>proQuestTagToFunc</strong>(tag):</p>
+<p>Takes a tag string, <em>tag</em>, and returns the processing function for its data. If their is not a predefined function returns the identity function (<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">x</span></code>).</p>
+<p><strong>Parameters</strong></p>
+<div class="line-block">
+<div class="line"><em>tag</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
+<div class="line">The requested tag</div>
+</div>
+<p><strong>Returns</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">function</span></code></div>
+<div class="line">A function to process the tag’s data</div>
 </div>
 </div>
 </div>
