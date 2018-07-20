@@ -27,7 +27,7 @@ If you continue to use rst like I've been, you can learn the syntax <a href="htt
 
 Or, if you're using markdown, use that syntax instead.
 
-When you want to convet your .rst pages to .html to look like read the docs style, simply do the following on the command line:
+When you want to convert your .rst pages to .html to look like read the docs style, simply do the following on the command line:
 `cd [wherever you stored this repo]/metaknowledge/metaknowledge/docs`
 `make html`
 This generates the .html files from the .rst files, and puts them in `\_build`. You can then view them in a browser by just opening the .html pages. If there's an error in the rst files (usually it's something to do with the links in your toctrees, or other syntax errors), read the error messages bc they're usually pretty helpful.
@@ -55,26 +55,29 @@ Here is how I envision the rtd docs being organized:
 * Installation – done
 * Documentation
     * Overview – done except for some faulty links, please fix this
+    
     * Examples – done
 
     * Functions &amp; Methods
-    * Exceptions
 
-    * Classes (these should all be indented at the same spot, idk why that isn't working, basically all the following are classes until we get to modules)
-        * WOSRecord class
-    		* citation class
-    		* Grant Collection class
-    		* Grant class
-    		* NSERC Grant class
-    		* NSFGrant class
-    		* medline record class
-    		* collection class
-    		* collection with IDs class
-    		* extended record class
-    		* record class
-    		* proquest record class
-    		* record collection class
-        * scopus record class
+    * Exceptions
+        * these are all in mkExceptions.py. there aren't any docstrings and all you need to do is grab the names of the exceptions.
+
+    * Classes (these should all be indented at the same spot, idk why that isn't working, basically all the following are classes until we get to modules). They can be found in the listed py file):
+        * WOSRecord class: WOS/recordWOS.py
+    		* citation class: citation.py
+    		* Grant Collection class: grantCollection.py
+    		* Grant class: grants/baseGrant.py
+    		* NSERC Grant class: grants/NSERCGrant.py
+    		* NSFGrant class: grants/NSFGrant.py
+    		* medline record class: medline/recordMedline.py
+    		* collection class: mkCollection.py
+    		* collection with IDs class: mkCollection.py
+    		* extended record class: mkRecord.py
+    		* record class: mkRecord.py
+    		* proquest record class: proquest/recordProQuest.py
+    		* record collection class: recordCollection.py
+        * scopus record class: scopus/recordScopus.py
 
     * Modules
         * Contour – done
@@ -124,6 +127,8 @@ I don't quite have all the functions in all the 6 module pages, so they aren't q
 This involves making other functions in `docsGen.py`. I imagine it will behave pretty similarly to `writeModFiles`, but will be grabbing different functions. ie. for classes, you need to make sure it opens all the `.py` files that contain classes, and then grab all the methods of those classes. This will likely take some digging around in mk to find where all the classe are, though I've provided a list of which ones you need based on the existing docs (see the structure I envision for the docs, above).
 
 Where I would start for this:
+Exceptions should be easy to do. They're all in mkExceptions.py. You can just put them all in the docs/documentation/exceptions/index.rst, since there are no docstrings for them so they can just be in the same file. So in the function that grabs them, you'll want to have it create the index.rst file there, and make it populate the beginning with the proper header and toctree. Then just grab all the functions using ast like what you did in docsGen.py. A very few of them have docstrings, maybe add those? idk.
+
 Locate where all the classes are (I listed them above), and then just start with a simple script that finds all of these and creates empty rst files with those names in the proper location (docs/documentation/classes). Then, add to the script, following what `writeModFiles` does, modifying where necessary, so that it populates the files properly.
 
 Remember that you will have to modify the docstrings for all of these files too, so that they conform to rst.
