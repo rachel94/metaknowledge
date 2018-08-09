@@ -5,6 +5,7 @@ Modules
 .. toctree::
    :maxdepth: 2
    :caption: Modules:
+   :titlesonly:
 
    contour
    journalAbbreviations

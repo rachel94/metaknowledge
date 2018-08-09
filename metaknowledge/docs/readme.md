@@ -47,7 +47,6 @@ But if you are the one putting the docs on rtd, essentially you do the following
 * When you make changes to your docs, make sure you run `docsGen.py` (see below), then run `make html` to remake the html pages, then push to git. This will automatically make the changes on read the docs.
 
 ## Understanding the docsGen.py script I wrote
-
 We wanted the docs to be automatically generated from the docstrings in each module (I think?). Reid had already written a script <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/bin/metaknowledgeDocsGen.py">`metaknowledge/metaknowledge/bin/metaknowledgeDocsGen.py`</a> that converts all the docstrings to markdown that could then be used to create the original custom mk docs. I ended up starting to write my own script to convert the docstrings to rst to be used with rtd. This is < a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/docsGen.py">`metaknowledge/metaknowledge/docs/docsGen.py`</a>. So far, this works for (most of) the 6 modules: WOS, contour, medline, scopus, proquest, journalAbbreviations, but needs additional functionality for the functions/methods, exceptions, and classes.
 
 Here is how I envision the rtd docs being organized:
@@ -55,15 +54,16 @@ Here is how I envision the rtd docs being organized:
 * Installation – done
 * Documentation
     * Overview – done except for some faulty links, please fix this
-    
+
     * Examples – done
 
     * Functions &amp; Methods
 
-    * Exceptions
-        * these are all in mkExceptions.py. there aren't any docstrings and all you need to do is grab the names of the exceptions.
+    * Exceptions – done
+        * there are just some faulty links that need to be fixed
+        * In existing docs, there are no docstrings listed, but some of the exceptions have docstrings. I've included these. Easy enough to remove them if you'd like
 
-    * Classes (these should all be indented at the same spot, idk why that isn't working, basically all the following are classes until we get to modules). They can be found in the listed py file):
+    * Classes. They can be found in the listed py file:
         * WOSRecord class: WOS/recordWOS.py
     		* citation class: citation.py
     		* Grant Collection class: grantCollection.py
@@ -99,7 +99,6 @@ The rst files are created in the proper folder for rtd to use them.
 In "What's left to do" below, I explain what still needs to be done. Feel free to use pieces of Reid's code as well for that. While I ended up rewriting a lot, his could still be used with some modifications!
 
 ### Converting the docstrings to work with rst
-
 In order to make the docstrings convert properly to rst, I needed to make changes to the docstrings in each of the `.py` files. I did most of this using regular expressions, which you can find in <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/regex.md">regex.md</a>. Once you get going with this it doesn't take too long. The modules are almost done, except for the following (see "what's left to do" below).
 
 ### Running the scripts!
@@ -109,6 +108,19 @@ Then do `make html`. this converts the rst to html files for rtd
 Then push to git to make this accessible on rtd
 
 ## What's left to do
+
+### Generating the docs for functions, classes, Methods
+Aug 9th:
+I've started on one for classes. It currently only works for citation.py, but it will need to be extended to generate docs for all of the classes. They should all be pretty similar so will just involve some generalizing.
+
+For functions and methods, it should be similar, just need to find where they are in the code, link to them, and basically do a bunch of the same stuff (see docsGen.py)
+
+pre-Aug 9th:
+This involves making other functions in `docsGen.py`. I imagine it will behave pretty similarly to `writeModFiles`, but will be grabbing different functions. ie. for classes, you need to make sure it opens all the `.py` files that contain classes, and then grab all the methods of those classes. This will likely take some digging around in mk to find where all the classe are, though I've provided a list of which ones you need based on the existing docs (see the structure I envision for the docs, above).
+
+Locate where all the classes are (I listed them above), and then just start with a simple script that finds all of these and creates empty rst files with those names in the proper location (docs/documentation/classes). Then, add to the script, following what `writeModFiles` does, modifying where necessary, so that it populates the files properly.
+
+Remember that you will have to modify the docstrings for all of these files too, so that they conform to rst.
 
 ### Linking within each documentation page (adding IDs)
 I've been having trouble generating IDs for the functions. I want to do this so that the table of contents at the top of each module page can be clickable and link to another part in the page. This is very doable in html, so I think it should be mangeable with rst, but I haven't been able to get it to work. Ideally, we'll be able to find a way to do this so that the tables of contents link to the actual info about that function below in the page. Also, so if we mention a function on another page (which does happen), we could link to that part of the proper page elsewhere in our docs. I also haven't figured out how to link internally in rtd, so that's another thing to figure out and implement. Which brings me to...
@@ -123,15 +135,8 @@ I don't quite have all the functions in all the 6 module pages, so they aren't q
 `journalAbbreviations` has all the functions that are in the existing docs, but it also has some others. Idk if those are supposed to be there or not? In the original, there is only `addToDB` and `getj9Dict`. Ask John if the others need to be there. If they do, leave it. If they don't, modify the code to restrict it to only those functions with that name when `mod == 'journalAbbreviations'`.
 `WOS` is missing the following: `getMonth`. Ask John if this is still needed? Try to find it in the WOS files somewhere, I'm not sure why it's not been included, unless maybe it doesn't exist anymore?
 
-### Generating the docs for functions, classes, Methods, exceptions
-This involves making other functions in `docsGen.py`. I imagine it will behave pretty similarly to `writeModFiles`, but will be grabbing different functions. ie. for classes, you need to make sure it opens all the `.py` files that contain classes, and then grab all the methods of those classes. This will likely take some digging around in mk to find where all the classe are, though I've provided a list of which ones you need based on the existing docs (see the structure I envision for the docs, above).
-
-Where I would start for this:
-Exceptions should be easy to do. They're all in mkExceptions.py. You can just put them all in the docs/documentation/exceptions/index.rst, since there are no docstrings for them so they can just be in the same file. So in the function that grabs them, you'll want to have it create the index.rst file there, and make it populate the beginning with the proper header and toctree. Then just grab all the functions using ast like what you did in docsGen.py. A very few of them have docstrings, maybe add those? idk.
-
-Locate where all the classes are (I listed them above), and then just start with a simple script that finds all of these and creates empty rst files with those names in the proper location (docs/documentation/classes). Then, add to the script, following what `writeModFiles` does, modifying where necessary, so that it populates the files properly.
-
-Remember that you will have to modify the docstrings for all of these files too, so that they conform to rst.
+### Making one function that can be run to run all of the others
+Rather than needing to run docsGen.py and getExs.py, and all the others that I will be writing, should make one that calls all the others, so that you only have to call one.
 
 ### Automatically generating the toctrees
 Idk if this is something we'd need, but since I didn't imagine the documentation changing *that much*, I've manually inputted the pages into the toctrees of each index.rst file. So if you were to have a new module all of a sudden, it should be created by `writeModFiles` (if you add it to the mods list there), and while that would create a new rst file in `documentation/modules`, you would need to add this manually to `documentation/index.rst`. Unless you want to make that happen automatically, which you could if you like.
@@ -142,8 +147,17 @@ I haven't done anything for diff versions of mk (or thought much about how to ha
 ### Other changes
 In addition to what still needs to be done with `docsGen.py`, there are jupyter notebooks containing examples. Ideally, these will be converted by a script to rst or md to be read by rtd, so that they will also be generated automatically if any changes are made to the notebooks. It would likely be easier to convert them to md, but I'm not sure if you can use both md and rst in the same rtd project; I think you might be able to though. Talk to John about these notebooks.
 
+I'd like to include the subtitles from the original docs in the toctree, without them linking to anything, like just to display them like that. I've tried that using entries (http://www.sphinx-doc.org/en/stable/markup/toctree.html?highlight=entries), but I don't really like the look of it.
+
+Simplify the scripts that generate the docs bc a lot of it is repeated or similar.
+
 I've been told that the CLI page is no longer necessary, confirm this and then delete CLI.rst. You'll need to delete any links to this page in the other page's toctrees too.
 
 If you're getting rid of this, remove it from documentation/example. If you're keeping it, fix the link there.
 
 Then, you'll want to get a rtd account for netlab (or however John wants to do this), and set up the project there (see above for how to do this).
+
+### Helpful links:
+Toc Tree syntax: http://www.sphinx-doc.org/en/1.5.1/markup/toctree.html
+AST Module: http://greentreesnakes.readthedocs.io/en/latest/nodes.html
+RST: http://docutils.sourceforge.net/docs/user/rst/quickref.html

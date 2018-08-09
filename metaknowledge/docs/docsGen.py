@@ -155,7 +155,7 @@ def writeModFiles():
             f.write(docstring + "\n\n")
             title = '**The {} module provides the following functions:**'.format(mod)
             f.write(title)
-            f.write("\n" + "^"*len(title) + "\n\n")
+            f.write("\n" + "-"*len(title) + "\n\n")
 
             # now add the functions!
 
@@ -206,7 +206,7 @@ def writeModFiles():
                 f_count += 1
 
         # go up one to be in the right place for next file
-        os.chdir(os.path.join('..'))
+        os.chdir('..')
 
 
 

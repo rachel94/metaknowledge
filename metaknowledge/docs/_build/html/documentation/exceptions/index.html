@@ -85,9 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../example.html">Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions_methods/index.html">Functions &amp; Methods</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Exceptions</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../classes/index.html">Classes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../modules/index.html">Modules</a></li>
 </ul>
@@ -162,8 +160,66 @@
             
   <div class="section" id="exceptions">
 <h1>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
+<p>The exceptions defined by <em>metaknowledge</em> are:</p>
+<hr class="docutils" />
+<p><strong>mkException</strong>(<em>Exception</em>)</p>
+<hr class="docutils" />
+<p><strong>CollectionTypeError</strong>(<em>mkException</em>, <em>TypeError</em>)</p>
+<hr class="docutils" />
+<p><strong>RCTypeError</strong>(<em>mkException</em>, <em>TypeError</em>)</p>
+<hr class="docutils" />
+<p><strong>TagError</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>RCValueError</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadInputFile</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadRecord</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadPubmedRecord</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadPubmedFile</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadScopusRecord</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadScopusFile</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadProQuestRecord</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>BadProQuestFile</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>RecordsNotCompatible</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>JournalDataBaseError</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>GenderException</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>cacheError</strong>(<em>mkException</em>)</p>
+<p>Exception raised when loading a cached RecordCollection fails, should only be seen inside metaknowledge and always be caught.</p>
+<hr class="docutils" />
+<p><strong>BadWOSRecord</strong>(<em>BadRecord</em>)</p>
+<p>Exception thrown by the [record parser](#metaknowledge.recordParser) to indicate a mis-formated record. This occurs when some component of the record does not parse. The messages will be any of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Missing field on line (line Number):(line)</em>, which indicates a line was to short, there should have been a tag followed by information</li>
+<li><em>End of file reached before ER</em>, which indicates the file ended before the ‘ER’ indicator appeared, ‘ER’ indicates the end of a record. This is often due to a copy and paste error.</li>
+<li><em>Duplicate tags in record</em>, which indicates the record had 2 or more lines with the same tag.</li>
+<li><em>Missing WOS number</em>, which indicates the record did not have a ‘UT’ tag.</li>
+</ul>
+</div></blockquote>
+<p>Records with a BadWOSRecord error are likely incomplete or the combination of two or more single records.</p>
+<hr class="docutils" />
+<p><strong>BadWOSFile</strong>(<em>Warning</em>)</p>
+<p>Exception thrown by wosParser for mis-formatted files</p>
+<hr class="docutils" />
+<p><strong>BadCitation</strong>(<em>Warning</em>)</p>
+<p>Exception thrown by Citation</p>
+<hr class="docutils" />
+<p><strong>BadGrant</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>GrantCollectionException</strong>(<em>mkException</em>)</p>
+<hr class="docutils" />
+<p><strong>UnknownFile</strong>(<em>mkException</em>)</p>
 </div>
 
 
