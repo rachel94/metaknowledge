@@ -5,7 +5,7 @@ WOS
 These are the functions used to process medline (pubmed) files at the backend. They are meant for use internal use by metaknowledge.
 
 **The WOS module provides the following functions:**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------------
 
 **recordParser**\ (paper)
 
@@ -139,7 +139,8 @@ These are the functions used to process medline (pubmed) files at the backend. T
 
 **********************
 
-WOS.\ **recordParser**\ (paper):
+WOS.recordParser(paper)
+=======================
 
 
 This is function that is used to create [`Records`](#metaknowledge.Record) from files.
@@ -165,7 +166,8 @@ The entry in the returned dict would be ``{'AF' : ["BREVIK, I", "ANICIN, B"]}``
 
 ********************
 
-WOS.\ **isWOSFile**\ (infile, checkedLines=3):
+WOS.isWOSFile(infile, checkedLines=3)
+=====================================
 
 
 Determines if *infile*\ is the path to a WOS file. A file is considerd to be a WOS file if it has the correct encoding (``utf-8`` with a BOM) and within the first *checkedLines*\ a line starts with ``"VR 1.0"``.
@@ -185,7 +187,8 @@ Determines if *infile*\ is the path to a WOS file. A file is considerd to be a W
 
 ********************
 
-WOS.\ **wosParser**\ (isifile):
+WOS.wosParser(isifile)
+======================
 
 
 This is function that is used to create [`RecordCollections`](#metaknowledge.RecordCollection) from files.
@@ -206,7 +209,8 @@ This is function that is used to create [`RecordCollections`](#metaknowledge.Rec
 
 ********************
 
-WOS.\ **pubType**\ (val):
+WOS.pubType(val)
+================
 
 
 **The PT Tag**
@@ -225,7 +229,8 @@ WOS.\ **pubType**\ (val):
 
 ********************
 
-WOS.\ **authorsFull**\ (val):
+WOS.authorsFull(val)
+====================
 
 
 **The AF Tag**
@@ -244,7 +249,8 @@ WOS.\ **authorsFull**\ (val):
 
 ********************
 
-WOS.\ **group**\ (val):
+WOS.group(val)
+==============
 
 
 **The GP Tag**
@@ -263,7 +269,8 @@ WOS.\ **group**\ (val):
 
 ********************
 
-WOS.\ **editedBy**\ (val):
+WOS.editedBy(val)
+=================
 
 
 **The BE Tag**
@@ -282,7 +289,8 @@ WOS.\ **editedBy**\ (val):
 
 ********************
 
-WOS.\ **authorsShort**\ (val):
+WOS.authorsShort(val)
+=====================
 
 
 **The AU Tag**
@@ -301,7 +309,8 @@ WOS.\ **authorsShort**\ (val):
 
 ********************
 
-WOS.\ **bookAuthor**\ (val):
+WOS.bookAuthor(val)
+===================
 
 
 **The BA Tag**
@@ -320,7 +329,8 @@ WOS.\ **bookAuthor**\ (val):
 
 ********************
 
-WOS.\ **bookAuthorFull**\ (val):
+WOS.bookAuthorFull(val)
+=======================
 
 
 **The BF Tag**
@@ -339,7 +349,8 @@ WOS.\ **bookAuthorFull**\ (val):
 
 ********************
 
-WOS.\ **groupName**\ (val):
+WOS.groupName(val)
+==================
 
 
 **The CA Tag**
@@ -358,7 +369,8 @@ WOS.\ **groupName**\ (val):
 
 ********************
 
-WOS.\ **title**\ (val):
+WOS.title(val)
+==============
 
 
 **The TI Tag**
@@ -377,7 +389,8 @@ WOS.\ **title**\ (val):
 
 ********************
 
-WOS.\ **editors**\ (val):
+WOS.editors(val)
+================
 
 
 **Needs Work**
@@ -386,7 +399,8 @@ WOS.\ **editors**\ (val):
 
 ********************
 
-WOS.\ **journal**\ (val):
+WOS.journal(val)
+================
 
 
 **The SO Tag**
@@ -405,7 +419,8 @@ WOS.\ **journal**\ (val):
 
 ********************
 
-WOS.\ **seriesTitle**\ (val):
+WOS.seriesTitle(val)
+====================
 
 
 **The SE Tag**
@@ -424,7 +439,8 @@ WOS.\ **seriesTitle**\ (val):
 
 ********************
 
-WOS.\ **seriesSubtitle**\ (val):
+WOS.seriesSubtitle(val)
+=======================
 
 
 **The BS Tag**
@@ -443,7 +459,8 @@ WOS.\ **seriesSubtitle**\ (val):
 
 ********************
 
-WOS.\ **language**\ (val):
+WOS.language(val)
+=================
 
 
 **The LA Tag**
@@ -462,7 +479,8 @@ WOS.\ **language**\ (val):
 
 ********************
 
-WOS.\ **docType**\ (val):
+WOS.docType(val)
+================
 
 
 **The DT Tag**
@@ -481,7 +499,8 @@ WOS.\ **docType**\ (val):
 
 ********************
 
-WOS.\ **confTitle**\ (val):
+WOS.confTitle(val)
+==================
 
 
 **The CT Tag**
@@ -500,7 +519,8 @@ WOS.\ **confTitle**\ (val):
 
 ********************
 
-WOS.\ **confDate**\ (val):
+WOS.confDate(val)
+=================
 
 
 **The CY Tag**
@@ -519,7 +539,8 @@ WOS.\ **confDate**\ (val):
 
 ********************
 
-WOS.\ **confSponsors**\ (val):
+WOS.confSponsors(val)
+=====================
 
 
 **The SP Tag**
@@ -539,7 +560,8 @@ WOS.\ **confSponsors**\ (val):
 
 ********************
 
-WOS.\ **wosTimesCited**\ (val):
+WOS.wosTimesCited(val)
+======================
 
 
 **The TC Tag**
@@ -558,7 +580,8 @@ WOS.\ **wosTimesCited**\ (val):
 
 ********************
 
-WOS.\ **authAddress**\ (val):
+WOS.authAddress(val)
+====================
 
 
 **The C1 Tag**
@@ -578,7 +601,8 @@ WOS.\ **authAddress**\ (val):
 
 ********************
 
-WOS.\ **confLocation**\ (val):
+WOS.confLocation(val)
+=====================
 
 
 **The CL Tag**
@@ -597,7 +621,8 @@ WOS.\ **confLocation**\ (val):
 
 ********************
 
-WOS.\ **j9**\ (val):
+WOS.j9(val)
+===========
 
 
 **The J9 Tag**
@@ -616,7 +641,8 @@ WOS.\ **j9**\ (val):
 
 ********************
 
-WOS.\ **funding**\ (val):
+WOS.funding(val)
+================
 
 
 **The FU Tag**
@@ -636,7 +662,8 @@ WOS.\ **funding**\ (val):
 
 ********************
 
-WOS.\ **subjectCategory**\ (val):
+WOS.subjectCategory(val)
+========================
 
 
 **The SC Tag**
@@ -656,7 +683,8 @@ WOS.\ **subjectCategory**\ (val):
 
 ********************
 
-WOS.\ **citations**\ (val):
+WOS.citations(val)
+==================
 
 
 **The CR Tag**
@@ -676,7 +704,8 @@ WOS.\ **citations**\ (val):
 
 ********************
 
-WOS.\ **publisherCity**\ (val):
+WOS.publisherCity(val)
+======================
 
 
 **The PI Tag**
@@ -695,7 +724,8 @@ WOS.\ **publisherCity**\ (val):
 
 ********************
 
-WOS.\ **ISSN**\ (val):
+WOS.ISSN(val)
+=============
 
 
 **The SN Tag**
@@ -714,7 +744,8 @@ WOS.\ **ISSN**\ (val):
 
 ********************
 
-WOS.\ **articleNumber**\ (val):
+WOS.articleNumber(val)
+======================
 
 
 **The AR Tag**
@@ -733,7 +764,8 @@ WOS.\ **articleNumber**\ (val):
 
 ********************
 
-WOS.\ **issue**\ (val):
+WOS.issue(val)
+==============
 
 
 **The IS Tag**
@@ -752,7 +784,8 @@ WOS.\ **issue**\ (val):
 
 ********************
 
-WOS.\ **email**\ (val):
+WOS.email(val)
+==============
 
 
 **The EM Tag**
@@ -772,7 +805,8 @@ WOS.\ **email**\ (val):
 
 ********************
 
-WOS.\ **eISSN**\ (val):
+WOS.eISSN(val)
+==============
 
 
 **The EI Tag**
@@ -791,7 +825,8 @@ WOS.\ **eISSN**\ (val):
 
 ********************
 
-WOS.\ **DOI**\ (val):
+WOS.DOI(val)
+============
 
 
 **The DI Tag**
@@ -810,7 +845,8 @@ return the DOI number of the record
 
 ********************
 
-WOS.\ **wosString**\ (val):
+WOS.wosString(val)
+==================
 
 
 **The UT Tag**
@@ -829,7 +865,8 @@ WOS.\ **wosString**\ (val):
 
 ********************
 
-WOS.\ **orcID**\ (val):
+WOS.orcID(val)
+==============
 
 
 **The OI Tag**
@@ -848,7 +885,8 @@ WOS.\ **orcID**\ (val):
 
 ********************
 
-WOS.\ **meetingAbstract**\ (val):
+WOS.meetingAbstract(val)
+========================
 
 
 **The MA Tag**
@@ -867,7 +905,8 @@ WOS.\ **meetingAbstract**\ (val):
 
 ********************
 
-WOS.\ **isoAbbreviation**\ (val):
+WOS.isoAbbreviation(val)
+========================
 
 
 **The JI Tag**
@@ -886,7 +925,8 @@ WOS.\ **isoAbbreviation**\ (val):
 
 ********************
 
-WOS.\ **pageCount**\ (val):
+WOS.pageCount(val)
+==================
 
 
 **The PG Tag**
@@ -905,7 +945,8 @@ returns an integer giving the number of pages of the Record
 
 ********************
 
-WOS.\ **publisher**\ (val):
+WOS.publisher(val)
+==================
 
 
 **The PU Tag**
@@ -924,7 +965,8 @@ WOS.\ **publisher**\ (val):
 
 ********************
 
-WOS.\ **ISBN**\ (val):
+WOS.ISBN(val)
+=============
 
 
 **The BN Tag**
@@ -943,7 +985,8 @@ WOS.\ **ISBN**\ (val):
 
 ********************
 
-WOS.\ **month**\ (val):
+WOS.month(val)
+==============
 
 
 **The PD Tag**
@@ -963,7 +1006,8 @@ WOS.\ **month**\ (val):
 
 ********************
 
-WOS.\ **fundingText**\ (val):
+WOS.fundingText(val)
+====================
 
 
 **The FX Tag**
@@ -982,7 +1026,8 @@ WOS.\ **fundingText**\ (val):
 
 ********************
 
-WOS.\ **bookDOI**\ (val):
+WOS.bookDOI(val)
+================
 
 
 **The D2 Tag**
@@ -1001,7 +1046,8 @@ WOS.\ **bookDOI**\ (val):
 
 ********************
 
-WOS.\ **volume**\ (val):
+WOS.volume(val)
+===============
 
 
 **The VL Tag**
@@ -1020,7 +1066,8 @@ return the volume the record is in as a string, not all are integers
 
 ********************
 
-WOS.\ **ResearcherIDnumber**\ (val):
+WOS.ResearcherIDnumber(val)
+===========================
 
 
 **The RI Tag**
@@ -1039,7 +1086,8 @@ WOS.\ **ResearcherIDnumber**\ (val):
 
 ********************
 
-WOS.\ **citedRefsCount**\ (val):
+WOS.citedRefsCount(val)
+=======================
 
 
 **The NR Tag**
@@ -1058,7 +1106,8 @@ WOS.\ **citedRefsCount**\ (val):
 
 ********************
 
-WOS.\ **beginningPage**\ (val):
+WOS.beginningPage(val)
+======================
 
 
 **The BP Tag**
@@ -1077,7 +1126,8 @@ WOS.\ **beginningPage**\ (val):
 
 ********************
 
-WOS.\ **abstract**\ (val):
+WOS.abstract(val)
+=================
 
 
 **The AB Tag**
@@ -1096,7 +1146,8 @@ return abstract of the record, with newlines hopefully in the correct places
 
 ********************
 
-WOS.\ **supplement**\ (val):
+WOS.supplement(val)
+===================
 
 
 **The SU Tag**
@@ -1115,7 +1166,8 @@ WOS.\ **supplement**\ (val):
 
 ********************
 
-WOS.\ **confHost**\ (val):
+WOS.confHost(val)
+=================
 
 
 **The HO Tag**
@@ -1134,7 +1186,8 @@ WOS.\ **confHost**\ (val):
 
 ********************
 
-WOS.\ **publisherAddress**\ (val):
+WOS.publisherAddress(val)
+=========================
 
 
 **The PA Tag**
@@ -1153,7 +1206,8 @@ WOS.\ **publisherAddress**\ (val):
 
 ********************
 
-WOS.\ **endingPage**\ (val):
+WOS.endingPage(val)
+===================
 
 
 **The EP Tag**
@@ -1172,7 +1226,8 @@ return the last page the record occurs on as a string, not aall are intergers
 
 ********************
 
-WOS.\ **year**\ (val):
+WOS.year(val)
+=============
 
 
 **The PY Tag**
@@ -1191,7 +1246,8 @@ WOS.\ **year**\ (val):
 
 ********************
 
-WOS.\ **authKeywords**\ (val):
+WOS.authKeywords(val)
+=====================
 
 
 **The DE Tag**
@@ -1212,7 +1268,8 @@ WOS.\ **authKeywords**\ (val):
 
 ********************
 
-WOS.\ **reprintAddress**\ (val):
+WOS.reprintAddress(val)
+=======================
 
 
 **The RP Tag**
@@ -1231,7 +1288,8 @@ WOS.\ **reprintAddress**\ (val):
 
 ********************
 
-WOS.\ **totalTimesCited**\ (val):
+WOS.totalTimesCited(val)
+========================
 
 
 **The Z9 Tag**
@@ -1250,7 +1308,8 @@ WOS.\ **totalTimesCited**\ (val):
 
 ********************
 
-WOS.\ **partNumber**\ (val):
+WOS.partNumber(val)
+===================
 
 
 **The PN Tag**
@@ -1269,7 +1328,8 @@ return an integer giving the part of the issue the Record is in
 
 ********************
 
-WOS.\ **specialIssue**\ (val):
+WOS.specialIssue(val)
+=====================
 
 
 **The SI Tag**
@@ -1288,7 +1348,8 @@ WOS.\ **specialIssue**\ (val):
 
 ********************
 
-WOS.\ **subjects**\ (val):
+WOS.subjects(val)
+=================
 
 
 **The WC Tag**
@@ -1307,7 +1368,8 @@ WOS.\ **subjects**\ (val):
 
 ********************
 
-WOS.\ **keywords**\ (val):
+WOS.keywords(val)
+=================
 
 
 **The ID Tag**
@@ -1328,7 +1390,8 @@ WOS.\ **keywords**\ (val):
 
 ********************
 
-WOS.\ **pubMedID**\ (val):
+WOS.pubMedID(val)
+=================
 
 
 **The PM Tag**
@@ -1347,7 +1410,8 @@ WOS.\ **pubMedID**\ (val):
 
 ********************
 
-WOS.\ **documentDeliveryNumber**\ (val):
+WOS.documentDeliveryNumber(val)
+===============================
 
 
 **The GA Tag**

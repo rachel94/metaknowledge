@@ -14,7 +14,7 @@ This is the only module that depends on anything besides *networkx*; it depends 
 .. |matplotlib| replace:: *matplotlib*
 
 **The contour module provides the following functions:**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------------------
 
 **quickVisual**\ (G, showLabel=False)
 
@@ -24,7 +24,8 @@ This is the only module that depends on anything besides *networkx*; it depends 
 
 **********************
 
-contour.\ **quickVisual**\ (G, showLabel=False):
+contour.quickVisual(G, showLabel=False)
+=======================================
 
 
 Just makes a simple *matplotlib* figure and displays it, with each node coloured by its type. You can add labels with *showLabel*. This looks a bit nicer than the one provided my *networkx*'s defaults.
@@ -39,7 +40,8 @@ Just makes a simple *matplotlib* figure and displays it, with each node coloured
 
 ********************
 
-contour.\ **graphDensityContourPlot**\ (G, iters=50, layout=None, layoutScaleFactor=1, overlay=False, nodeSize=10, axisSamples=100, blurringFactor=0.1, contours=15, graphType=coloured):
+contour.graphDensityContourPlot(G, iters=50, layout=None, layoutScaleFactor=1, overlay=False, nodeSize=10, axisSamples=100, blurringFactor=0.1, contours=15, graphType=coloured)
+================================================================================================================================================================================
 
 
 Creates a 3D plot giving the density of nodes on a 2D plane, as a surface in 3D.

@@ -241,7 +241,8 @@
 <p><strong>pubMedID</strong>(val)</p>
 <p><strong>documentDeliveryNumber</strong>(val)</p>
 <hr class="docutils" />
-<p>WOS.<strong>recordParser</strong>(paper):</p>
+<div class="section" id="wos-recordparser-paper">
+<h3>WOS.recordParser(paper)<a class="headerlink" href="#wos-recordparser-paper" title="Permalink to this headline">¶</a></h3>
 <p>This is function that is used to create [<cite>Records</cite>](#metaknowledge.Record) from files.</p>
 <p><strong>recordParser</strong>() reads the file <em>paper</em> until it reaches ‘ER’. For each field tag it adds an entry to the returned dict with the tag as the key and a list of the entries as the value, the list has each line separately, so for the following two lines in a record:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AF</span> <span class="n">BREVIK</span><span class="p">,</span> <span class="n">I</span>
@@ -260,8 +261,10 @@
 <div class="line"><cite>OrderedDict[str : List[str]]`</cite></div>
 <div class="line">A dictionary mapping WOS tags to lists, the lists are of strings, each string is a line of the record associated with the tag.</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>isWOSFile</strong>(infile, checkedLines=3):</p>
+<div class="section" id="wos-iswosfile-infile-checkedlines-3">
+<h3>WOS.isWOSFile(infile, checkedLines=3)<a class="headerlink" href="#wos-iswosfile-infile-checkedlines-3" title="Permalink to this headline">¶</a></h3>
 <p>Determines if <em>infile</em>is the path to a WOS file. A file is considerd to be a WOS file if it has the correct encoding (<code class="docutils literal notranslate"><span class="pre">utf-8</span></code> with a BOM) and within the first <em>checkedLines</em>a line starts with <code class="docutils literal notranslate"><span class="pre">&quot;VR</span> <span class="pre">1.0&quot;</span></code>.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
@@ -277,8 +280,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">bool</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a WOS file</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>wosParser</strong>(isifile):</p>
+<div class="section" id="wos-wosparser-isifile">
+<h3>WOS.wosParser(isifile)<a class="headerlink" href="#wos-wosparser-isifile" title="Permalink to this headline">¶</a></h3>
 <p>This is function that is used to create [<cite>RecordCollections</cite>](#metaknowledge.RecordCollection) from files.</p>
 <p><strong>wosParser</strong>() reads the file given by the path isifile, checks that the header is correct then reads until it reaches EF. All WOS records it encounters are parsed with [<strong>recordParser</strong>()](#metaknowledge.recordParser) and converted into [<cite>Records</cite>](#metaknowledge.Record). A list of these <code class="docutils literal notranslate"><span class="pre">Records</span></code> is returned.</p>
 <p><code class="docutils literal notranslate"><span class="pre">BadWOSFile</span></code> is raised if an issue is found with the file.</p>
@@ -292,8 +297,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">List[Record]</span></code></div>
 <div class="line">All the <code class="docutils literal notranslate"><span class="pre">Records</span></code> found in <em>isifile</em></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>pubType</strong>(val):</p>
+<div class="section" id="wos-pubtype-val">
+<h3>WOS.pubType(val)<a class="headerlink" href="#wos-pubtype-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PT Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the type of publication as a character: conference, book, journal, book in series, or patent</div>
@@ -308,8 +315,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">A string</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>authorsFull</strong>(val):</p>
+<div class="section" id="wos-authorsfull-val">
+<h3>WOS.authorsFull(val)<a class="headerlink" href="#wos-authorsfull-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The AF Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of authors full names</div>
@@ -324,8 +333,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">A list of author’s names</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>group</strong>(val):</p>
+<div class="section" id="wos-group-val">
+<h3>WOS.group(val)<a class="headerlink" href="#wos-group-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The GP Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the group associated with the Record</div>
@@ -340,8 +351,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">A the name of the group</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>editedBy</strong>(val):</p>
+<div class="section" id="wos-editedby-val">
+<h3>WOS.editedBy(val)<a class="headerlink" href="#wos-editedby-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The BE Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of the editors of the Record</div>
@@ -356,8 +369,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">A list of editors</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>authorsShort</strong>(val):</p>
+<div class="section" id="wos-authorsshort-val">
+<h3>WOS.authorsShort(val)<a class="headerlink" href="#wos-authorsshort-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The AU Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of authors shortened names</div>
@@ -372,8 +387,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">A list of shortened author’s names</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>bookAuthor</strong>(val):</p>
+<div class="section" id="wos-bookauthor-val">
+<h3>WOS.bookAuthor(val)<a class="headerlink" href="#wos-bookauthor-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The BA Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of the short names of the authors of a book Record</div>
@@ -388,8 +405,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">A list of shortened author’s names</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>bookAuthorFull</strong>(val):</p>
+<div class="section" id="wos-bookauthorfull-val">
+<h3>WOS.bookAuthorFull(val)<a class="headerlink" href="#wos-bookauthorfull-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The BF Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of the long names of the authors of a book Record</div>
@@ -404,8 +423,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">A list of author’s names</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>groupName</strong>(val):</p>
+<div class="section" id="wos-groupname-val">
+<h3>WOS.groupName(val)<a class="headerlink" href="#wos-groupname-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The CA Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the name of the group associated with the Record</div>
@@ -420,8 +441,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The group’s name</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>title</strong>(val):</p>
+<div class="section" id="wos-title-val">
+<h3>WOS.title(val)<a class="headerlink" href="#wos-title-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The TI Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the title of the record</div>
@@ -436,14 +459,18 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The title of the record</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>editors</strong>(val):</p>
+<div class="section" id="wos-editors-val">
+<h3>WOS.editors(val)<a class="headerlink" href="#wos-editors-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>Needs Work</strong></p>
 <div class="line-block">
 <div class="line">currently not well understood, returns <em>val</em></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>journal</strong>(val):</p>
+<div class="section" id="wos-journal-val">
+<h3>WOS.journal(val)<a class="headerlink" href="#wos-journal-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The SO Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the full name of the publication and normalizes it to uppercase</div>
@@ -458,8 +485,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The name of the journal</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>seriesTitle</strong>(val):</p>
+<div class="section" id="wos-seriestitle-val">
+<h3>WOS.seriesTitle(val)<a class="headerlink" href="#wos-seriestitle-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The SE Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the title of the series the Record is in</div>
@@ -474,8 +503,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The title of the series</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>seriesSubtitle</strong>(val):</p>
+<div class="section" id="wos-seriessubtitle-val">
+<h3>WOS.seriesSubtitle(val)<a class="headerlink" href="#wos-seriessubtitle-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The BS Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the title of the series the Record is in</div>
@@ -490,8 +521,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The subtitle of the series</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>language</strong>(val):</p>
+<div class="section" id="wos-language-val">
+<h3>WOS.language(val)<a class="headerlink" href="#wos-language-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The LA Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the languages of the Record as a string with languages separated by ‘, ‘, usually there is only one language</div>
@@ -506,8 +539,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The language(s) of the record</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>docType</strong>(val):</p>
+<div class="section" id="wos-doctype-val">
+<h3>WOS.docType(val)<a class="headerlink" href="#wos-doctype-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The DT Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the type of document the Record contains</div>
@@ -522,8 +557,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The type of the Record</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>confTitle</strong>(val):</p>
+<div class="section" id="wos-conftitle-val">
+<h3>WOS.confTitle(val)<a class="headerlink" href="#wos-conftitle-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The CT Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the title of the conference associated with the Record</div>
@@ -538,8 +575,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The title of the conference</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>confDate</strong>(val):</p>
+<div class="section" id="wos-confdate-val">
+<h3>WOS.confDate(val)<a class="headerlink" href="#wos-confdate-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The CY Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the date string of the conference associated with the Record, the date is not normalized</div>
@@ -554,8 +593,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The data of the conference</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>confSponsors</strong>(val):</p>
+<div class="section" id="wos-confsponsors-val">
+<h3>WOS.confSponsors(val)<a class="headerlink" href="#wos-confsponsors-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The SP Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of sponsors for the conference associated with the record</div>
@@ -570,8 +611,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 </div>
 <p>&gt; A the list of of sponsors</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>wosTimesCited</strong>(val):</p>
+<div class="section" id="wos-wostimescited-val">
+<h3>WOS.wosTimesCited(val)<a class="headerlink" href="#wos-wostimescited-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The TC Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the number of times the Record has been cited by records in WOS</div>
@@ -584,8 +627,10 @@
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">int</span></code>
 | The number of time the Record has been cited</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>authAddress</strong>(val):</p>
+<div class="section" id="wos-authaddress-val">
+<h3>WOS.authAddress(val)<a class="headerlink" href="#wos-authaddress-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The C1 Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the address of the authors as given by WOS. <strong>Warning</strong> the mapping of author to address is not very good and is given in multiple ways.</div>
@@ -600,8 +645,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 </div>
 <p>&gt; A list of addresses</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>confLocation</strong>(val):</p>
+<div class="section" id="wos-conflocation-val">
+<h3>WOS.confLocation(val)<a class="headerlink" href="#wos-conflocation-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The CL Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the sting giving the conference’s location</div>
@@ -616,8 +663,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The conferences address</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>j9</strong>(val):</p>
+<div class="section" id="wos-j9-val">
+<h3>WOS.j9(val)<a class="headerlink" href="#wos-j9-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The J9 Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the J9 (29-Character Source Abbreviation) of the publication</div>
@@ -632,8 +681,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The 29-Character Source Abbreviation</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>funding</strong>(val):</p>
+<div class="section" id="wos-funding-val">
+<h3>WOS.funding(val)<a class="headerlink" href="#wos-funding-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The FU Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of the groups funding the Record</div>
@@ -648,8 +699,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 </div>
 <p>&gt; A list of funding groups</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>subjectCategory</strong>(val):</p>
+<div class="section" id="wos-subjectcategory-val">
+<h3>WOS.subjectCategory(val)<a class="headerlink" href="#wos-subjectcategory-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The SC Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of the subjects associated with the Record</div>
@@ -664,8 +717,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 </div>
 <p>&gt; A list of the subjects associated with the Record</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>citations</strong>(val):</p>
+<div class="section" id="wos-citations-val">
+<h3>WOS.citations(val)<a class="headerlink" href="#wos-citations-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The CR Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of all the citations in the record, the citations are the [metaknowledge.Citation](#Citation.Citation) class.</div>
@@ -678,8 +733,10 @@
 <p><strong>Returns</strong></p>
 <p>`` list[metaknowledge.Citation]``</p>
 <p>&gt; A list of Citations</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>publisherCity</strong>(val):</p>
+<div class="section" id="wos-publishercity-val">
+<h3>WOS.publisherCity(val)<a class="headerlink" href="#wos-publishercity-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PI Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the city the publisher is in</div>
@@ -694,8 +751,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The city of the publisher</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>ISSN</strong>(val):</p>
+<div class="section" id="wos-issn-val">
+<h3>WOS.ISSN(val)<a class="headerlink" href="#wos-issn-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The SN Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the ISSN of the Record</div>
@@ -710,8 +769,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The ISSN string</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>articleNumber</strong>(val):</p>
+<div class="section" id="wos-articlenumber-val">
+<h3>WOS.articleNumber(val)<a class="headerlink" href="#wos-articlenumber-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The AR Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a string giving the article number, not all are integers</div>
@@ -726,8 +787,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The article number</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>issue</strong>(val):</p>
+<div class="section" id="wos-issue-val">
+<h3>WOS.issue(val)<a class="headerlink" href="#wos-issue-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The IS Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a string giving the issue or range of issues the Record was in, not all are integers</div>
@@ -742,8 +805,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The issue number/range</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>email</strong>(val):</p>
+<div class="section" id="wos-email-val">
+<h3>WOS.email(val)<a class="headerlink" href="#wos-email-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The EM Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of emails given by the authors of the Record</div>
@@ -758,8 +823,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 </div>
 <p>&gt; A list of emails</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>eISSN</strong>(val):</p>
+<div class="section" id="wos-eissn-val">
+<h3>WOS.eISSN(val)<a class="headerlink" href="#wos-eissn-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The EI Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the EISSN of the Record</div>
@@ -774,8 +841,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The EISSN string</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>DOI</strong>(val):</p>
+<div class="section" id="wos-doi-val">
+<h3>WOS.DOI(val)<a class="headerlink" href="#wos-doi-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The DI Tag</strong></p>
 <p>return the DOI number of the record</p>
 <p><strong>Parameters</strong></p>
@@ -788,8 +857,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The DOI number string</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>wosString</strong>(val):</p>
+<div class="section" id="wos-wosstring-val">
+<h3>WOS.wosString(val)<a class="headerlink" href="#wos-wosstring-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The UT Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the WOS number of the record as a string preceded by “WOS:”</div>
@@ -804,8 +875,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The WOS number</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>orcID</strong>(val):</p>
+<div class="section" id="wos-orcid-val">
+<h3>WOS.orcID(val)<a class="headerlink" href="#wos-orcid-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The OI Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of orc IDs of the Record</div>
@@ -820,8 +893,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The orc ID</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>meetingAbstract</strong>(val):</p>
+<div class="section" id="wos-meetingabstract-val">
+<h3>WOS.meetingAbstract(val)<a class="headerlink" href="#wos-meetingabstract-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The MA Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the ID of the meeting abstract prefixed by ‘EPA-‘</div>
@@ -836,8 +911,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The meeting abstract prefixed</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>isoAbbreviation</strong>(val):</p>
+<div class="section" id="wos-isoabbreviation-val">
+<h3>WOS.isoAbbreviation(val)<a class="headerlink" href="#wos-isoabbreviation-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The JI Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the iso abbreviation of the journal</div>
@@ -852,8 +929,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The iso abbreviation of the journal</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>pageCount</strong>(val):</p>
+<div class="section" id="wos-pagecount-val">
+<h3>WOS.pageCount(val)<a class="headerlink" href="#wos-pagecount-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PG Tag</strong></p>
 <p>returns an integer giving the number of pages of the Record</p>
 <p><strong>Parameters</strong></p>
@@ -864,8 +943,10 @@
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">int</span></code>
 | The page count</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>publisher</strong>(val):</p>
+<div class="section" id="wos-publisher-val">
+<h3>WOS.publisher(val)<a class="headerlink" href="#wos-publisher-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PU Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the publisher of the Record</div>
@@ -880,8 +961,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The publisher</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>ISBN</strong>(val):</p>
+<div class="section" id="wos-isbn-val">
+<h3>WOS.ISBN(val)<a class="headerlink" href="#wos-isbn-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The BN Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of ISBNs associated with the Record</div>
@@ -896,8 +979,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list</span></code></div>
 <div class="line">The ISBNs</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>month</strong>(val):</p>
+<div class="section" id="wos-month-val">
+<h3>WOS.month(val)<a class="headerlink" href="#wos-month-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PD Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the month the record was published in as an int with January as 1, February 2, …</div>
@@ -910,8 +995,10 @@
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">int</span></code></p>
 <p>&gt; A integer giving the month</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>fundingText</strong>(val):</p>
+<div class="section" id="wos-fundingtext-val">
+<h3>WOS.fundingText(val)<a class="headerlink" href="#wos-fundingtext-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The FX Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a string of the funding thanks</div>
@@ -926,8 +1013,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The funding thank-you</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>bookDOI</strong>(val):</p>
+<div class="section" id="wos-bookdoi-val">
+<h3>WOS.bookDOI(val)<a class="headerlink" href="#wos-bookdoi-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The D2 Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the book DOI of the Record</div>
@@ -942,8 +1031,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The DOI number</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>volume</strong>(val):</p>
+<div class="section" id="wos-volume-val">
+<h3>WOS.volume(val)<a class="headerlink" href="#wos-volume-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The VL Tag</strong></p>
 <p>return the volume the record is in as a string, not all are integers</p>
 <p><strong>Parameters</strong></p>
@@ -956,8 +1047,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The volume number</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>ResearcherIDnumber</strong>(val):</p>
+<div class="section" id="wos-researcheridnumber-val">
+<h3>WOS.ResearcherIDnumber(val)<a class="headerlink" href="#wos-researcheridnumber-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The RI Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of the research IDs of the Record</div>
@@ -972,8 +1065,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">The list of the research IDs</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>citedRefsCount</strong>(val):</p>
+<div class="section" id="wos-citedrefscount-val">
+<h3>WOS.citedRefsCount(val)<a class="headerlink" href="#wos-citedrefscount-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The NR Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the number citations, length of CR list</div>
@@ -986,8 +1081,10 @@
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">int</span></code>
 | The number of CRs</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>beginningPage</strong>(val):</p>
+<div class="section" id="wos-beginningpage-val">
+<h3>WOS.beginningPage(val)<a class="headerlink" href="#wos-beginningpage-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The BP Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the first page the record occurs on, not all are integers</div>
@@ -1002,8 +1099,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The first page number</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>abstract</strong>(val):</p>
+<div class="section" id="wos-abstract-val">
+<h3>WOS.abstract(val)<a class="headerlink" href="#wos-abstract-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The AB Tag</strong></p>
 <p>return abstract of the record, with newlines hopefully in the correct places</p>
 <p><strong>Parameters</strong></p>
@@ -1016,8 +1115,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The abstract</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>supplement</strong>(val):</p>
+<div class="section" id="wos-supplement-val">
+<h3>WOS.supplement(val)<a class="headerlink" href="#wos-supplement-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The SU Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the supplement number</div>
@@ -1032,8 +1133,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The supplement number</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>confHost</strong>(val):</p>
+<div class="section" id="wos-confhost-val">
+<h3>WOS.confHost(val)<a class="headerlink" href="#wos-confhost-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The HO Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the host of the conference</div>
@@ -1048,8 +1151,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The host</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>publisherAddress</strong>(val):</p>
+<div class="section" id="wos-publisheraddress-val">
+<h3>WOS.publisherAddress(val)<a class="headerlink" href="#wos-publisheraddress-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PA Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the publishers address</div>
@@ -1064,8 +1169,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The publisher address</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>endingPage</strong>(val):</p>
+<div class="section" id="wos-endingpage-val">
+<h3>WOS.endingPage(val)<a class="headerlink" href="#wos-endingpage-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The EP Tag</strong></p>
 <p>return the last page the record occurs on as a string, not aall are intergers</p>
 <p><strong>Parameters</strong></p>
@@ -1078,8 +1185,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The final page number</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>year</strong>(val):</p>
+<div class="section" id="wos-year-val">
+<h3>WOS.year(val)<a class="headerlink" href="#wos-year-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PY Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the year the record was published in as an int</div>
@@ -1092,8 +1201,10 @@
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">int</span></code>
 | The year</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>authKeywords</strong>(val):</p>
+<div class="section" id="wos-authkeywords-val">
+<h3>WOS.authKeywords(val)<a class="headerlink" href="#wos-authkeywords-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The DE Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the keywords assigned by the author of the Record. The WOS description is:</div>
@@ -1110,8 +1221,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">The list of keywords</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>reprintAddress</strong>(val):</p>
+<div class="section" id="wos-reprintaddress-val">
+<h3>WOS.reprintAddress(val)<a class="headerlink" href="#wos-reprintaddress-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The RP Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the reprint address string</div>
@@ -1126,8 +1239,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The reprint address</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>totalTimesCited</strong>(val):</p>
+<div class="section" id="wos-totaltimescited-val">
+<h3>WOS.totalTimesCited(val)<a class="headerlink" href="#wos-totaltimescited-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The Z9 Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the total number of citations of the record</div>
@@ -1140,8 +1255,10 @@
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">int</span></code>
 | The total number of citations</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>partNumber</strong>(val):</p>
+<div class="section" id="wos-partnumber-val">
+<h3>WOS.partNumber(val)<a class="headerlink" href="#wos-partnumber-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PN Tag</strong></p>
 <p>return an integer giving the part of the issue the Record is in</p>
 <p><strong>Parameters</strong></p>
@@ -1152,8 +1269,10 @@
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">int</span></code>
 | The part of the issue of the Record</p>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>specialIssue</strong>(val):</p>
+<div class="section" id="wos-specialissue-val">
+<h3>WOS.specialIssue(val)<a class="headerlink" href="#wos-specialissue-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The SI Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the special issue value</div>
@@ -1168,8 +1287,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The special issue value</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>subjects</strong>(val):</p>
+<div class="section" id="wos-subjects-val">
+<h3>WOS.subjects(val)<a class="headerlink" href="#wos-subjects-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The WC Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts a list of subjects as assigned by WOS</div>
@@ -1184,8 +1305,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">The subjects list</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>keywords</strong>(val):</p>
+<div class="section" id="wos-keywords-val">
+<h3>WOS.keywords(val)<a class="headerlink" href="#wos-keywords-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The ID Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the WOS keywords of the Record. The WOS description is:</div>
@@ -1202,8 +1325,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></div>
 <div class="line">The keyWords list</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>pubMedID</strong>(val):</p>
+<div class="section" id="wos-pubmedid-val">
+<h3>WOS.pubMedID(val)<a class="headerlink" href="#wos-pubmedid-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The PM Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the pubmed ID of the record</div>
@@ -1218,8 +1343,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The pubmed ID</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>WOS.<strong>documentDeliveryNumber</strong>(val):</p>
+<div class="section" id="wos-documentdeliverynumber-val">
+<h3>WOS.documentDeliveryNumber(val)<a class="headerlink" href="#wos-documentdeliverynumber-val" title="Permalink to this headline">¶</a></h3>
 <p><strong>The GA Tag</strong></p>
 <div class="line-block">
 <div class="line">extracts the document delivery number of the Record</div>
@@ -1233,6 +1360,7 @@
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">str</span></code></div>
 <div class="line">The document delivery number</div>
+</div>
 </div>
 </div>
 </div>

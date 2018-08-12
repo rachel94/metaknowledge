@@ -110,6 +110,9 @@ Then push to git to make this accessible on rtd
 ## What's left to do
 
 ### Generating the docs for functions, classes, Methods
+Aug 12:
+I got the links to work! Next time I work on this, I need to finish fixing the links in the existing pages (see one note). Then continue working on generating the docs for classes. I may also need to go back thru the rest of the docs and see if there are any other links, as I will be able to add those now.
+
 Aug 9th:
 I've started on one for classes. It currently only works for citation.py, but it will need to be extended to generate docs for all of the classes. They should all be pretty similar so will just involve some generalizing.
 
@@ -161,3 +164,4 @@ Then, you'll want to get a rtd account for netlab (or however John wants to do t
 Toc Tree syntax: http://www.sphinx-doc.org/en/1.5.1/markup/toctree.html
 AST Module: http://greentreesnakes.readthedocs.io/en/latest/nodes.html
 RST: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+How to link to sections with RST: https://stackoverflow.com/questions/15394347/adding-a-cross-reference-to-a-subheading-or-anchor-in-another-page

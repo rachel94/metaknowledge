@@ -181,7 +181,8 @@
 <p><strong>proQuestRecordParser</strong>(enRecordFile, recNum)</p>
 <p><strong>proQuestTagToFunc</strong>(tag)</p>
 <hr class="docutils" />
-<p>proquest.<strong>isProQuestFile</strong>(infile, checkedLines=2):</p>
+<div class="section" id="proquest-isproquestfile-infile-checkedlines-2">
+<h3>proquest.isProQuestFile(infile, checkedLines=2)<a class="headerlink" href="#proquest-isproquestfile-infile-checkedlines-2" title="Permalink to this headline">¶</a></h3>
 <p>Determines if <em>infile</em> is the path to a ProQuest file. A file is considered to be a Proquest file if it has the correct encoding (<code class="docutils literal notranslate"><span class="pre">utf-8</span></code>) and within the first <em>checkedLines</em> the following starts.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">____________________________________________________________</span>
 
@@ -202,22 +203,26 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">bool</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a valid ProQuest file</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>proquest.<strong>proQuestParser</strong>(proFile):</p>
+<div class="section" id="proquest-proquestparser-profile">
+<h3>proquest.proQuestParser(proFile)<a class="headerlink" href="#proquest-proquestparser-profile" title="Permalink to this headline">¶</a></h3>
 <p>Parses a ProQuest file, <em>proFile</em>, to extract the individual entries.</p>
-<p>A ProQuest file has three sections, first a list of the contained entries, second the full metadata and finally a bibtex formatted entry for the record. This parser only uses the first two as the bibtex contains no information the second section does not. Also, the first section is only used to verify the second section. The returned [<cite>ProQuestRecords</cite>](#metaknowledge.ProQuestRecord) contains the data from the second section, with the same key strings as ProQuest uses and the unlabeled sections are called in order, <code class="docutils literal notranslate"><span class="pre">'Name'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Author'</span></code> and <code class="docutils literal notranslate"><span class="pre">'url'</span></code>.</p>
+<p>A ProQuest file has three sections, first a list of the contained entries, second the full metadata and finally a bibtex formatted entry for the record. This parser only uses the first two as the bibtex contains no information the second section does not. Also, the first section is only used to verify the second section. The returned <a class="reference external" href="../classes/proquestrecord.html">ProQuestRecords</a> contains the data from the second section, with the same key strings as ProQuest uses and the unlabeled sections are called in order, <code class="docutils literal notranslate"><span class="pre">'Name'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Author'</span></code> and <code class="docutils literal notranslate"><span class="pre">'url'</span></code>.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
 <div class="line"><em>proFile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
-<div class="line">A path to a valid ProQuest file, use [<cite>isProQuestFile</cite>](#metaknowledge.isProQuestFile) to verify</div>
+<div class="line">A path to a valid ProQuest file, use <a class="reference external" href="#proquest-isproquestfile-inline-checkedlines-2">isProQuestFile</a> to verify</div>
 </div>
 <p><strong>Returns</strong></p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">set[ProQuestRecord]</span></code></div>
 <div class="line">Records for each of the entries</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>proquest.<strong>proQuestRecordParser</strong>(enRecordFile, recNum):</p>
+<div class="section" id="proquest-proquestrecordparser-enrecordfile-recnum">
+<h3>proquest.proQuestRecordParser(enRecordFile, recNum)<a class="headerlink" href="#proquest-proquestrecordparser-enrecordfile-recnum" title="Permalink to this headline">¶</a></h3>
 <p>The parser [<cite>ProQuestRecords</cite>](#metaknowledge.ProQuestRecord) use. This takes an entry from [<cite>proQuestParser()</cite>](#metaknowledge.proQuestParser) and parses it a part of the creation of a <code class="docutils literal notranslate"><span class="pre">ProQuestRecord</span></code>.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
@@ -233,8 +238,10 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></div>
 <div class="line">An ordered dictionary of the key-vaue pairs in the entry</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>proquest.<strong>proQuestTagToFunc</strong>(tag):</p>
+<div class="section" id="proquest-proquesttagtofunc-tag">
+<h3>proquest.proQuestTagToFunc(tag)<a class="headerlink" href="#proquest-proquesttagtofunc-tag" title="Permalink to this headline">¶</a></h3>
 <p>Takes a tag string, <em>tag</em>, and returns the processing function for its data. If their is not a predefined function returns the identity function (<code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">x</span></code>).</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
@@ -245,6 +252,7 @@
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">function</span></code></div>
 <div class="line">A function to process the tag’s data</div>
+</div>
 </div>
 </div>
 </div>

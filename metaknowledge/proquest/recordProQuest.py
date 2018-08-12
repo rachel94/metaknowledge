@@ -11,7 +11,7 @@ from .tagProcessing.tagFunctions import proQuestTagToFunc
 class ProQuestRecord(ExtendedRecord):
     """Class for full ProQuest entries.
 
-    This class is an [`ExtendedRecord`](#metaknowledge.ExtendedRecord) capable of generating its own id number. You should not create them directly, but instead use [`proQuestParser()`](#metaknowledge.proQuestParser) on a ProQuest file.
+    This class is an `ExtendedRecord <../classes/extendedrecord.html>`__ capable of generating its own id number. You should not create them directly, but instead use `proQuestParser() <#proquest-proquestparser-profile>`__ on a ProQuest file.
     """
     def __init__(self, inRecord, recNum = None, sFile = "", sLine = 0):
         bad = False

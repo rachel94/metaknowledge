@@ -7,7 +7,7 @@ from .recordScopus import ScopusRecord, scopusHeader
 from ..mkExceptions import BadScopusFile
 
 def isScopusFile(infile, checkedLines = 2, maxHeaderDiff = 3):
-    """Determines if *infile* is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (`utf-8` with BOM (Byte Order Mark)) and within the first *checkedLines* a line contains the complete header, the list of all header entries in order is found in [`scopus.scopusHeader`](#metaknowledge.scopus).
+    """Determines if *infile* is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (`utf-8` with BOM (Byte Order Mark)) and within the first *checkedLines* a line contains the complete header, the list of all header entries in order is found in `scopus.scopusHeader <#scopus>`__.
 
     **Note** this is for csv files *not* plain text files from scopus, plain text files are not complete.
 
@@ -39,14 +39,14 @@ def isScopusFile(infile, checkedLines = 2, maxHeaderDiff = 3):
         return False
 
 def scopusParser(scopusFile):
-    """Parses a scopus file, *scopusFile*, to extract the individual lines as [`ScopusRecords`](#metaknowledge.ScopusRecord).
+    """Parses a scopus file, *scopusFile*, to extract the individual lines as `ScopusRecords <../classes/scopusrecord.html>`__.
 
     A Scopus file is a csv (Comma-separated values) with a complete header, see [`scopus.scopusHeader`](#metaknowledge.scopus) for the entries, and each line after it containing a record's entry. The string valued entries are quoted with double quotes which means double quotes inside them can cause issues, see [`scopusRecordParser()`](#metaknowledge.scopusRecordParser) for more information.
 
     **Parameters**
 
     | *scopusFile*\ : ``str``
-    | A path to a valid scopus file, use [`isScopusFile()`](#metaknowledge.isScopusFile) to verify
+    | A path to a valid scopus file, use `isScopusFile() <#scopus-isscopusfile-infile-checkedlines-2-maxheaderdiff-3>`__ to verify
 
     **Returns**
 

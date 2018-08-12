@@ -58,7 +58,7 @@ scopusHeader = [
 class ScopusRecord(ExtendedRecord):
     """Class for full Scopus entries.
 
-    This class is an [`ExtendedRecord`](#metaknowledge.ExtendedRecord) capable of generating its own id number. You should not create them directly, but instead use [`scopusParser()`](#metaknowledge.scopusParser) on a scopus **CSV** file.
+    This class is an `ExtendedRecord <../classes/extendedrecord.html>`__ capable of generating its own id number. You should not create them directly, but instead use `scopusParser() <#scopus-scopusparser-scopusfile>`__ on a scopus **CSV** file.
     """
     def __init__(self, inRecord, sFile = "", sLine = 0, header = None):
         bad = False
@@ -107,7 +107,7 @@ class ScopusRecord(ExtendedRecord):
     def createCitation(self, multiCite = False):
         """Overwriting the general [citation creator](#Record.createCitation) to deal with scopus weirdness.
 
-        Creates a citation string, using the same format as other WOS citations, for the [Record](#Record.Record) by reading the relevant special tags (`'year'`, `'J9'`, `'volume'`, `'beginningPage'`, `'DOI'`) and using it to create a [`Citation`](#Citation.Citation) object.
+        Creates a citation string, using the same format as other WOS citations, for the `Record <../classes/record.html>`__ by reading the relevant special tags (`'year'`, `'J9'`, `'volume'`, `'beginningPage'`, `'DOI'`) and using it to create a `Citation <../classes/citation.html>`__ object.
 
         # Parameters
 
@@ -119,7 +119,7 @@ class ScopusRecord(ExtendedRecord):
 
         `Citation`
 
-        > A [`Citation`](#Citation.Citation) object containing a citation for the Record.
+        > A `Citation <../classes/citation.html>`__ object containing a citation for the Record.
         """
         #Need to put the import here to avoid circular import issues
         from ..citation import Citation
@@ -167,7 +167,7 @@ firstQuotingRegex = re.compile(r'("")*"([^"]|"$)')
 innerQuotingRegex = re.compile(r'("")*"([^"|$])')
 
 def scopusRecordParser(record, header = None):
-    """The parser [`ScopusRecords`](#metaknowledge.ScopusRecord) use. This takes a line from [`scopusParser()`](#metaknowledge.scopusParser) and parses it as a part of the creation of a `ScopusRecord`.
+    """The parser `ScopusRecords <../classes/scopusrecord.html>`__ use. This takes a line from `scopusParser() <#scopus-scopusparser-scopusfile>`__ and parses it as a part of the creation of a `ScopusRecord`.
 
     **Note** this is for csv files downloaded from scopus _not_ the text records as those are less complete. Also, Scopus uses double quotes (`"`) to quote strings, such as abstracts, in the csv so double quotes in the string must be escaped. For reasons not fully understandable by mortals they choose to use two double quotes in a row (`""`) to represent an escaped double quote. This parser does not unescape these quotes, but it does correctly handle their interacts with the outer double quotes.
 

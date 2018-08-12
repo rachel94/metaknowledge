@@ -180,8 +180,9 @@
 <p><strong>isScopusFile</strong>(infile, checkedLines=2, maxHeaderDiff=3)</p>
 <p><strong>scopusParser</strong>(scopusFile)</p>
 <hr class="docutils" />
-<p>scopus.<strong>scopusRecordParser</strong>(record, header=None):</p>
-<p>The parser [<cite>ScopusRecords</cite>](#metaknowledge.ScopusRecord) use. This takes a line from [<cite>scopusParser()</cite>](#metaknowledge.scopusParser) and parses it as a part of the creation of a <cite>ScopusRecord</cite>.</p>
+<div class="section" id="scopus-scopusrecordparser-record-header-none">
+<h3>scopus.scopusRecordParser(record, header=None)<a class="headerlink" href="#scopus-scopusrecordparser-record-header-none" title="Permalink to this headline">¶</a></h3>
+<p>The parser <a class="reference external" href="../classes/scopusrecord.html">ScopusRecords</a> use. This takes a line from <a class="reference external" href="#scopus-scopusparser-scopusfile">scopusParser()</a> and parses it as a part of the creation of a <cite>ScopusRecord</cite>.</p>
 <p><strong>Note</strong> this is for csv files downloaded from scopus _not_ the text records as those are less complete. Also, Scopus uses double quotes (<cite>“</cite>) to quote strings, such as abstracts, in the csv so double quotes in the string must be escaped. For reasons not fully understandable by mortals they choose to use two double quotes in a row (<cite>“”</cite>) to represent an escaped double quote. This parser does not unescape these quotes, but it does correctly handle their interacts with the outer double quotes.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
@@ -193,9 +194,11 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">dict</span></code></div>
 <div class="line">A dictionary of the key-vaue pairs in the entry</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>scopus.<strong>isScopusFile</strong>(infile, checkedLines=2, maxHeaderDiff=3):</p>
-<p>Determines if <em>infile</em> is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (<cite>utf-8</cite> with BOM (Byte Order Mark)) and within the first <em>checkedLines</em> a line contains the complete header, the list of all header entries in order is found in [<cite>scopus.scopusHeader</cite>](#metaknowledge.scopus).</p>
+<div class="section" id="scopus-isscopusfile-infile-checkedlines-2-maxheaderdiff-3">
+<h3>scopus.isScopusFile(infile, checkedLines=2, maxHeaderDiff=3)<a class="headerlink" href="#scopus-isscopusfile-infile-checkedlines-2-maxheaderdiff-3" title="Permalink to this headline">¶</a></h3>
+<p>Determines if <em>infile</em> is the path to a Scopus csv file. A file is considerd to be a Scopus file if it has the correct encoding (<cite>utf-8</cite> with BOM (Byte Order Mark)) and within the first <em>checkedLines</em> a line contains the complete header, the list of all header entries in order is found in <a class="reference external" href="#scopus">scopus.scopusHeader</a>.</p>
 <p><strong>Note</strong> this is for csv files <em>not</em> plain text files from scopus, plain text files are not complete.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
@@ -213,19 +216,22 @@
 <p><strong>Returns</strong>
 | <code class="docutils literal notranslate"><span class="pre">bool</span></code>
 | <code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a Scopus csv file</p>
+</div>
 <hr class="docutils" />
-<p>scopus.<strong>scopusParser</strong>(scopusFile):</p>
-<p>Parses a scopus file, <em>scopusFile</em>, to extract the individual lines as [<cite>ScopusRecords</cite>](#metaknowledge.ScopusRecord).</p>
+<div class="section" id="scopus-scopusparser-scopusfile">
+<h3>scopus.scopusParser(scopusFile)<a class="headerlink" href="#scopus-scopusparser-scopusfile" title="Permalink to this headline">¶</a></h3>
+<p>Parses a scopus file, <em>scopusFile</em>, to extract the individual lines as <a class="reference external" href="../classes/scopusrecord.html">ScopusRecords</a>.</p>
 <p>A Scopus file is a csv (Comma-separated values) with a complete header, see [<cite>scopus.scopusHeader</cite>](#metaknowledge.scopus) for the entries, and each line after it containing a record’s entry. The string valued entries are quoted with double quotes which means double quotes inside them can cause issues, see [<cite>scopusRecordParser()</cite>](#metaknowledge.scopusRecordParser) for more information.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
 <div class="line"><em>scopusFile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
-<div class="line">A path to a valid scopus file, use [<cite>isScopusFile()</cite>](#metaknowledge.isScopusFile) to verify</div>
+<div class="line">A path to a valid scopus file, use <a class="reference external" href="#scopus-isscopusfile-infile-checkedlines-2-maxheaderdiff-3">isScopusFile()</a> to verify</div>
 </div>
 <p><strong>Returns</strong></p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">set[ScopusRecord]</span></code></div>
 <div class="line">Records for each of the entries</div>
+</div>
 </div>
 </div>
 </div>

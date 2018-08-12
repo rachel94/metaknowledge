@@ -22,3 +22,34 @@ medline – the backend functions and classes associated with Medline, the forma
 proquest – the backend functions and classes associated with ProQuest <proquest>
 scopus – the backend functions and classes associated with records from Scopus <scopus>
 WOS – the backend functions and classes associated with the Web of Science <WOS>
+
+
+.. _my-reference-label:
+
+    Section to cross-reference
+    --------------------------
+
+    This is the text of the section.
+
+    It refers to the section itself, see :ref:`my-reference-label`.
+
+`My link <#section>`__ to another section.
+
+`My link <#second%20section>`__ to another section.
+
+Second Section
+==============
+
+Section
+-------
+
+
+
+Third Section
+^^^^^^^^^^^^^
+
+Fourth Section
+______________
+
+Fifth Section
+=============

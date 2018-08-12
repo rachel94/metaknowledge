@@ -174,7 +174,19 @@ def writeModFiles():
                 for p in functions[f_count]["params_defs"]:
                     p_str += p + ", "
                 p_str = p_str[:-2]
+
                 f.write(p_str + ")\n\n")
+
+
+                # f.write(p_str + ") <#")
+                # f.write(mod + "-")
+                # p_str = ""
+                # for p in functions[f_count]["params_defs"]:
+                #     p_str += p + "-"
+                # p_str = p_str[:-2]
+                # f.write(p_str + ">`__\n\n")
+
+
 
                 f_count += 1
 
@@ -189,14 +201,22 @@ def writeModFiles():
                 # f.write(".. container::\n")
                 # f.write("    :name: " + link_name + "\n\n")
                 # f.write("    " + mod.lower() + ".\ **" + functions[f_count]["fn_name"] + "**\ (")
-                f.write(mod + ".\ **" + functions[f_count]["fn_name"] + "**\ (")
-
-                # add the parameters to the function
                 p_str = ""
                 for p in functions[f_count]["params_defs"]:
                     p_str += p + ", "
                 p_str = p_str[:-2]
-                f.write(p_str + "):\n\n")
+
+                mod_name = mod + "." + functions[f_count]["fn_name"] + "(" + p_str + ")"
+                f.write(mod_name)
+                f.write("\n" + "=" * len(mod_name) + "\n\n")
+                #f.write(mod + ".\ **" + functions[f_count]["fn_name"] + "**\ (")
+
+                # add the parameters to the function
+                # p_str = ""
+                # for p in functions[f_count]["params_defs"]:
+                #     p_str += p + ", "
+                # p_str = p_str[:-2]
+                # f.write(p_str + "):\n\n")
 
                 f.write("\n" + functions[f_count]["docs"])
 

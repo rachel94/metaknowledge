@@ -60,7 +60,9 @@ def getClasses():
 
         for mthd in methods:
             if mthd.name[0:2] != "__": # not including those with __; if you would like to, then just remove this if, and dedent the following...
-                f.write(cls + "." + mthd.name + "()" + "\n\n")
+                mthd_title = cls + "." + mthd.name + "()"
+                f.write(mthd_title)
+                f.write("\n" + "=" * len(title) + "\n\n")
                 # okay need to add the params and defaults like you did in docsGen!!!
                 f.write(ast.get_docstring(mthd))
                 f.write("\n\n***********\n\n")

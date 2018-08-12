@@ -262,7 +262,8 @@
 <p><strong>JID</strong>(val)</p>
 <p><strong>GR</strong>(val)</p>
 <hr class="docutils" />
-<p>medline.<strong>isMedlineFile</strong>(infile, checkedLines=2):</p>
+<div class="section" id="medline-ismedlinefile-infile-checkedlines-2">
+<h3>medline.isMedlineFile(infile, checkedLines=2)<a class="headerlink" href="#medline-ismedlinefile-infile-checkedlines-2" title="Permalink to this headline">¶</a></h3>
 <p>Determines if <em>infile</em> is the path to a Medline file. A file is considerd to be a Medline file if it has the correct encoding (<code class="docutils literal notranslate"><span class="pre">latin-1</span></code>) and within the first <em>checkedLines</em> a line starts with <code class="docutils literal notranslate"><span class="pre">&quot;PMID-</span> <span class="pre">&quot;</span></code>.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
@@ -278,23 +279,27 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">bool</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">True</span></code> if the file is a Medline file</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>medlineParser</strong>(pubFile):</p>
-<p>Parses a medline file, <em>pubFile</em>, to extract the individual entries as [<cite>MedlineRecords</cite>](#metaknowledge.MedlineRecord).</p>
+<div class="section" id="medline-medlineparser-pubfile">
+<h3>medline.medlineParser(pubFile)<a class="headerlink" href="#medline-medlineparser-pubfile" title="Permalink to this headline">¶</a></h3>
+<p>Parses a medline file, <em>pubFile</em>, to extract the individual entries as <a class="reference external" href="../classes/medlinerecord-extendedrecord">MedlineRecords</a>.</p>
 <p>A medline file is a series of entries, each entry is a series of tags. A tag is a 2 to 4 character string each tag is padded with spaces on the left to make it 4 characters which is followed by a dash and a space (<code class="docutils literal notranslate"><span class="pre">'-</span> <span class="pre">'</span></code>). Everything after the tag and on all lines after it not starting with a tag is considered associated with the tag. Each entry’s first tag is <code class="docutils literal notranslate"><span class="pre">PMID</span></code>, so a first line looks something like <code class="docutils literal notranslate"><span class="pre">PMID-</span> <span class="pre">26524502</span></code>. Entries end with a single blank line.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
 <div class="line"><em>pubFile</em>: <code class="docutils literal notranslate"><span class="pre">str</span></code></div>
-<div class="line">A path to a valid medline file, use [<cite>isMedlineFile</cite>](#metaknowledge.isMedlineFile) to verify</div>
+<div class="line">A path to a valid medline file, use <cite>isMedlineFile</cite> &lt;#medline-ismedlinefile-infile-checkedlines-2&gt;`__ to verify</div>
 </div>
 <p><strong>Returns</strong></p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">set[MedlineRecord]</span></code></div>
 <div class="line">Records for each of the entries</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>medlineRecordParser</strong>(record):</p>
-<p>The parser [<cite>MedlineRecord</cite>](#metaknowledge.MedlineRecord) use. This takes an entry from [<cite>medlineParser()</cite>](#metaknowledge.medlineParser) and parses it a part of the creation of a <code class="docutils literal notranslate"><span class="pre">MedlineRecord</span></code>.</p>
+<div class="section" id="medline-medlinerecordparser-record">
+<h3>medline.medlineRecordParser(record)<a class="headerlink" href="#medline-medlinerecordparser-record" title="Permalink to this headline">¶</a></h3>
+<p>The parser <a class="reference external" href="../classes/medlinerecord-extendedrecord">MedlineRecord</a> use. This takes an entry from <a class="reference external" href="#medline-medlineparser-pubfile">medlineParser()</a> and parses it a part of the creation of a <code class="docutils literal notranslate"><span class="pre">MedlineRecord</span></code>.</p>
 <p><strong>Parameters</strong></p>
 <div class="line-block">
 <div class="line"><em>record</em>: <code class="docutils literal notranslate"><span class="pre">enumerate</span> <span class="pre">object</span></code></div>
@@ -305,263 +310,428 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></div>
 <div class="line">An ordered dictionary of the key-vaue pairs in the entry</div>
 </div>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>IR</strong>(val):</p>
+<div class="section" id="medline-ir-val">
+<h3>medline.IR(val)<a class="headerlink" href="#medline-ir-val" title="Permalink to this headline">¶</a></h3>
 <p>Investigator</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>FIR</strong>(val):</p>
+<div class="section" id="medline-fir-val">
+<h3>medline.FIR(val)<a class="headerlink" href="#medline-fir-val" title="Permalink to this headline">¶</a></h3>
 <p>InvestigatorFull</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PROF</strong>(val):</p>
+<div class="section" id="medline-prof-val">
+<h3>medline.PROF(val)<a class="headerlink" href="#medline-prof-val" title="Permalink to this headline">¶</a></h3>
 <p>PartialRetractionOf</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PUBM</strong>(val):</p>
+<div class="section" id="medline-pubm-val">
+<h3>medline.PUBM(val)<a class="headerlink" href="#medline-pubm-val" title="Permalink to this headline">¶</a></h3>
 <p>PublishingModel</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>CN</strong>(val):</p>
+<div class="section" id="medline-cn-val">
+<h3>medline.CN(val)<a class="headerlink" href="#medline-cn-val" title="Permalink to this headline">¶</a></h3>
 <p>CorporateAuthor</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>MHDA</strong>(val):</p>
+<div class="section" id="medline-mhda-val">
+<h3>medline.MHDA(val)<a class="headerlink" href="#medline-mhda-val" title="Permalink to this headline">¶</a></h3>
 <p>MeSHDate</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>LID</strong>(val):</p>
+<div class="section" id="medline-lid-val">
+<h3>medline.LID(val)<a class="headerlink" href="#medline-lid-val" title="Permalink to this headline">¶</a></h3>
 <p>LocationIdentifier</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>EDAT</strong>(val):</p>
+<div class="section" id="medline-edat-val">
+<h3>medline.EDAT(val)<a class="headerlink" href="#medline-edat-val" title="Permalink to this headline">¶</a></h3>
 <p>EntrezDate</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>OCI</strong>(val):</p>
+<div class="section" id="medline-oci-val">
+<h3>medline.OCI(val)<a class="headerlink" href="#medline-oci-val" title="Permalink to this headline">¶</a></h3>
 <p>OtherCopyright</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>SB</strong>(val):</p>
+<div class="section" id="medline-sb-val">
+<h3>medline.SB(val)<a class="headerlink" href="#medline-sb-val" title="Permalink to this headline">¶</a></h3>
 <p>Subset</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>DA</strong>(val):</p>
+<div class="section" id="medline-da-val">
+<h3>medline.DA(val)<a class="headerlink" href="#medline-da-val" title="Permalink to this headline">¶</a></h3>
 <p>DateCreated</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PMCR</strong>(val):</p>
+<div class="section" id="medline-pmcr-val">
+<h3>medline.PMCR(val)<a class="headerlink" href="#medline-pmcr-val" title="Permalink to this headline">¶</a></h3>
 <p>PubMedCentralRelease</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PG</strong>(val):</p>
+<div class="section" id="medline-pg-val">
+<h3>medline.PG(val)<a class="headerlink" href="#medline-pg-val" title="Permalink to this headline">¶</a></h3>
 <p>Pagination
 all pagination seen so far seems to be only on one line</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>GS</strong>(val):</p>
+<div class="section" id="medline-gs-val">
+<h3>medline.GS(val)<a class="headerlink" href="#medline-gs-val" title="Permalink to this headline">¶</a></h3>
 <p>GeneSymbol</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>VI</strong>(val):</p>
+<div class="section" id="medline-vi-val">
+<h3>medline.VI(val)<a class="headerlink" href="#medline-vi-val" title="Permalink to this headline">¶</a></h3>
 <p>Volume
 The volumes as a string as volume is single line</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>UOF</strong>(val):</p>
+<div class="section" id="medline-uof-val">
+<h3>medline.UOF(val)<a class="headerlink" href="#medline-uof-val" title="Permalink to this headline">¶</a></h3>
 <p>UpdateOf</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>OWN</strong>(val):</p>
+<div class="section" id="medline-own-val">
+<h3>medline.OWN(val)<a class="headerlink" href="#medline-own-val" title="Permalink to this headline">¶</a></h3>
 <p>Owner</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>ORI</strong>(val):</p>
+<div class="section" id="medline-ori-val">
+<h3>medline.ORI(val)<a class="headerlink" href="#medline-ori-val" title="Permalink to this headline">¶</a></h3>
 <p>OriginalReportIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>MID</strong>(val):</p>
+<div class="section" id="medline-mid-val">
+<h3>medline.MID(val)<a class="headerlink" href="#medline-mid-val" title="Permalink to this headline">¶</a></h3>
 <p>ManuscriptIdentifier</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PMID</strong>(val):</p>
+<div class="section" id="medline-pmid-val">
+<h3>medline.PMID(val)<a class="headerlink" href="#medline-pmid-val" title="Permalink to this headline">¶</a></h3>
 <p>PubMedUniqueIdentifier</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PMC</strong>(val):</p>
+<div class="section" id="medline-pmc-val">
+<h3>medline.PMC(val)<a class="headerlink" href="#medline-pmc-val" title="Permalink to this headline">¶</a></h3>
 <p>PubMedCentralIdentifier</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>RIN</strong>(val):</p>
+<div class="section" id="medline-rin-val">
+<h3>medline.RIN(val)<a class="headerlink" href="#medline-rin-val" title="Permalink to this headline">¶</a></h3>
 <p>RetractionIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>RPF</strong>(val):</p>
+<div class="section" id="medline-rpf-val">
+<h3>medline.RPF(val)<a class="headerlink" href="#medline-rpf-val" title="Permalink to this headline">¶</a></h3>
 <p>RepublishedFrom</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>CIN</strong>(val):</p>
+<div class="section" id="medline-cin-val">
+<h3>medline.CIN(val)<a class="headerlink" href="#medline-cin-val" title="Permalink to this headline">¶</a></h3>
 <p>CommentIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>FPS</strong>(val):</p>
+<div class="section" id="medline-fps-val">
+<h3>medline.FPS(val)<a class="headerlink" href="#medline-fps-val" title="Permalink to this headline">¶</a></h3>
 <p>FullPersonalNameSubject</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>TT</strong>(val):</p>
+<div class="section" id="medline-tt-val">
+<h3>medline.TT(val)<a class="headerlink" href="#medline-tt-val" title="Permalink to this headline">¶</a></h3>
 <p>TransliteratedTitle</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PHST</strong>(val):</p>
+<div class="section" id="medline-phst-val">
+<h3>medline.PHST(val)<a class="headerlink" href="#medline-phst-val" title="Permalink to this headline">¶</a></h3>
 <p>PublicationHistoryStatus</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>EFR</strong>(val):</p>
+<div class="section" id="medline-efr-val">
+<h3>medline.EFR(val)<a class="headerlink" href="#medline-efr-val" title="Permalink to this headline">¶</a></h3>
 <p>ErratumFor</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PST</strong>(val):</p>
+<div class="section" id="medline-pst-val">
+<h3>medline.PST(val)<a class="headerlink" href="#medline-pst-val" title="Permalink to this headline">¶</a></h3>
 <p>PublicationStatus</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>SPIN</strong>(val):</p>
+<div class="section" id="medline-spin-val">
+<h3>medline.SPIN(val)<a class="headerlink" href="#medline-spin-val" title="Permalink to this headline">¶</a></h3>
 <p>SummaryForPatients</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>AU</strong>(val):</p>
+<div class="section" id="medline-au-val">
+<h3>medline.AU(val)<a class="headerlink" href="#medline-au-val" title="Permalink to this headline">¶</a></h3>
 <p>Author</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>FED</strong>(val):</p>
+<div class="section" id="medline-fed-val">
+<h3>medline.FED(val)<a class="headerlink" href="#medline-fed-val" title="Permalink to this headline">¶</a></h3>
 <p>Editor</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>NM</strong>(val):</p>
+<div class="section" id="medline-nm-val">
+<h3>medline.NM(val)<a class="headerlink" href="#medline-nm-val" title="Permalink to this headline">¶</a></h3>
 <p>SubstanceName</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>SO</strong>(val):</p>
+<div class="section" id="medline-so-val">
+<h3>medline.SO(val)<a class="headerlink" href="#medline-so-val" title="Permalink to this headline">¶</a></h3>
 <p>Source</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>IP</strong>(val):</p>
+<div class="section" id="medline-ip-val">
+<h3>medline.IP(val)<a class="headerlink" href="#medline-ip-val" title="Permalink to this headline">¶</a></h3>
 <p>Issue</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>OABL</strong>(val):</p>
+<div class="section" id="medline-oabl-val">
+<h3>medline.OABL(val)<a class="headerlink" href="#medline-oabl-val" title="Permalink to this headline">¶</a></h3>
 <p>OtherAbstract</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>CRDT</strong>(val):</p>
+<div class="section" id="medline-crdt-val">
+<h3>medline.CRDT(val)<a class="headerlink" href="#medline-crdt-val" title="Permalink to this headline">¶</a></h3>
 <p>CreateDate</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>DDIN</strong>(val):</p>
+<div class="section" id="medline-ddin-val">
+<h3>medline.DDIN(val)<a class="headerlink" href="#medline-ddin-val" title="Permalink to this headline">¶</a></h3>
 <p>DatasetIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>MH</strong>(val):</p>
+<div class="section" id="medline-mh-val">
+<h3>medline.MH(val)<a class="headerlink" href="#medline-mh-val" title="Permalink to this headline">¶</a></h3>
 <p>MeSHTerms</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>DP</strong>(val):</p>
+<div class="section" id="medline-dp-val">
+<h3>medline.DP(val)<a class="headerlink" href="#medline-dp-val" title="Permalink to this headline">¶</a></h3>
 <p>DatePublication</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>GN</strong>(val):</p>
+<div class="section" id="medline-gn-val">
+<h3>medline.GN(val)<a class="headerlink" href="#medline-gn-val" title="Permalink to this headline">¶</a></h3>
 <p>GeneralNote</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>CRF</strong>(val):</p>
+<div class="section" id="medline-crf-val">
+<h3>medline.CRF(val)<a class="headerlink" href="#medline-crf-val" title="Permalink to this headline">¶</a></h3>
 <p>CorrectedRepublishedFrom</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>TI</strong>(val):</p>
+<div class="section" id="medline-ti-val">
+<h3>medline.TI(val)<a class="headerlink" href="#medline-ti-val" title="Permalink to this headline">¶</a></h3>
 <p>Title
 only one per record</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>CRI</strong>(val):</p>
+<div class="section" id="medline-cri-val">
+<h3>medline.CRI(val)<a class="headerlink" href="#medline-cri-val" title="Permalink to this headline">¶</a></h3>
 <p>CorrectedRepublishedIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>OT</strong>(val):</p>
+<div class="section" id="medline-ot-val">
+<h3>medline.OT(val)<a class="headerlink" href="#medline-ot-val" title="Permalink to this headline">¶</a></h3>
 <p>OtherTerm
 Nothing needs to be done</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>ROF</strong>(val):</p>
+<div class="section" id="medline-rof-val">
+<h3>medline.ROF(val)<a class="headerlink" href="#medline-rof-val" title="Permalink to this headline">¶</a></h3>
 <p>RetractionOf</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>OTO</strong>(val):</p>
+<div class="section" id="medline-oto-val">
+<h3>medline.OTO(val)<a class="headerlink" href="#medline-oto-val" title="Permalink to this headline">¶</a></h3>
 <p>OtherTermOwner
 one line field</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>OID</strong>(val):</p>
+<div class="section" id="medline-oid-val">
+<h3>medline.OID(val)<a class="headerlink" href="#medline-oid-val" title="Permalink to this headline">¶</a></h3>
 <p>OtherID</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PT</strong>(val):</p>
+<div class="section" id="medline-pt-val">
+<h3>medline.PT(val)<a class="headerlink" href="#medline-pt-val" title="Permalink to this headline">¶</a></h3>
 <p>PublicationType</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>RPI</strong>(val):</p>
+<div class="section" id="medline-rpi-val">
+<h3>medline.RPI(val)<a class="headerlink" href="#medline-rpi-val" title="Permalink to this headline">¶</a></h3>
 <p>RepublishedIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>AB</strong>(val):</p>
+<div class="section" id="medline-ab-val">
+<h3>medline.AB(val)<a class="headerlink" href="#medline-ab-val" title="Permalink to this headline">¶</a></h3>
 <p>Abstract
 basically a one liner after parsing</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>EN</strong>(val):</p>
+<div class="section" id="medline-en-val">
+<h3>medline.EN(val)<a class="headerlink" href="#medline-en-val" title="Permalink to this headline">¶</a></h3>
 <p>Edition</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>AD</strong>(val):</p>
+<div class="section" id="medline-ad-val">
+<h3>medline.AD(val)<a class="headerlink" href="#medline-ad-val" title="Permalink to this headline">¶</a></h3>
 <p>Affiliation
 Undoing what the parser does then splitting at the semicolons and dropping newlines extra fitlering is required beacuse some AD’s end with a semicolon</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>LA</strong>(val):</p>
+<div class="section" id="medline-la-val">
+<h3>medline.LA(val)<a class="headerlink" href="#medline-la-val" title="Permalink to this headline">¶</a></h3>
 <p>Language</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>TA</strong>(val):</p>
+<div class="section" id="medline-ta-val">
+<h3>medline.TA(val)<a class="headerlink" href="#medline-ta-val" title="Permalink to this headline">¶</a></h3>
 <p>JournalTitleAbbreviation
 One line only</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>JT</strong>(val):</p>
+<div class="section" id="medline-jt-val">
+<h3>medline.JT(val)<a class="headerlink" href="#medline-jt-val" title="Permalink to this headline">¶</a></h3>
 <p>JournalTitle
 One line only</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>IRAD</strong>(val):</p>
+<div class="section" id="medline-irad-val">
+<h3>medline.IRAD(val)<a class="headerlink" href="#medline-irad-val" title="Permalink to this headline">¶</a></h3>
 <p>InvestigatorAffiliation</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PS</strong>(val):</p>
+<div class="section" id="medline-ps-val">
+<h3>medline.PS(val)<a class="headerlink" href="#medline-ps-val" title="Permalink to this headline">¶</a></h3>
 <p>PersonalNameSubject</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>IS</strong>(val):</p>
+<div class="section" id="medline-is-val">
+<h3>medline.IS(val)<a class="headerlink" href="#medline-is-val" title="Permalink to this headline">¶</a></h3>
 <p>ISSN</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PL</strong>(val):</p>
+<div class="section" id="medline-pl-val">
+<h3>medline.PL(val)<a class="headerlink" href="#medline-pl-val" title="Permalink to this headline">¶</a></h3>
 <p>PlacePublication</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>CTI</strong>(val):</p>
+<div class="section" id="medline-cti-val">
+<h3>medline.CTI(val)<a class="headerlink" href="#medline-cti-val" title="Permalink to this headline">¶</a></h3>
 <p>CollectionTitle</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>FAU</strong>(val):</p>
+<div class="section" id="medline-fau-val">
+<h3>medline.FAU(val)<a class="headerlink" href="#medline-fau-val" title="Permalink to this headline">¶</a></h3>
 <p>FullAuthor</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>VTI</strong>(val):</p>
+<div class="section" id="medline-vti-val">
+<h3>medline.VTI(val)<a class="headerlink" href="#medline-vti-val" title="Permalink to this headline">¶</a></h3>
 <p>VolumeTitle</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>DCOM</strong>(val):</p>
+<div class="section" id="medline-dcom-val">
+<h3>medline.DCOM(val)<a class="headerlink" href="#medline-dcom-val" title="Permalink to this headline">¶</a></h3>
 <p>DateCompleted</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>BTI</strong>(val):</p>
+<div class="section" id="medline-bti-val">
+<h3>medline.BTI(val)<a class="headerlink" href="#medline-bti-val" title="Permalink to this headline">¶</a></h3>
 <p>BookTitle</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>CI</strong>(val):</p>
+<div class="section" id="medline-ci-val">
+<h3>medline.CI(val)<a class="headerlink" href="#medline-ci-val" title="Permalink to this headline">¶</a></h3>
 <p>CopyrightInformation</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>STAT</strong>(val):</p>
+<div class="section" id="medline-stat-val">
+<h3>medline.STAT(val)<a class="headerlink" href="#medline-stat-val" title="Permalink to this headline">¶</a></h3>
 <p>Status</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>DRIN</strong>(val):</p>
+<div class="section" id="medline-drin-val">
+<h3>medline.DRIN(val)<a class="headerlink" href="#medline-drin-val" title="Permalink to this headline">¶</a></h3>
 <p>DatasetUseReportedIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>RF</strong>(val):</p>
+<div class="section" id="medline-rf-val">
+<h3>medline.RF(val)<a class="headerlink" href="#medline-rf-val" title="Permalink to this headline">¶</a></h3>
 <p>NumberReferences</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>UIN</strong>(val):</p>
+<div class="section" id="medline-uin-val">
+<h3>medline.UIN(val)<a class="headerlink" href="#medline-uin-val" title="Permalink to this headline">¶</a></h3>
 <p>UpdateIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>LR</strong>(val):</p>
+<div class="section" id="medline-lr-val">
+<h3>medline.LR(val)<a class="headerlink" href="#medline-lr-val" title="Permalink to this headline">¶</a></h3>
 <p>DateLastRevised</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>SFM</strong>(val):</p>
+<div class="section" id="medline-sfm-val">
+<h3>medline.SFM(val)<a class="headerlink" href="#medline-sfm-val" title="Permalink to this headline">¶</a></h3>
 <p>SpaceFlightMission</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>EIN</strong>(val):</p>
+<div class="section" id="medline-ein-val">
+<h3>medline.EIN(val)<a class="headerlink" href="#medline-ein-val" title="Permalink to this headline">¶</a></h3>
 <p>ErratumIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>AID</strong>(val):</p>
+<div class="section" id="medline-aid-val">
+<h3>medline.AID(val)<a class="headerlink" href="#medline-aid-val" title="Permalink to this headline">¶</a></h3>
 <p>ArticleIdentifier
 The given values do not require any work</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>PRIN</strong>(val):</p>
+<div class="section" id="medline-prin-val">
+<h3>medline.PRIN(val)<a class="headerlink" href="#medline-prin-val" title="Permalink to this headline">¶</a></h3>
 <p>PartialRetractionIn</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>DEP</strong>(val):</p>
+<div class="section" id="medline-dep-val">
+<h3>medline.DEP(val)<a class="headerlink" href="#medline-dep-val" title="Permalink to this headline">¶</a></h3>
 <p>DateElectronicPublication</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>AUID</strong>(val):</p>
+<div class="section" id="medline-auid-val">
+<h3>medline.AUID(val)<a class="headerlink" href="#medline-auid-val" title="Permalink to this headline">¶</a></h3>
 <p>AuthorIdentifier
 one line only just need to undo the parser’s effects</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>SI</strong>(val):</p>
+<div class="section" id="medline-si-val">
+<h3>medline.SI(val)<a class="headerlink" href="#medline-si-val" title="Permalink to this headline">¶</a></h3>
 <p>SecondarySourceID</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>ISBN</strong>(val):</p>
+<div class="section" id="medline-isbn-val">
+<h3>medline.ISBN(val)<a class="headerlink" href="#medline-isbn-val" title="Permalink to this headline">¶</a></h3>
 <p>ISBN</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>RN</strong>(val):</p>
+<div class="section" id="medline-rn-val">
+<h3>medline.RN(val)<a class="headerlink" href="#medline-rn-val" title="Permalink to this headline">¶</a></h3>
 <p>RegistryNumber</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>JID</strong>(val):</p>
+<div class="section" id="medline-jid-val">
+<h3>medline.JID(val)<a class="headerlink" href="#medline-jid-val" title="Permalink to this headline">¶</a></h3>
 <p>NLMID</p>
+</div>
 <hr class="docutils" />
-<p>medline.<strong>GR</strong>(val):</p>
+<div class="section" id="medline-gr-val">
+<h3>medline.GR(val)<a class="headerlink" href="#medline-gr-val" title="Permalink to this headline">¶</a></h3>
 <p>GrantNumber</p>
+</div>
 </div>
 </div>
 

@@ -5,7 +5,7 @@ Medline
 These are the functions used to process medline (pubmed) files at the backend. They are meant for use internal use by metaknowledge.
 
 **The medline module provides the following functions:**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------------------
 
 **isMedlineFile**\ (infile, checkedLines=2)
 
@@ -181,7 +181,8 @@ These are the functions used to process medline (pubmed) files at the backend. T
 
 **********************
 
-medline.\ **isMedlineFile**\ (infile, checkedLines=2):
+medline.isMedlineFile(infile, checkedLines=2)
+=============================================
 
 
 Determines if *infile* is the path to a Medline file. A file is considerd to be a Medline file if it has the correct encoding (``latin-1``) and within the first *checkedLines* a line starts with ``"PMID- "``.
@@ -201,17 +202,18 @@ Determines if *infile* is the path to a Medline file. A file is considerd to be 
 
 ********************
 
-medline.\ **medlineParser**\ (pubFile):
+medline.medlineParser(pubFile)
+==============================
 
 
-Parses a medline file, *pubFile*, to extract the individual entries as [`MedlineRecords`](#metaknowledge.MedlineRecord).
+Parses a medline file, *pubFile*, to extract the individual entries as `MedlineRecords <../classes/medlinerecord-extendedrecord>`__.
 
 A medline file is a series of entries, each entry is a series of tags. A tag is a 2 to 4 character string each tag is padded with spaces on the left to make it 4 characters which is followed by a dash and a space (``'- '``). Everything after the tag and on all lines after it not starting with a tag is considered associated with the tag. Each entry's first tag is ``PMID``, so a first line looks something like ``PMID- 26524502``. Entries end with a single blank line.
 
 **Parameters**
 
 | *pubFile*\ : ``str``
-| A path to a valid medline file, use [`isMedlineFile`](#metaknowledge.isMedlineFile) to verify
+| A path to a valid medline file, use `isMedlineFile` <#medline-ismedlinefile-infile-checkedlines-2>`__ to verify
 
 **Returns**
 
@@ -220,10 +222,11 @@ A medline file is a series of entries, each entry is a series of tags. A tag is 
 
 ********************
 
-medline.\ **medlineRecordParser**\ (record):
+medline.medlineRecordParser(record)
+===================================
 
 
-The parser [`MedlineRecord`](#metaknowledge.MedlineRecord) use. This takes an entry from [`medlineParser()`](#metaknowledge.medlineParser) and parses it a part of the creation of a ``MedlineRecord``.
+The parser `MedlineRecord <../classes/medlinerecord-extendedrecord>`__ use. This takes an entry from `medlineParser() <#medline-medlineparser-pubfile>`__ and parses it a part of the creation of a ``MedlineRecord``.
 
 **Parameters**
 
@@ -237,91 +240,104 @@ The parser [`MedlineRecord`](#metaknowledge.MedlineRecord) use. This takes an en
 
 ********************
 
-medline.\ **IR**\ (val):
+medline.IR(val)
+===============
 
 
 Investigator
 
 ********************
 
-medline.\ **FIR**\ (val):
+medline.FIR(val)
+================
 
 
 InvestigatorFull
 
 ********************
 
-medline.\ **PROF**\ (val):
+medline.PROF(val)
+=================
 
 
 PartialRetractionOf
 
 ********************
 
-medline.\ **PUBM**\ (val):
+medline.PUBM(val)
+=================
 
 
 PublishingModel
 
 ********************
 
-medline.\ **CN**\ (val):
+medline.CN(val)
+===============
 
 
 CorporateAuthor
 
 ********************
 
-medline.\ **MHDA**\ (val):
+medline.MHDA(val)
+=================
 
 
 MeSHDate
 
 ********************
 
-medline.\ **LID**\ (val):
+medline.LID(val)
+================
 
 
 LocationIdentifier
 
 ********************
 
-medline.\ **EDAT**\ (val):
+medline.EDAT(val)
+=================
 
 
 EntrezDate
 
 ********************
 
-medline.\ **OCI**\ (val):
+medline.OCI(val)
+================
 
 
 OtherCopyright
 
 ********************
 
-medline.\ **SB**\ (val):
+medline.SB(val)
+===============
 
 
 Subset
 
 ********************
 
-medline.\ **DA**\ (val):
+medline.DA(val)
+===============
 
 
 DateCreated
 
 ********************
 
-medline.\ **PMCR**\ (val):
+medline.PMCR(val)
+=================
 
 
 PubMedCentralRelease
 
 ********************
 
-medline.\ **PG**\ (val):
+medline.PG(val)
+===============
 
 
 Pagination
@@ -329,14 +345,16 @@ all pagination seen so far seems to be only on one line
 
 ********************
 
-medline.\ **GS**\ (val):
+medline.GS(val)
+===============
 
 
 GeneSymbol
 
 ********************
 
-medline.\ **VI**\ (val):
+medline.VI(val)
+===============
 
 
 Volume
@@ -344,196 +362,224 @@ The volumes as a string as volume is single line
 
 ********************
 
-medline.\ **UOF**\ (val):
+medline.UOF(val)
+================
 
 
 UpdateOf
 
 ********************
 
-medline.\ **OWN**\ (val):
+medline.OWN(val)
+================
 
 
 Owner
 
 ********************
 
-medline.\ **ORI**\ (val):
+medline.ORI(val)
+================
 
 
 OriginalReportIn
 
 ********************
 
-medline.\ **MID**\ (val):
+medline.MID(val)
+================
 
 
 ManuscriptIdentifier
 
 ********************
 
-medline.\ **PMID**\ (val):
+medline.PMID(val)
+=================
 
 
 PubMedUniqueIdentifier
 
 ********************
 
-medline.\ **PMC**\ (val):
+medline.PMC(val)
+================
 
 
 PubMedCentralIdentifier
 
 ********************
 
-medline.\ **RIN**\ (val):
+medline.RIN(val)
+================
 
 
 RetractionIn
 
 ********************
 
-medline.\ **RPF**\ (val):
+medline.RPF(val)
+================
 
 
 RepublishedFrom
 
 ********************
 
-medline.\ **CIN**\ (val):
+medline.CIN(val)
+================
 
 
 CommentIn
 
 ********************
 
-medline.\ **FPS**\ (val):
+medline.FPS(val)
+================
 
 
 FullPersonalNameSubject
 
 ********************
 
-medline.\ **TT**\ (val):
+medline.TT(val)
+===============
 
 
 TransliteratedTitle
 
 ********************
 
-medline.\ **PHST**\ (val):
+medline.PHST(val)
+=================
 
 
 PublicationHistoryStatus
 
 ********************
 
-medline.\ **EFR**\ (val):
+medline.EFR(val)
+================
 
 
 ErratumFor
 
 ********************
 
-medline.\ **PST**\ (val):
+medline.PST(val)
+================
 
 
 PublicationStatus
 
 ********************
 
-medline.\ **SPIN**\ (val):
+medline.SPIN(val)
+=================
 
 
 SummaryForPatients
 
 ********************
 
-medline.\ **AU**\ (val):
+medline.AU(val)
+===============
 
 
 Author
 
 ********************
 
-medline.\ **FED**\ (val):
+medline.FED(val)
+================
 
 
 Editor
 
 ********************
 
-medline.\ **NM**\ (val):
+medline.NM(val)
+===============
 
 
 SubstanceName
 
 ********************
 
-medline.\ **SO**\ (val):
+medline.SO(val)
+===============
 
 
 Source
 
 ********************
 
-medline.\ **IP**\ (val):
+medline.IP(val)
+===============
 
 
 Issue
 
 ********************
 
-medline.\ **OABL**\ (val):
+medline.OABL(val)
+=================
 
 
 OtherAbstract
 
 ********************
 
-medline.\ **CRDT**\ (val):
+medline.CRDT(val)
+=================
 
 
 CreateDate
 
 ********************
 
-medline.\ **DDIN**\ (val):
+medline.DDIN(val)
+=================
 
 
 DatasetIn
 
 ********************
 
-medline.\ **MH**\ (val):
+medline.MH(val)
+===============
 
 
 MeSHTerms
 
 ********************
 
-medline.\ **DP**\ (val):
+medline.DP(val)
+===============
 
 
 DatePublication
 
 ********************
 
-medline.\ **GN**\ (val):
+medline.GN(val)
+===============
 
 
 GeneralNote
 
 ********************
 
-medline.\ **CRF**\ (val):
+medline.CRF(val)
+================
 
 
 CorrectedRepublishedFrom
 
 ********************
 
-medline.\ **TI**\ (val):
+medline.TI(val)
+===============
 
 
 Title
@@ -541,14 +587,16 @@ only one per record
 
 ********************
 
-medline.\ **CRI**\ (val):
+medline.CRI(val)
+================
 
 
 CorrectedRepublishedIn
 
 ********************
 
-medline.\ **OT**\ (val):
+medline.OT(val)
+===============
 
 
 OtherTerm
@@ -556,14 +604,16 @@ Nothing needs to be done
 
 ********************
 
-medline.\ **ROF**\ (val):
+medline.ROF(val)
+================
 
 
 RetractionOf
 
 ********************
 
-medline.\ **OTO**\ (val):
+medline.OTO(val)
+================
 
 
 OtherTermOwner
@@ -571,28 +621,32 @@ one line field
 
 ********************
 
-medline.\ **OID**\ (val):
+medline.OID(val)
+================
 
 
 OtherID
 
 ********************
 
-medline.\ **PT**\ (val):
+medline.PT(val)
+===============
 
 
 PublicationType
 
 ********************
 
-medline.\ **RPI**\ (val):
+medline.RPI(val)
+================
 
 
 RepublishedIn
 
 ********************
 
-medline.\ **AB**\ (val):
+medline.AB(val)
+===============
 
 
 Abstract
@@ -600,14 +654,16 @@ basically a one liner after parsing
 
 ********************
 
-medline.\ **EN**\ (val):
+medline.EN(val)
+===============
 
 
 Edition
 
 ********************
 
-medline.\ **AD**\ (val):
+medline.AD(val)
+===============
 
 
 Affiliation
@@ -615,14 +671,16 @@ Undoing what the parser does then splitting at the semicolons and dropping newli
 
 ********************
 
-medline.\ **LA**\ (val):
+medline.LA(val)
+===============
 
 
 Language
 
 ********************
 
-medline.\ **TA**\ (val):
+medline.TA(val)
+===============
 
 
 JournalTitleAbbreviation
@@ -630,7 +688,8 @@ One line only
 
 ********************
 
-medline.\ **JT**\ (val):
+medline.JT(val)
+===============
 
 
 JournalTitle
@@ -638,126 +697,144 @@ One line only
 
 ********************
 
-medline.\ **IRAD**\ (val):
+medline.IRAD(val)
+=================
 
 
 InvestigatorAffiliation
 
 ********************
 
-medline.\ **PS**\ (val):
+medline.PS(val)
+===============
 
 
 PersonalNameSubject
 
 ********************
 
-medline.\ **IS**\ (val):
+medline.IS(val)
+===============
 
 
 ISSN
 
 ********************
 
-medline.\ **PL**\ (val):
+medline.PL(val)
+===============
 
 
 PlacePublication
 
 ********************
 
-medline.\ **CTI**\ (val):
+medline.CTI(val)
+================
 
 
 CollectionTitle
 
 ********************
 
-medline.\ **FAU**\ (val):
+medline.FAU(val)
+================
 
 
 FullAuthor
 
 ********************
 
-medline.\ **VTI**\ (val):
+medline.VTI(val)
+================
 
 
 VolumeTitle
 
 ********************
 
-medline.\ **DCOM**\ (val):
+medline.DCOM(val)
+=================
 
 
 DateCompleted
 
 ********************
 
-medline.\ **BTI**\ (val):
+medline.BTI(val)
+================
 
 
 BookTitle
 
 ********************
 
-medline.\ **CI**\ (val):
+medline.CI(val)
+===============
 
 
 CopyrightInformation
 
 ********************
 
-medline.\ **STAT**\ (val):
+medline.STAT(val)
+=================
 
 
 Status
 
 ********************
 
-medline.\ **DRIN**\ (val):
+medline.DRIN(val)
+=================
 
 
 DatasetUseReportedIn
 
 ********************
 
-medline.\ **RF**\ (val):
+medline.RF(val)
+===============
 
 
 NumberReferences
 
 ********************
 
-medline.\ **UIN**\ (val):
+medline.UIN(val)
+================
 
 
 UpdateIn
 
 ********************
 
-medline.\ **LR**\ (val):
+medline.LR(val)
+===============
 
 
 DateLastRevised
 
 ********************
 
-medline.\ **SFM**\ (val):
+medline.SFM(val)
+================
 
 
 SpaceFlightMission
 
 ********************
 
-medline.\ **EIN**\ (val):
+medline.EIN(val)
+================
 
 
 ErratumIn
 
 ********************
 
-medline.\ **AID**\ (val):
+medline.AID(val)
+================
 
 
 ArticleIdentifier
@@ -765,21 +842,24 @@ The given values do not require any work
 
 ********************
 
-medline.\ **PRIN**\ (val):
+medline.PRIN(val)
+=================
 
 
 PartialRetractionIn
 
 ********************
 
-medline.\ **DEP**\ (val):
+medline.DEP(val)
+================
 
 
 DateElectronicPublication
 
 ********************
 
-medline.\ **AUID**\ (val):
+medline.AUID(val)
+=================
 
 
 AuthorIdentifier
@@ -787,35 +867,40 @@ one line only just need to undo the parser's effects
 
 ********************
 
-medline.\ **SI**\ (val):
+medline.SI(val)
+===============
 
 
 SecondarySourceID
 
 ********************
 
-medline.\ **ISBN**\ (val):
+medline.ISBN(val)
+=================
 
 
 ISBN
 
 ********************
 
-medline.\ **RN**\ (val):
+medline.RN(val)
+===============
 
 
 RegistryNumber
 
 ********************
 
-medline.\ **JID**\ (val):
+medline.JID(val)
+================
 
 
 NLMID
 
 ********************
 
-medline.\ **GR**\ (val):
+medline.GR(val)
+===============
 
 
 GrantNumber

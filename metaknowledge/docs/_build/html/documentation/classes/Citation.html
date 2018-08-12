@@ -200,7 +200,7 @@
 <code class="docutils literal notranslate"><span class="pre">Journal</span></code> being the 29-Character Source Abbreviation of the journal.
 <code class="docutils literal notranslate"><span class="pre">Volume</span></code> is the volume number(s) of the publication preceded by a V
 <code class="docutils literal notranslate"><span class="pre">Page</span></code> is the page number the record starts on
-<code class="docutils literal notranslate"><span class="pre">DOI</span></code> is the DOI number of the cited record preceeded by the letters <code class="docutils literal notranslate"><span class="pre">'DOI'</span></code>
+<code class="docutils literal notranslate"><span class="pre">DOI</span></code> is the DOI number of the cited record preceded by the letters <code class="docutils literal notranslate"><span class="pre">'DOI'</span></code>
 Combined they look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Nunez</span> <span class="n">R</span><span class="o">.</span><span class="p">,</span> <span class="mi">1998</span><span class="p">,</span> <span class="n">MATH</span> <span class="n">COGNITION</span><span class="p">,</span> <span class="n">V4</span><span class="p">,</span> <span class="n">P85</span><span class="p">,</span> <span class="n">DOI</span> <span class="mf">10.1080</span><span class="o">/</span><span class="mi">135467998387343</span>
 </pre></div>
@@ -208,13 +208,13 @@ Combined they look like:</p>
 <p><strong>Note</strong>: any of the fields have been known to be missing and the requirements for the fields are not always met. If something is in the source string that cannot be interpreted as any of these it is put in the <cite>misc</cite> attribute. That is the reason to use this class, it gracefully handles missing information while still allowing for  comparison between WOS citation strings.</p>
 <div class="section" id="customizations">
 <h2>Customizations<a class="headerlink" href="#customizations" title="Permalink to this headline">¶</a></h2>
-<p>Citation’s hashing and equality checking are based on [<cite>ID()</cite>](#Citation.ID) and use the values of <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">journal</span></code>.</p>
+<p>Citation’s hashing and equality checking are based on <a class="reference external" href="#citation-id">ID()</a> and use the values of <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">journal</span></code>.</p>
 <p>When converted to a string a Citation will return the original string.</p>
 </div>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
 <p>As noted above, citations are considered to be divided into six distinct fields (<code class="docutils literal notranslate"><span class="pre">Author</span></code>, <code class="docutils literal notranslate"><span class="pre">Year</span></code>, <code class="docutils literal notranslate"><span class="pre">Journal</span></code>, <code class="docutils literal notranslate"><span class="pre">Volume</span></code>, <code class="docutils literal notranslate"><span class="pre">Page</span></code> and <code class="docutils literal notranslate"><span class="pre">DOI</span></code>) with a seventh <code class="docutils literal notranslate"><span class="pre">misc</span></code> for anything not in those. Records thus have an attribute with a name corresponding to each <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">journal</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span></code>, <code class="docutils literal notranslate"><span class="pre">DOI</span></code> and <code class="docutils literal notranslate"><span class="pre">misc</span></code> respectively. These are created if there is anything in the field. So a <code class="docutils literal notranslate"><span class="pre">Citation</span></code> created from the string: <code class="docutils literal notranslate"><span class="pre">'Nunez</span> <span class="pre">R.,</span> <span class="pre">1998,</span> <span class="pre">MATH</span> <span class="pre">COGNITION'`</span></code> would have <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">journal</span></code> defined. While one from <code class="docutils literal notranslate"><span class="pre">'Nunez</span> <span class="pre">R.'`</span></code> would have only the attribute <code class="docutils literal notranslate"><span class="pre">misc</span></code>.</p>
-<p>If the parsing of a citation string fails the attribute <code class="docutils literal notranslate"><span class="pre">bad</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> and the attribute <code class="docutils literal notranslate"><span class="pre">error</span></code> is created to contain said error, which is a [BadCitation](#metaknowledge.BadCitation) object. If no errors occur <code class="docutils literal notranslate"><span class="pre">bad</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>If the parsing of a citation string fails the attribute <code class="docutils literal notranslate"><span class="pre">bad</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> and the attribute <code class="docutils literal notranslate"><span class="pre">error</span></code> is created to contain said error, which is a <a class="reference external" href="../exceptions/index.html#badcitation-warning">BadCitation</a> object. If no errors occur <code class="docutils literal notranslate"><span class="pre">bad</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p>The attribute <code class="docutils literal notranslate"><span class="pre">original</span></code> is the unmodified string (_cite_) given to create the Citation, it can also be accessed by converting to a string, e.g. with <code class="docutils literal notranslate"><span class="pre">str()`</span></code>.</p>
 </div>
 <div class="section" id="init">
@@ -227,35 +227,44 @@ Combined they look like:</p>
 <p>A str containing a WOS style citation.</p>
 <div class="section" id="the-citation-class-has-the-following-methods">
 <h3><strong>The Citation class has the following methods:</strong><a class="headerlink" href="#the-citation-class-has-the-following-methods" title="Permalink to this headline">¶</a></h3>
-<p>Citation.isAnonymous()</p>
+<div class="section" id="citation-isanonymous">
+<h4>Citation.isAnonymous()<a class="headerlink" href="#citation-isanonymous" title="Permalink to this headline">¶</a></h4>
 <p>Checks if the author is given as <code class="docutils literal notranslate"><span class="pre">'[ANONYMOUS]'</span></code> and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if so.</p>
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the author is <code class="docutils literal notranslate"><span class="pre">'[ANONYMOUS]'`</span></code> otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
 <hr class="docutils" />
-<p>Citation.ID()</p>
-<p>Returns all of <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">journal</span></code> available separated by <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">,'</span></code>. It is for shortening labels when creating networks as the resultant strings are often unique. [<strong>Extra**()](#Citation.Extra) gets everything not returned by **ID</strong>().</p>
+<div class="section" id="citation-id">
+<h4>Citation.ID()<a class="headerlink" href="#citation-id" title="Permalink to this headline">¶</a></h4>
+<p>Returns all of <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">journal</span></code> available separated by <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">,'</span></code>. It is for shortening labels when creating networks as the resultant strings are often unique. <a class="reference external" href="#citation-extra">Extra()</a> gets everything not returned by <strong>ID</strong>().</p>
 <p>This is also used for hashing and equality checking.</p>
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 <p>A string to use as the ID of a node.</p>
+</div>
 <hr class="docutils" />
-<p>Citation.allButDOI()</p>
-<p>Returns a string of the normalized values from the Citation excluding the DOI number. Equivalent to getting the ID with [<a href="#id1"><span class="problematic" id="id2">**</span></a>ID**()](#Citation.ID) then appending the extra values from [<a href="#id3"><span class="problematic" id="id4">**</span></a>Extra**()](#Citation.Extra) and then removing the substring containing the DOI number.</p>
+<div class="section" id="citation-allbutdoi">
+<h4>Citation.allButDOI()<a class="headerlink" href="#citation-allbutdoi" title="Permalink to this headline">¶</a></h4>
+<p>Returns a string of the normalized values from the Citation excluding the DOI number. Equivalent to getting the ID with <a class="reference external" href="#citation-id">ID()</a> then appending the extra values from <a class="reference external" href="#citation-extra">Extra()</a> and then removing the substring containing the DOI number.</p>
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 <p>A string containing the data of the Citation.</p>
+</div>
 <hr class="docutils" />
-<p>Citation.Extra()</p>
-<p>Returns any <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span></code>, <code class="docutils literal notranslate"><span class="pre">DOI</span></code> or <code class="docutils literal notranslate"><span class="pre">misc</span></code> values as a string. These are all the values not returned by [<a href="#id5"><span class="problematic" id="id6">**</span></a>ID**()](#Citation.ID), they are separated by <code class="docutils literal notranslate"><span class="pre">`'</span> <span class="pre">,'`</span></code>.</p>
+<div class="section" id="citation-extra">
+<h4>Citation.Extra()<a class="headerlink" href="#citation-extra" title="Permalink to this headline">¶</a></h4>
+<p>Returns any <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span></code>, <code class="docutils literal notranslate"><span class="pre">DOI</span></code> or <code class="docutils literal notranslate"><span class="pre">misc</span></code> values as a string. These are all the values not returned by <a class="reference external" href="#citation-id">ID()</a>, they are separated by <code class="docutils literal notranslate"><span class="pre">`'</span> <span class="pre">,'`</span></code>.</p>
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 <p>A string containing the data not in the ID of the <code class="docutils literal notranslate"><span class="pre">Citation</span></code>.</p>
+</div>
 <hr class="docutils" />
-<p>Citation.isJournal()</p>
-<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <code class="docutils literal notranslate"><span class="pre">Citation</span></code>’s <code class="docutils literal notranslate"><span class="pre">journal</span></code> field is a journal abbreviation from the WOS listing found at [<a class="reference external" href="http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html](http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html">http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html](http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html</a>), i.e. checks if the citation is citing a journal.</p>
-<p><strong>Note</strong>: Requires the [j9Abbreviations](#journalAbbreviations.getj9dict) database file and will raise an error if it cannot be found.</p>
-<p><strong>Note</strong>: All parameters are used for getting the data base with  [<a href="#id7"><span class="problematic" id="id8">**</span></a>getj9dict**()](#journalAbbreviations.getj9dict).</p>
+<div class="section" id="citation-isjournal">
+<h4>Citation.isJournal()<a class="headerlink" href="#citation-isjournal" title="Permalink to this headline">¶</a></h4>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <code class="docutils literal notranslate"><span class="pre">Citation</span></code>’s <code class="docutils literal notranslate"><span class="pre">journal</span></code> field is a journal abbreviation from the WOS listing found at <a class="reference external" href="http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html">http://images.webofknowledge.com/WOK46/help/WOS/A_abrvjt.html</a>, i.e. checks if the citation is citing a journal.</p>
+<p><strong>Note</strong>: Requires the <a class="reference external" href="../modules/journalAbbreviations.html#journalabbreviations-getj9dict">j9Abbreviations</a> database file and will raise an error if it cannot be found.</p>
+<p><strong>Note</strong>: All parameters are used for getting the data base with  <a class="reference external" href="../modules/journalAbbreviations.html#journalabbreviations-getj9dict">getj9dict()</a>.</p>
 <p><strong>Parameters</strong></p>
 <p><em>dbname</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[str]</span></code></p>
 <p>The name of the downloaded database file, the default is determined at run time. It is recommended that this remain untouched.</p>
@@ -266,17 +275,21 @@ Combined they look like:</p>
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the <code class="docutils literal notranslate"><span class="pre">Citation</span></code> is for a journal</p>
+</div>
 <hr class="docutils" />
-<p>Citation.FullJournalName()</p>
-<p>Returns the full name of the Citation’s journal field. Requires the [j9Abbreviations](#journalAbbreviations.getj9dict) database file.</p>
-<p><strong>Note</strong>: Requires the [j9Abbreviations](#journalAbbreviations.getj9dict) database file and will raise an error if it cannot be found.</p>
+<div class="section" id="citation-fulljournalname">
+<h4>Citation.FullJournalName()<a class="headerlink" href="#citation-fulljournalname" title="Permalink to this headline">¶</a></h4>
+<p>Returns the full name of the Citation’s journal field. Requires the <a class="reference external" href="../modules/journalAbbreviations.html#journalabbreviations-getj9dict">j9Abbreviations</a> database file.</p>
+<p><strong>Note</strong>: Requires the <a class="reference external" href="../modules/journalAbbreviations.html#journalabbreviations-getj9dict">j9Abbreviations</a> database file and will raise an error if it cannot be found.</p>
 <p><strong>Returns</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 <p>The first full name given for the journal of the Citation (or the first name in the WOS list if multiple names exist), if there is not one then <code class="docutils literal notranslate"><span class="pre">None</span></code> is returned</p>
+</div>
 <hr class="docutils" />
-<p>Citation.addToDB()</p>
-<p>Adds the journal of this Citation to the user created database of journals. This will cause [isJournal()](#Citation.isJournal) to return <code class="docutils literal notranslate"><span class="pre">True</span></code> for this Citation and all others with its <code class="docutils literal notranslate"><span class="pre">journal</span></code>.</p>
-<p><strong>Note</strong>: Requires the [j9Abbreviations](#journalAbbreviations.getj9dict) database file and will raise an error if it cannot be found.</p>
+<div class="section" id="citation-addtodb">
+<h4>Citation.addToDB()<a class="headerlink" href="#citation-addtodb" title="Permalink to this headline">¶</a></h4>
+<p>Adds the journal of this Citation to the user created database of journals. This will cause <a class="reference external" href="#citation-isjournal">isJournal()</a> to return <code class="docutils literal notranslate"><span class="pre">True</span></code> for this Citation and all others with its <code class="docutils literal notranslate"><span class="pre">journal</span></code>.</p>
+<p><strong>Note</strong>: Requires the <a class="reference external" href="../modules/journalAbbreviations.html#journalabbreviations-getj9dict">j9Abbreviations</a> database file and will raise an error if it cannot be found.</p>
 <p><strong>Parameters</strong></p>
 <p><em>manualName</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[str]</span></code></p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">None</span></code>, the full name of journal to use. If not provided the full name will be the same as the abbreviation.</p>
@@ -285,6 +298,7 @@ Combined they look like:</p>
 <p><em>invert</em>: <code class="docutils literal notranslate"><span class="pre">optional</span> <span class="pre">[bool]</span></code></p>
 <p>Default <code class="docutils literal notranslate"><span class="pre">False</span></code>, if <code class="docutils literal notranslate"><span class="pre">True</span></code> the journal will be removed instead of added</p>
 <hr class="docutils" />
+</div>
 </div>
 </div>
 </div>

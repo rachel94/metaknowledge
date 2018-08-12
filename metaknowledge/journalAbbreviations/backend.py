@@ -174,7 +174,7 @@ def addToDB(abbr = None, dbname = manualDBname):
     | The journal abbreviation to be added to the database, it can either be a single string in which case that string will be added with its self as the full name, or a dict can be given with the abbreviations as keys and their names as strings, use pipes (`'|'`) to separate multiple names. Note, if the empty string is given as a name the abbreviation will be considered manually __excluded__, i.e. having excludeFromDB() run on it.
 
     | *dbname:* :code:`optional [str]`
-    | The name of the database file, default is:code:`metaknowledge.journalAbbreviations.manualDBname`.
+    | The name of the database file, default is :code:`metaknowledge.journalAbbreviations.manualDBname`.
     """
     dbLoc = os.path.normpath(os.path.dirname(__file__))
     with dbm.dumb.open(dbLoc + '/' + dbname) as db:
@@ -199,7 +199,7 @@ def excludeFromDB(abbr = None, dbname = manualDBname):
     | The journal abbreviation to be excluded from the database, it can either be a single string in which case that string will be exclude or a list/tuple of strings can be given with the abbreviations.
 
     | *dbname:* :code:`optional [str]`
-    | The name of the database file, default is:code:`metaknowledge.journalAbbreviations.manualDBname`.
+    | The name of the database file, default is :code:`metaknowledge.journalAbbreviations.manualDBname`.
     """
     dbLoc = os.path.normpath(os.path.dirname(__file__))
     with dbm.dumb.open(dbLoc + '/' + dbname) as db:
