@@ -1,5 +1,6 @@
 Hi! If you're reading this it means you've been tasked with completing the conversion of the mk docs to Read the Docs (rtd). This should help you understand what I've done, what's left to be done, and how I think it could be done.
 
+## Overview
 If you have any questions, I'm happy to chat about this. You can message me on Mattermost or email me at <a href="mailto:rewood34@gmail.com">rewood34@gmail.com</a> (an email will likely guarantee a quicker response if I'm not online on Mattermost at the time).
 
 The existing docs for metaknowledge are <a href="http://networkslab.org/metaknowledge/documentation/metaknowledgeFull">here</a>.
@@ -11,43 +12,46 @@ I'm going to first explain how this all works generally, and then I'll explain w
 ## Setting up the docs for Read the Docs
 I started by doing <a href="https://docs.readthedocs.io/en/latest/getting_started.html">this tutorial</a> from Read the Docs. I opted to use reStructuredText (rst) simply because the tutorial for it seemed easier. If you'd rather use Markdown and think it won't be too difficult to change (or to use both together) feel free to do so (though everything I've done so far has been in rst). Following the tutorial and using `sphinx quickstart`, the following were created:
 * `/build` (this is where the generated html pages go)
-* `\_build\`
-* `\_static` (So far this is empty. I assume this is where you'd put custom CSS or JS if you needed it, though rtd has built in styling that has mostly been sufficient so far. You might find a use for some additional styles though, so I think they'd go here.)
-* `\_templates` (this is also empty, I'm not sure what you'd put here)
+* `/build/doctrees` (this was generated automatically when I generated the html pages, and I believe it keeps track of how the various html pages are linked together)
+* `/static` (So far this is empty. I assume this is where you'd put custom CSS or JS if you needed it, though rtd has built in styling that has mostly been sufficient so far. You might find a use for some additional styles though, so I think they'd go here.)
+* `/templates` (this is also empty, I'm not sure what you'd put here)
 * `conf.py` (this is an important file, I believe I changed all the necessary values within it. you'll learn about it in the above tutorial if you do that)
 * `make.bat` (this is needed to generate your html files)
 * `Makefile` (this is needed to generate your html files)
 
 I then added the following:
-* `readme.md` (this file)
-* `index.rst` (this is the main page of your docs on read the docs. the toctree is super important within it, and is explained in the above tutorial. Otherwise, you can put whatever content you want; so I put the intro text for metaknowledge on the old documentation)
+* `index.rst` (this is the main page of the docs on read the docs. the *toctree* is super important within it, and is explained in the above tutorial. Otherwise, you can put whatever content you want; so I put the intro text for metaknowledge from the old documentation)
 * all the other files ending in .rst (these are the other pages at the top level of our read the docs file structure)
-* all other subdirectories (these contain more pages that are on our read the docs, but that are nested)
-* `regex.md` (contains a list of some useful regular expressions I've been using to find and replace parts of the docstrings. You will likely end up creating more of these, but they speed things up a lot)
+* all other subdirectories (these contain more pages that make up our docs, but that are nested)
+* `regex.md` (contains a list of some useful regular expressions I've been using to find and replace parts of the docstrings. You will likely end up creating more of these, but they speed things up a lot – more on how the existing docstrings contribute to this later)
 
-## Generating pages for read the docs
-If you continue to use rst like I've been, you can learn the syntax <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">here</a>. Some things are kind of annoying in rst, such as making a hyperlink italicized, because it doesn't allow for nested styles (which was super annoying). However, there are weird workarounds to this, where you sort of put in a variable, and then replace the variable later. Take a look at `install.rst` for some examples of this.
+## Generating HTML pages for Read the Docs
+Essentially what's happening is we're creating RST pages, and then using Sphinx to convert this into HTML that works with the styling of RTD. Some of the pages, such as the index page, was pretty easy because I just copied it from the existing docs, and made it into RST myself. However, we also want to use the existing docstrings that are found throughout the metaknowledge package, and have those be automatically converted to RST. This has been done for the Modules and Exceptions, and still needs to be done for Functions & Methods, and Classes. The RST docs are created by running getClasses.py, getModules.py, and getExs.py (we still need to write this for the Functions & Methods, and finish getClasses – more on this later). So the idea is that whenever you update the code in mk, and the docstrings, you would run each of these, and then run this command to convert this into HTML: `cd [wherever you stored this repo]/metaknowledge/metaknowledge/docs`
+`make html` (more on this below). This would allow the docs on RTD to be updated to match the changes to mk by typing just a few lines.
 
-Or, if you're using markdown, use that syntax instead.
+### restructuredText (RST)
+If you continue to use RST like I've been, you can learn the syntax <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">here</a>. Some things are kind of annoying in RST, such as making a hyperlink italicized, because it doesn't allow for nested styles (which was super annoying). However, there are weird workarounds to this, where you sort of put in a variable, and then replace the variable later. Take a look at `install.rst` for some examples of this. Or, if you're using markdown, use that syntax instead.
 
-When you want to convert your .rst pages to .html to look like read the docs style, simply do the following on the command line:
+### Converting from RST to HTML
+When you've generated some pages in RST and are ready to convert them to HTML, simply do the following on the command line:
 `cd [wherever you stored this repo]/metaknowledge/metaknowledge/docs`
 `make html`
-This generates the .html files from the .rst files, and puts them in `\_build`. You can then view them in a browser by just opening the .html pages. If there's an error in the rst files (usually it's something to do with the links in your toctrees, or other syntax errors), read the error messages bc they're usually pretty helpful.
+This generates the .html files from the .rst files, and puts them in `/build`. You can then view them in a browser by just opening the .html pages. If there's an error in the rst files (usually it's something to do with the links in your toctrees, or other syntax errors), read the error messages in Terminal/cmd bc they're usually pretty helpful.
 
-## Getting the files live on read the docs
-I've made a read the docs account where I'm hosting the docs right now, I mostly did this for learning purposes, but ultimately this will need to be hosted on a netlab account or something. You can still test what the files will look like on rtd just by opening the .html files in a browser, so you don't *need* to make your own rtd account to do this. If you're interested, <a href="https://mk-july6.readthedocs.io/en/latest/">here is my hosted version</a>. (Don't be alarmed if I've taken it down by the time you read this).
+## Getting the files live on Read the Docs
+I've made aan account with RTD where I'd been hosting the docs. I mostly did this for learning purposes, but ultimately this will need to be hosted on an account that John should probably set up, or use like a shared Netlab account or something. I'll leave mine up for a bit in case I need to look back at it to remember how I did it, but then I'll take mine offline. You can still test what the files will look like on RTD just by opening the .html files in a browser, so you don't *need* to make your own RTD account to do this. If you're interested, <a href="https://mk-july6.readthedocs.io/en/latest/">here is my hosted version</a>. (Don't be alarmed if I've taken it down by the time you read this).
 
-But if you are the one putting the docs on rtd, essentially you do the following (there are more thorough tutorials online):
-* make a <a href="https://readthedocs.org/">rtd</a> account
-* go to the dropdown bestide your username in the top right corner and click 'My Projects'
-* click 'Import a Project'
-* click 'Import Manually' (unless what you're looking for shows up automatically if you've linked your github account to rtd, in which case click on it)
-* provide the url to your git repo where the docs are (I think your repo needs to be public to work with this)
-* Now you also have to add a webhook in your repo on git or wherever it's hosted. This allows any new pushes to your repo to automatically push to read the docs too. So if you're using git hub, go to your repo's settings > WebHooks > Add webhook. For 'Payload URL', you put in the url that you can find on read the docs under Projects > your project (mk) > Admin > Integrations. There should be a link there that will say it can be used for incoming webhooks.
-* Then if it hasn't built already, (in read the docs) go to Projects / your project / Overview, and click Build.
-* You can view the docs by clicking 'View Docs'
-* When you make changes to your docs, make sure you run `docsGen.py` (see below), then run `make html` to remake the html pages, then push to git. This will automatically make the changes on read the docs.
+### Steps to get the files live on Read the Docs
+For whoever will be putting the docs on RTD, essentially you do the following (there are more thorough tutorials online):
+* Make a <a href="https://readthedocs.org/">Read the Docs</a> account
+* Go to the dropdown beside your username in the top right corner and click **My Projects**
+* Click **Import a Project**
+* Click **Import Manually** (unless what you're looking for shows up automatically if you've linked your GitHub account to RTD, in which case click on it)
+* Provide the URL to your git repo where the docs are (I think your repo needs to be public to work with this)
+* Now you also have to add a webhook in your repo. This allows any new pushes to your repo to automatically push to RTD too. If you're using GitHub, go to your repo's settings > **WebHooks** > **Add webhook**. For 'Payload URL', you put in the URL that you can find on RTD under **Projects** > **your project (mk)** > **Admin** > **Integrations**. There should be a link there that will say it can be used for incoming webhooks.
+* Then if it hasn't built already, (in RTD) go to **Projects** / **your project** / **Overview**, and click **Build**.
+* You can view the docs by clicking **View Docs**
+* When you make changes to your docs, make sure you run all the necessary scripts to convert the docstrings to RST (see below), then run `make html` to remake the html pages, then push to git. This should automatically make the changes on RTD.
 
 ## Understanding the docsGen.py script I wrote
 We wanted the docs to be automatically generated from the docstrings in each module (I think?). Reid had already written a script <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/bin/metaknowledgeDocsGen.py">`metaknowledge/metaknowledge/bin/metaknowledgeDocsGen.py`</a> that converts all the docstrings to markdown that could then be used to create the original custom mk docs. I ended up starting to write my own script to convert the docstrings to rst to be used with rtd. This is < a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/docsGen.py">`metaknowledge/metaknowledge/docs/docsGen.py`</a>. So far, this works for (most of) the 6 modules: WOS, contour, medline, scopus, proquest, journalAbbreviations, but needs additional functionality for the functions/methods, exceptions, and classes.
