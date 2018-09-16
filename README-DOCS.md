@@ -1,13 +1,13 @@
 Hi! If you're reading this it means you've been tasked with completing the conversion of the mk docs to Read the Docs (rtd). This should help you understand what I've done, what's left to be done, and how I think it could be done.
 
 ## Overview
-If you have any questions, I'm happy to chat about this. You can message me on Mattermost or email me at <a href="mailto:rewood34@gmail.com">rewood34@gmail.com</a> (an email will likely guarantee a quicker response if I'm not online on Mattermost at the time).
+If you have any questions, I'm happy to chat about this. You can message me on Mattermost or email me at <a href="mailto:rewood34@gmail.com">rewood34@gmail.com</a> (an email will likely guarantee a quicker response if I'm not online on Mattermost at the time). I think it would be useful to meet up or have a video chat about this, you can let me know if you agree and I'm happy to set something up!
 
 The existing docs for metaknowledge are <a href="http://networkslab.org/metaknowledge/documentation/metaknowledgeFull">here</a>.
 
 You can find everything relating to documentation (scripts, templates, the docs themselves) in metaknowledge/metaknowledge/docs.
 
-I'm going to first explain how this all works generally, and then I'll explain what still needs to be done.
+I'm going to first explain how this all works generally, and then I'll explain what still needs to be done. What still needs to be done is titled "What's left to do", and is farther down this doc.
 
 ## Setting up the docs for Read the Docs
 I started by doing <a href="https://docs.readthedocs.io/en/latest/getting_started.html">this tutorial</a> from Read the Docs. I opted to use reStructuredText (rst) simply because the tutorial for it seemed easier. If you'd rather use Markdown and think it won't be too difficult to change (or to use both together) feel free to do so (though everything I've done so far has been in rst). Following the tutorial and using `sphinx quickstart`, the following were created:
@@ -53,38 +53,41 @@ For whoever will be putting the docs on RTD, essentially you do the following (t
 * You can view the docs by clicking **View Docs**
 * When you make changes to your docs, make sure you run all the necessary scripts to convert the docstrings to RST (see below), then run `make html` to remake the html pages, then push to git. This should automatically make the changes on RTD.
 
-## Understanding the docsGen.py script I wrote
-We wanted the docs to be automatically generated from the docstrings in each module (I think?). Reid had already written a script <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/bin/metaknowledgeDocsGen.py">`metaknowledge/metaknowledge/bin/metaknowledgeDocsGen.py`</a> that converts all the docstrings to markdown that could then be used to create the original custom mk docs. I ended up starting to write my own script to convert the docstrings to rst to be used with rtd. This is < a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/docsGen.py">`metaknowledge/metaknowledge/docs/docsGen.py`</a>. So far, this works for (most of) the 6 modules: WOS, contour, medline, scopus, proquest, journalAbbreviations, but needs additional functionality for the functions/methods, exceptions, and classes.
+## Understanding the scripts I wrote
+We want the docs to be automatically generated from the docstrings that already exist with each module, class, function, methods, and the exceptions.
 
-Here is how I envision the rtd docs being organized:
+So I've written `getModules` which gets all these docstrings from the modules' docstrings and writes it to the proper RST files (in `metaknowledge/docs/documentation/modules/` – then there's one for each of the six modules there: WOS, contour, medline, scopus, proquest, journalAbbreviations). I also have `getExs` that gets the docstrings from the Exceptions (in `mkExceptions.py`) and puts all of that in one RST file (in `metaknowledge/docs/documentation/exceptions/index.rst`). I've also written the beginnings of `getClasses`, which will get all the docstrings from each location where any of the classes are (see list below for where you can find these). This will then go into each of the RST files in `metaknowledge/docs/documentation/classes/`. These scripts can all be found in `metaknowledge/docs/`
+
+As a side note, Reid had already written a script <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/bin/metaknowledgeDocsGen.py">`metaknowledge/metaknowledge/bin/metaknowledgeDocsGen.py`</a> that converts all the docstrings to markdown that was used to create the original custom mk docs. However, I ended up writing my own scripts, as I described above.
+
+### Organizing the docs
+Here is how I intended the docs to be organized, and how I think is a reasonable way to continue organizing them on RTD. Each list element represents a separate RST page, and therefore a separate HTML page.
+
 * Intro (index file – done)
 * Installation – done
 * Documentation
-    * Overview – done except for some faulty links, please fix this
-
+    * Overview – done except for some faulty links, which will need to be fixed
     * Examples – done
-
-    * Functions &amp; Methods
-
+    * Functions &amp; Methods (\*needed\*)
     * Exceptions – done
         * there are just some faulty links that need to be fixed
-        * In existing docs, there are no docstrings listed, but some of the exceptions have docstrings. I've included these. Easy enough to remove them if you'd like
+        * In the existing docs, there are no descriptions provided with the exceptions, but some of the exceptions in `mkExceptions` have docstrings listed. I've included these, but they're easy enough to remove them if you'd like
 
-    * Classes. They can be found in the listed py file:
-        * WOSRecord class: WOS/recordWOS.py
-    		* citation class: citation.py
-    		* Grant Collection class: grantCollection.py
-    		* Grant class: grants/baseGrant.py
-    		* NSERC Grant class: grants/NSERCGrant.py
-    		* NSFGrant class: grants/NSFGrant.py
-    		* medline record class: medline/recordMedline.py
-    		* collection class: mkCollection.py
-    		* collection with IDs class: mkCollection.py
-    		* extended record class: mkRecord.py
-    		* record class: mkRecord.py
-    		* proquest record class: proquest/recordProQuest.py
-    		* record collection class: recordCollection.py
-        * scopus record class: scopus/recordScopus.py
+    * Classes. Each class and their docstrings can be found in the listed py file:
+        * WOSRecord class: `WOS/recordWOS.py`
+    		* citation class: `citation.py`
+    		* Grant Collection class: `grantCollection.py`
+    		* Grant class: `grants/baseGrant.py`
+    		* NSERC Grant class: `grants/NSERCGrant.py`
+    		* NSFGrant class: `grants/NSFGrant.py`
+    		* medline record class: `medline/recordMedline.py`
+    		* collection class: `mkCollection.py`
+    		* collection with IDs class: `mkCollection.py`
+    		* extended record class: `mkRecord.py`
+    		* record class: `mkRecord.py`
+    		* proquest record class: `proquest/recordProQuest.py`
+    		* record collection class: `recordCollection.py`
+        * scopus record class: `scopus/recordScopus.py`
 
     * Modules
         * Contour – done
@@ -97,24 +100,21 @@ Here is how I envision the rtd docs being organized:
 * Examples (from jupyter notebooks – see below)
 * Command Line Tool (done, but think we're removing this – see below)
 
-The existing documentation is one long page, that contains modules, classes, functions, but I see it being broken up like this (where each list element above represents a separate rst page, that's converted to a separate html page). So, the `docsGen.py` needs to create all the pages that haven't yet been made (some have been created manually if they don't need to come from docstrings, and the module pages are already being generated by `docsGen.py`). So far, it creates the 6 module pages. Let's talk about those first...
+### The details of the scripts
+Basically `writeModFiles` in `getModules.py` uses the `ast` Python package to identify what parts of the files in those modules are docstrings, functions, parameters, and defaults. It reads the `__init__.py` file to find the overall docstrings (like an intro to the module). Then it opens any file that's not `__init__.py` and uses `ast` to find the functions (but not the classes). These get added to the new RST file first as part of a table of contents. I chose to do this to follow the way the existing docs are, bc I thought it's useful for the pages that will have more functions. However, I'm running into trouble making links to different parts of the page with IDs in RST (see below), so right now the table of contents is just visual and not functional and therefore fairly counter productive. Anyway, then below that, the function and its parameters and defaults are listed (also found using the `ast` package), then the docstrings for that individual function, formatted to match the way the existing docs did it.
 
-Basically `writeModFiles` in `docsGen.py` uses the `ast` Python package to identify what parts of the files in those modules are docstrings, functions, parameters, and defaults. It reads the `__init__.py` file to find the overall docstrings (like an intro to the module). Then it opens any file that's not `__init__.py` and uses `ast` to find the functions (but not the classes). These get added to the new rst file first as part of a table of contents. I chose to do this to follow the way the existing docs are, bc I thought it's useful for the pages that will have more functions. However, I'm running into trouble making links to different parts of the page with IDs in rst (see below), so right now the table of contents is just visual and not functional and therefore fairly counter productive. Anyway, then below that, the function and its parameters and defaults are listed, then the docstrings for that individual function, formatted to match the way the existing docs did it.
+In "What's left to do" below, I explain what still needs to be done. Feel free to use pieces of Reid's code as well for that. While I ended up rewriting a lot, his could still be used with some modifications.
 
-The rst files are created in the proper folder for rtd to use them.
-
-In "What's left to do" below, I explain what still needs to be done. Feel free to use pieces of Reid's code as well for that. While I ended up rewriting a lot, his could still be used with some modifications!
-
-### Converting the docstrings to work with rst
-In order to make the docstrings convert properly to rst, I needed to make changes to the docstrings in each of the `.py` files. I did most of this using regular expressions, which you can find in <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/regex.md">regex.md</a>. Once you get going with this it doesn't take too long. The modules are almost done, except for the following (see "what's left to do" below).
+### Converting the docstrings to work with RST
+In order to make the docstrings convert properly to RST, I needed to make changes to the docstrings in each of the `.py` files. I did most of this using regular expressions, which you can find in <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/regex.md">regex.md</a>. Once you get going with this it doesn't take too long. Essentially what you're doing is changing them from markdown to RST, so that when our scripts read it in, it's already in RST. <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">This document about the RST syntax</a> will prove useful for this too, but you don't have to change *everything* so I'm hoping what remains won't be too time consuming to do.
 
 ### Running the scripts!
-In the docs directory...
-`python3 docsGen.py` to run the script and create the rst files. do this anytime you update your docstrings or change functions.
-Then do `make html`. this converts the rst to html files for rtd
-Then push to git to make this accessible on rtd
+When you want to run the scripts to generate the RST files from any updated docstrings,  `cd` into `metaknowledge/docs`, and then run each script. Do this anytime you update your docstrings or change functions. Then type `make html`. this converts the RST to html files for RTD. If you're ready to make this live, then push to git to make it accessible on RTD.
 
 ## What's left to do
+
+### One script that runs all the others
+This should be fairly trivial to implement, but I think it might be useful to have one script that just calls the other four (`getExs`, `getModules`, `getClasses`, `getFunctions`). But I guess an argument against that is if there's situations where you'd only want to be running one of those at a time. I'll leave this up to you.
 
 ### Generating the docs for functions, classes, Methods
 Aug 12:
