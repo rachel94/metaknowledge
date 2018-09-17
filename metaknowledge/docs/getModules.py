@@ -1,16 +1,17 @@
 import os
 import ast
 
-# mods: this is the names of the modules
-# ideally this would be generated automatically
+# mods: this is the names of the modules; ideally this would be generated automatically
 mods = ['WOS', 'contour', 'medline', 'proquest', 'scopus', 'journalAbbreviations']
 
 # convertDefaults: used to convert the defaults into a usable format
+# so far this has only been used in getModules, but it'd be useful for any others that have defaults that you want to include in the docs
 def convertDefaults(default_list, params_list):
 
     new_defaults = []
 
     for d in default_list:
+        # the following is to convert the defaults into a more easy to work with/familiar type
         if type(d) == ast.Num:
             new_defaults.append(str(d.n))
         elif type(d) == ast.NameConstant:
@@ -48,7 +49,7 @@ def writeModFiles():
 
         os.chdir(mod)
         with open('__init__.py', 'r') as init:
-            # use ast to red the docstrings for the overall module, in __init__.py
+            # use ast to read the docstrings for the overall module, in __init__.py
             tree = ast.parse(init.read())
         docstring = ast.get_docstring(tree)
 
@@ -74,6 +75,7 @@ def writeModFiles():
             for node in module.body: # each of the functions in that file
                 if isinstance(node, ast.FunctionDef): # if it's a function...
 
+                    # getting the parameters and defaults
                     params = node.args.args
                     params_list = [p.arg for p in params]
                     defaults = node.args.defaults
@@ -130,14 +132,14 @@ def writeModFiles():
             # if we've gone into a tagProcessing subdirectory, we need to get out of it
             os.chdir('..')
 
-        # before exiting the loop, get out of the mod file, and go into docs, since this is where we were when we started the loop
+        # before exiting the loop, get out of the mod file, and go into docs, since this is where we need to be at the start of the loop
         os.chdir(os.path.join('..', 'docs'))
 
 
 
         # now, create the rst files (for readability, we might want to make this its own function)
         fname =  os.path.join("documentation", "modules", mod + ".rst")
-        header = "#####################"
+        header = "#####################" # that is part of the rst syntax
 
         # creating the files and writing if it doesn't exist yet
         # if the file already exists, it gets overwritten
@@ -196,7 +198,7 @@ def writeModFiles():
             f_count = 0
 
             while f_count < len(functions):
-                # again this was all an attempt to get IDs on the html elements so that it could link to each function
+                # again this was all an attempt to get IDs on the html elements so that it could link to each function. I don't think they should need IDs though as RST seems to implement this automatically.
                 #link_name = mod + "_" + functions[f_count]["fn_name"]
                 # f.write(".. container::\n")
                 # f.write("    :name: " + link_name + "\n\n")
@@ -209,18 +211,11 @@ def writeModFiles():
                 mod_name = mod + "." + functions[f_count]["fn_name"] + "(" + p_str + ")"
                 f.write(mod_name)
                 f.write("\n" + "=" * len(mod_name) + "\n\n")
-                #f.write(mod + ".\ **" + functions[f_count]["fn_name"] + "**\ (")
-
-                # add the parameters to the function
-                # p_str = ""
-                # for p in functions[f_count]["params_defs"]:
-                #     p_str += p + ", "
-                # p_str = p_str[:-2]
-                # f.write(p_str + "):\n\n")
 
                 f.write("\n" + functions[f_count]["docs"])
 
                 if f_count < len(functions)-1:
+                    # creates a line to separate from the following function
                     f.write("\n\n********************\n\n")
 
                 f_count += 1

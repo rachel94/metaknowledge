@@ -1,6 +1,7 @@
 import os
 import ast
 
+# getExs: generates the docs in rst for the exceptions listed in mkExceptions.py
 def getExs():
 
     os.chdir('..')
@@ -22,8 +23,9 @@ def getExs():
             entry = {"docs": docs, "name": name, "params": params}
             classes.append(entry)
 
-    header = "#####################"
+    header = "#####################" # this is what you use to "underline" a header in RST
 
+    # switch directories to now go into the docs and create, or overwrite, the exceptions docs
     os.chdir(os.path.join('docs', 'documentation', 'exceptions'))
 
     with open('index.rst', 'w') as f:
@@ -37,6 +39,7 @@ def getExs():
         c_count = 0
 
         while c_count < len(classes):
+            # writing each of the exceptions
             f.write("**" + classes[c_count]["name"] + "**\ ")
             params_list = classes[c_count]["params"]
 
@@ -50,16 +53,18 @@ def getExs():
                     f.write("*" + p + "*, ")
                 f.write("*" + params_list[-1] + "*\ )")
 
-            # if you do not wish to include the docstrings, remove the next two lines:
+            # if you do not wish to include the docstrings (as the existing docs do not), remove the next two lines:
+            # otherwise, this checks if there are docstrings and adds them if there are.
             if classes[c_count]["docs"] != None:
                 f.write("\n\n" + classes[c_count]["docs"])
-            ###
 
+            # adding a line before the next one
             if c_count < len(classes) - 1:
                 f.write("\n\n********************\n\n")
 
             c_count += 1
 
+    # go up one to be in the right place for next file
     os.chdir('..')
 
 
