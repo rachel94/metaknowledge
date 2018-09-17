@@ -23,7 +23,6 @@ I then added the following:
 * `index.rst` (this is the main page of the docs on read the docs. the *toctree* is super important within it, and is explained in the above tutorial. Otherwise, you can put whatever content you want; so I put the intro text for metaknowledge from the old documentation)
 * all the other files ending in .rst (these are the other pages at the top level of our read the docs file structure)
 * all other subdirectories (these contain more pages that make up our docs, but that are nested)
-* `regex.md` (contains a list of some useful regular expressions I've been using to find and replace parts of the docstrings. You will likely end up creating more of these, but they speed things up a lot – more on how the existing docstrings contribute to this later)
 
 ## Generating HTML pages for Read the Docs
 Essentially what's happening is we're creating RST pages, and then using Sphinx to convert this into HTML that works with the styling of RTD. If there are any errors they will show up in the command line – I've found that there can often be little errors that are basically telling you that something with your syntax is wrong which will break the way it should work in RTD.
@@ -112,7 +111,7 @@ There's more explanation of the scripts in comments within the py files.
 In "What's left to do" below, I explain what still needs to be done. Feel free to use pieces of Reid's code as well for that. While I ended up rewriting a lot, his could still be used with some modifications.
 
 ### Converting the docstrings to work with RST
-In order to make the docstrings convert properly to RST, I needed to make changes to the docstrings in each of the `.py` files. I did most of this using regular expressions, which you can find in <a href="https://github.com/rachel94/metaknowledge/blob/master/metaknowledge/docs/regex.md">regex.md</a>. Once you get going with this it doesn't take too long. Essentially what you're doing is changing them from markdown to RST, so that when our scripts read it in, it's already in RST. <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">This document about the RST syntax</a> will prove useful for this too, but you don't have to change *everything* so I'm hoping what remains won't be too time consuming to do.
+In order to make the docstrings convert properly to RST, I needed to make changes to the docstrings in each of the `.py` files. I did most of this using regular expressions. Once you get going with this it doesn't take too long. Essentially what you're doing is changing them from markdown to RST, so that when our scripts read it in, it's already in RST. <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">This document about the RST syntax</a> will prove useful for this too, but you don't have to change *everything* so I'm hoping what remains won't be too time consuming to do.
 
 ### Running the scripts!
 When you want to run the scripts to generate the RST files from any updated docstrings,  `cd` into `metaknowledge/docs`, and then run each script. Do this anytime you update your docstrings or change functions. Then type `make html`. this converts the RST to html files for RTD. If you're ready to make this live, then push to git to make it accessible on RTD.
